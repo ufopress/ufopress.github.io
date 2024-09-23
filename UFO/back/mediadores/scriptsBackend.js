@@ -17,3 +17,25 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+
+
+    const modificarDatosEmpresa = document.getElementById('modificarDatosEmpresa');
+    const modificarBtn = document.getElementById('modificarBtn');
+
+    function abrirModificar() {
+        modificarDatosEmpresa.style.display = 'block';
+    }
+
+    function cerrarModificar() {
+        modificarDatosEmpresa.style.display = 'none';
+    }
+
+
+    modificarBtn.addEventListener('click', function () {
+        abrirModificar();
+        agregarProductos.style.display = 'none';
+    });
+
+});

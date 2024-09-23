@@ -8,4 +8,3 @@ session_destroy();
 
 //Redirecciona a archivo index.html o lobby
 header("location:../front/vistas/index.html");
-

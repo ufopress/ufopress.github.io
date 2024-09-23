@@ -20,9 +20,9 @@ try{
     $sql = "INSERT INTO `HISTORIETA` (`ISBN`, `Nombre`, `NombreCategoriaCE`, `EditOrg`, `Autores`, `Paginas`, `Tamaño`, `Contenido`, `Formato`, `Edad`, `Interior`, `Precio`) VALUES ('$isbn', '$nombre', '$nombrecategoria', '$editorg', '$autores', '$paginas', '$tamaño', '$contenido', '$formato', '$edad', '$interior', '$precio')";
     $sentencia=$conexion->prepare($sql);
     $sentencia->execute();
-    header("location:../vistas/admin.html");
+    echo json_encode(['success' => 'Producto agregado', 'nombre' => $nombre]);
 }catch(PDOException $a){
-    header("location:error.php");
+    echo json_encode(['error' => 'Error en la consulta: ' . $e->getMessage()]);
 }
 
 ?>

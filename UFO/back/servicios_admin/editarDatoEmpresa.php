@@ -1,13 +1,12 @@
 <?php
 include "../controladores/conectar.php";
 
-//try{
+try{
     $res=$conexion->query("SELECT * FROM `datos_empresa`");
     $reg=$res->fetch();
-//}catch(PDOException $d){
-  //  header("location:error.php");
-//}
-
+}catch(PDOException $d){
+    header("location:error.php");
+}
 
 
 $nombre = $reg['NombreEmpresa'];
@@ -20,7 +19,7 @@ $xtwitter = $reg['X_Twitter'];
 $celular1 = $reg['Celular1'];
 $celular2 = $reg['Celular2'];
 $email = $reg['Email'];
-
+/*
 echo "<form action='recibirDatoEmpresa.php' method='get'>
         
 <label for='nombreempresa'>Nombre</label> 
@@ -66,7 +65,7 @@ echo "<form action='recibirDatoEmpresa.php' method='get'>
 <input type='submit' value='Confirmar Cambios'
 header('location:recibirDatoEmpresa.php');>
 </form>";
-
+/*
 
 /*echo    "<form action='cargarLogo.php' method='post' enctype='multipart/form-data'>
             <input type='hidden' name='MAX_FILE_SIZE' value='30000' />

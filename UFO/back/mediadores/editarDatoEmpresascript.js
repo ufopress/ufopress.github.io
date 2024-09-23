@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-    const regFormBtn = document.getElementById('regFormBtn');
+    const regFormBtn = document.getElementById('regFormBtn2');
     const result = document.getElementById('result');
 
     regFormBtn.addEventListener('click', function () {
@@ -44,6 +44,12 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(data => {
                 if (data.success) {
                     result.textContent = 'Producto agregado';
+                    agregarProductos.style.display = 'none';
+
+
+
+
+
 
                 } else {
                     result.textContent = 'Error';

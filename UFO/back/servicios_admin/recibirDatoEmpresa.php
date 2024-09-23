@@ -31,7 +31,7 @@ try{
     header("location:error.php");
 }
 
-
+/*
 echo "<form action='admin.html' method='get'>
         
 <label for='nombreempresa'>Nombre</label> 
@@ -78,4 +78,4 @@ echo "<form action='admin.html' method='get'>
         header('location:../vistas/admin.html');>
 </form>";
 
-?>
+?>*/
