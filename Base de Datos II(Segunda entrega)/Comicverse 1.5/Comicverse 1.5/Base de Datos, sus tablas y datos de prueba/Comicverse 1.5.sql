@@ -1,0 +1,142 @@
+DROP DATABASE IF EXISTS comicverse;
+CREATE DATABASE IF NOT EXISTS comicverse;
+USE comicverse;
+CREATE TABLE DATOS_EMPRESA (
+    NombreEmpresa VARCHAR(40) NOT NULL,
+    Direccion VARCHAR(100) NOT NULL,
+    Rubro VARCHAR(30) NOT NULL,
+    Logo VARCHAR(30) NOT NULL,
+    Instagram VARCHAR(30) NOT NULL,
+    Facebook VARCHAR(30) NOT NULL,
+    X_Twitter VARCHAR(30) NOT NULL,
+    Celular1 VARCHAR(10) NOT NULL,
+    Celular2 VARCHAR(10) NOT NULL,
+    Email VARCHAR(40) NOT NULL,
+    PRIMARY KEY (NombreEmpresa, Email)
+);
+
+CREATE TABLE ADMINISTRADOR (
+    IdUsuario INT(10) NOT NULL AUTO_INCREMENT,
+    NombreEmpresaCE VARCHAR(50) NOT NULL,
+    FechaNacimiento VARCHAR(10) NOT NULL,
+    TipoUsuario VARCHAR(30) NOT NULL,
+    NroTelefono INT(10) NOT NULL,
+    Nombre VARCHAR(40) NOT NULL,
+    Apellido VARCHAR(40) NOT NULL,
+    Email VARCHAR(40) NOT NULL,
+    Contraseña VARCHAR(10) NOT NULL,
+    PRIMARY KEY (IdUsuario, Email),
+    FOREIGN KEY (NombreEmpresaCE) REFERENCES DATOS_EMPRESA(NombreEmpresa)
+);
+
+CREATE TABLE REPORTE (
+    NroReporte INT(10) NOT NULL AUTO_INCREMENT,
+    IdUsuarioCE INT(10) NOT NULL,
+    Contenido VARCHAR(50) NOT NULL,
+    PRIMARY KEY (NroReporte),
+    FOREIGN KEY (IdUsuarioCE) REFERENCES ADMINISTRADOR (IdUsuario)
+);
+
+CREATE TABLE PROMOCION (
+    IdPromocion INT(10) NOT NULL AUTO_INCREMENT,
+    FechaInicio VARCHAR(10) NOT NULL,
+	FechaFin VARCHAR(10) NOT NULL,
+    Descripcion VARCHAR(60) NOT NULL,
+    PorcentajeDescuento INT(5) NOT NULL,
+    PRIMARY KEY (IdPromocion)
+);
+
+CREATE TABLE CATEGORIA (
+    NombreCategoria VARCHAR(40) NOT NULL,
+    PRIMARY KEY (NombreCategoria)
+);
+
+CREATE TABLE HISTORIETA (
+    ISBN VARCHAR(15) NOT NULL,
+    NombreCategoriaCE VARCHAR(40) NOT NULL,
+    Nombre VARCHAR(100) NOT NULL,
+    Imagen VARCHAR(100),
+    EditOrg VARCHAR(40) NOT NULL,
+    Autores VARCHAR(80) NOT NULL,
+    Paginas INT(5) NOT NULL,
+    Tamaño VARCHAR(10) NOT NULL,
+    Contenido VARCHAR(30) NOT NULL,
+    Formato VARCHAR(20) NOT NULL,
+    Edad INT(5) NOT NULL,
+    Interior VARCHAR(20) NOT NULL,
+    Precio VARCHAR(10) NOT NULL,
+    PRIMARY KEY (ISBN),
+    FOREIGN KEY (NombreCategoriaCE) REFERENCES CATEGORIA(NombreCategoria)
+);
+
+CREATE TABLE CLIENTE (
+    IdCliente INT(10) NOT NULL AUTO_INCREMENT,
+    IdUsuarioCE INT(10),
+    NombreUser VARCHAR(40) NOT NULL,
+    Email VARCHAR(40) NOT NULL,
+    Contrasenia VARCHAR(10) NOT NULL,
+    TipoUsuario VARCHAR(30) NOT NULL,
+    NroTelefono INT(10) NOT NULL,
+    Nacionalidad VARCHAR(30) NOT NULL,
+    AñoNacimiento INT(5) NOT NULL,
+    PRIMARY KEY (IdCliente, Email),
+    FOREIGN KEY (IdUsuarioCE) REFERENCES ADMINISTRADOR(IdUsuario)
+);
+
+CREATE TABLE CARRITO (
+    IdCarrito INT(10) NOT NULL AUTO_INCREMENT,
+    IdClienteCE INT(10) NOT NULL,
+    PRIMARY KEY(IdCarrito),
+    FOREIGN KEY (IdClienteCE) REFERENCES Cliente(IdCliente)
+);
+
+CREATE TABLE TICKET (
+   NroTicket INT(10) NOT NULL AUTO_INCREMENT,
+   IdCarritoCE INT(10) NOT NULL,
+   dirEnvio VARCHAR(40) NOT NULL,
+   Fecha VARCHAR(10) NOT NULL,
+   Hora VARCHAR(10) NOT NULL,
+   Total VARCHAR(10) NOT NULL,
+   PRIMARY KEY (NroTicket),
+   FOREIGN KEY (IdCarritoCE) REFERENCES CARRITO(IdCarrito)
+);
+
+CREATE TABLE RESEÑA (
+    IdReseña INT(10) NOT NULL AUTO_INCREMENT,
+    IdClienteCE INT(10) NOT NULL,
+    IdUsuarioCE INT(10) NOT NULL,
+    Fecha DATE NOT NULL,
+    Contenido VARCHAR(100) NOT NULL,
+    PRIMARY KEY (IdReseña),
+    FOREIGN KEY (IdClienteCE) REFERENCES CLIENTE(IdCliente),
+    FOREIGN KEY (IdUsuarioCE) REFERENCES CLIENTE(IdUsuarioCE)
+);
+-- Tablas de las claves externas
+
+CREATE TABLE CREA (
+   IdUsuarioCE INT(10) NOT NULL, 
+   IdPromocionCE INT(10) NOT NULL, 
+   FOREIGN KEY (IdUsuarioCE) REFERENCES ADMINISTRADOR(IdUsuario),
+   FOREIGN KEY (IdPromocionCE) REFERENCES PROMOCION(IdPromocion)
+);
+
+CREATE TABLE APLICA (
+   IdPromocionCE INT(10) NOT NULL, 
+   NombreCategoriaCE VARCHAR(30) NOT NULL, 
+   ISBNCE VARCHAR(15) NOT NULL, 
+   FOREIGN KEY (IdPromocionCE) REFERENCES PROMOCION(IdPromocion),
+   FOREIGN KEY (NombreCategoriaCE) REFERENCES CATEGORIA(NombreCategoria),
+   FOREIGN KEY (ISBNCE) REFERENCES HISTORIETA(ISBN)
+);
+
+CREATE TABLE AGREGA (
+   IdCarritoCE INT(10) NOT NULL, 
+   NombreCategoriaCE VARCHAR(30) NOT NULL, 
+   ISBNCE VARCHAR(15) NOT NULL, 
+   Fecha VARCHAR(10) NOT NULL,
+   Hora VARCHAR(8) NOT NULL,
+   FOREIGN KEY (IdCarritoCE) REFERENCES CARRITO(IdCarrito),
+   FOREIGN KEY (NombreCategoriaCE) REFERENCES CATEGORIA(NombreCategoria),
+   FOREIGN KEY (ISBNCE) REFERENCES HISTORIETA(ISBN)
+);
+
