@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
     agregarBtn.addEventListener('click', function () {
         abrirRegWindow();
         modificarDatosEmpresa.style.display = 'none';
-        eliminarProductos.style.display = 'none';
+        gestionarProductos.style.display = 'none';
     });
 
 });
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
     modificarBtn.addEventListener('click', function () {
         abrirModificar();
         agregarProductos.style.display = 'none';
-        eliminarProductos.style.display = 'none';
+        gestionarProductos.style.display = 'none';
     });
 
 });
@@ -46,20 +46,20 @@ document.addEventListener('DOMContentLoaded', function () {
 document.addEventListener('DOMContentLoaded', function () {
 
 
-    const eliminarProductos = document.getElementById('eliminarProductos');
-    const eliminarBtn = document.getElementById('eliminarBtn');
+    const gestionarProductos = document.getElementById('gestionarProductos');
+    const gestionarBtn = document.getElementById('gestionarBtn');
 
-    function abrirEliminar() {
-        eliminarProductos.style.display = 'block';
+    function abrirGestionar() {
+        gestionarProductos.style.display = 'block';
     }
 
-    function cerrarEliminar() {
-        eliminarProductos.style.display = 'none';
+    function cerrarGestionar() {
+        gestionarProductos.style.display = 'none';
     }
 
 
-    eliminarBtn.addEventListener('click', function () {
-        abrirEliminar();
+    gestionarBtn.addEventListener('click', function () {
+        abrirGestionar();
         agregarProductos.style.display = 'none';
         modificarDatosEmpresa.style.display = 'none';
         

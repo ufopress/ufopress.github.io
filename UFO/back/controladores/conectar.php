@@ -1,4 +1,3 @@
-
 <?php
 /*Inicia una conexión, en este caso a la base de datos nombrada "comicverse"
 con usuario "root" y contraseña "" ubicada en el localhost*/

@@ -8,6 +8,8 @@ try{
     header("location:error.php");
 }
 
+
+
 $nombre = $reg['NombreEmpresa'];
 $direccion = $reg['Direccion'];
 $rubro = $reg['Rubro'];
