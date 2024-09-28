@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ComicVerse</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="slider.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/font-awesome.min.css">
+    <link rel="icon" href="img/LogoComicVerse.png">
+</head>
+
+<body>
+    <header class="header">
+        <div class="menu container">
+            <a href="#" class="logo"><img src="img/LogoComicVerse.png" alt=""></a>
+
+            <input type="checkbox" id="menu">
+            <label for="menu">
+                <img src="img/menu.png" alt="menu">
+            </label>
+            <input type="text" placeholder="Busca tu historieta aqui:" id="nombre" name="nombre">
+            <nav class="navbar">
+                <ul>
+                    <li><a href="#lista-1">Promociones</a></li>
+                    <li><a href="#lista-2">Productos</a></li>
+                    <li><a href="#news">Curiosidades</a></li>
+                    <li><a href="../servicios/login.html">Iniciar Sesion</a></li>
+                    <li><a href="../../back/vistas/admin.html">Admin</a></li>
+                </ul>
+            </nav>
+
+            <div>
+                <ul>
+                    <li class="submenu">
+                        <img src="img/car.svg" id="img-carrito" alt="carrito">
+                        <div id="carrito">
+                            <table id="lista-carrito">
+                                <thead>
+                                    <tr>
+                                        <th>Imagen</th>
+                                        <th>Nombre</th>
+                                        <th>Precio</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                            <a href="#" id="vaciar-carrito" class="btn-2">Vaciar carrito</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <div class="oferts container" id="contenido">
+        <div class="slider">
+            <div class="slides">
+                <div class="slide">
+                    <img src="https://via.placeholder.com/900x500?text=Slide+1" id="Slide1">
+                </div>
+                <div class="slide">
+                    <img src="https://via.placeholder.com/900x500?text=Slide+2" id="Slide2">
+                </div>
+                <div class="slide">
+                    <img src="https://via.placeholder.com/900x500?text=Slide+3" id="Slide3">
+                </div>
+            </div>
+            <div class="navigation">
+                <button class="nav-button" onclick="prevSlide()">&#10094;</button>
+                <button class="nav-button" onclick="nextSlide()">&#10095;</button>
+            </div>
+        </div>
+    </div>
+
+    <section class="oferts container" id="lista-1">
+        <h2>Promociones:</h2><br>
+
+        <div class="oferts-content">
+            <div class="ofert-1">
+                <img src="img/atroBoyVol1.webp" alt="">
+                <div class="product-txt">
+                    <h3>AstroBoy</h3>
+                    <p>Vol. 1</p>
+                    <p class="precio">$U350</p>
+                    <a href="#" class="agregar-carrito btn-3" data-id="1">Agregar</a>
+                </div>
+            </div>
+
+            <div class="ofert-1">
+                <img src="img/attackOnTitanVol2.webp" alt="">
+                <div class="product-txt">
+                    <h3>Attack on Titan</h3>
+                    <p>Vol. 2</p>
+                    <p class="precio">$U400</p>
+                    <a href="#" class="agregar-carrito btn-3" data-id="2">Agregar</a>
+                </div>
+            </div>
+
+            <div class="logan-1">
+                <h3>Mangas</h3>
+                <a href="#" class="btn-2">Explorar</a>
+            </div>
+        </div>
+
+        <div class="oferts-content">
+            <div class="logan-2">
+                <h3>Cómics</h3>
+                <a href="#" class="btn-2">Explorar</a>
+            </div>
+
+            <div class="ofert-1">
+                <img src="img/batmananio1.webp" alt="">
+                <div class="product-txt">
+                    <h3>DC COMICS PRESENTA: </h3>
+                    <p>BATMAN: AÑO UNO</p>
+                    <p class="precio">$U290</p>
+                    <a href="#" class="agregar-carrito btn-3" data-id="3">Agregar</a>
+                </div>
+            </div>
+
+            <div class="ofert-1">
+                <img src="img/UniversoArañaVol12.webp" alt="">
+                <div class="product-txt">
+                    <h3>SPIDER-MAN:</h3>
+                    <p>Universo-Araña Vol.12</p>
+                    <p class="precio">$U370</p>
+                    <a href="#" class="agregar-carrito btn-3" data-id="4">Agregar</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <main class="product container" id="lista-2">
+    </main>
+
+    <section id="promotion" class="promotion">
+        <div class="promotion-content container">
+            <div class="promotion-txt">
+                <h2>Cómics y Manga</h2>
+                <p>Descubre un mundo lleno de aventuras, emociones y personajes inolvidables. En ComicVerse, nos
+                    dedicamos a ofrecerte la mejor selección de cómics y manga para todos los gustos y edades. Desde los
+                    clásicos indiscutibles hasta las últimas novedades, nuestra colección abarca una amplia gama de
+                    géneros, incluyendo acción, aventura, ciencia ficción, fantasía, romance, horror y comedia. Navega
+                    por nuestra tienda y encuentra tus historias favoritas, así como aquellas joyas ocultas que están
+                    esperando a ser descubiertas. ¡Únete a nuestra comunidad de apasionados lectores y sumérgete en el
+                    fascinante universo del cómic y el manga!</p>
+            </div>
+
+            <div class="promotion-img">
+                <img src="img/batmanSinFondo.png" alt="">
+            </div>
+        </div>
+    </section>
+
+    <section id="news" class="blog container">
+        <h2>Curiosidades:</h2>
+        <h3>actores que son fans del anime</h3>
+
+        <div class="blog-content">
+
+            <div class="blog-1">
+                <img src="img/MeganFox.webp" alt="">
+                <div class="blog-txt">
+                    <p>Megan Fox</p>
+                    <p>La actriz ha trabajado en adaptaciones como Transformers, pero sus preferencias se inclinan hacia
+                        las Magical Girls. Según una entrevista con EW, Megan Fox es muy fan de Sailor Moon; además,
+                        comentó a Seventeen que adora los animes de Inuyasha y Cowboy Bebop.</p>
+                    <a href="#" class="btn-4">Leer mas</a>
+                </div>
+            </div>
+
+            <div class="blog-1">
+                <img src="img/WillSmith.webp" alt="">
+                <div class="blog-txt">
+                    <p>Will Smith</p>
+                    <p>Will Smith ha tocado muchos registros interpretativos a lo largo de su carrera, y ha confesado su
+                        afición por las historias heroicas en más de una ocasión. En el campo del anime, ha asegurado
+                        ser fan de La batalla de los planetas (Gatchaman), Lupin III y las películas de Hayao Miyazaki.
+                    </p>
+                    <a href="#" class="btn-4">Leer mas</a>
+                </div>
+            </div>
+
+            <div class="blog-1">
+                <img src="img/ZacEfron.webp" alt="">
+                <div class="blog-txt">
+                    <p>Zac Efron</p>
+                    <p>Tu generación suele marcar también las preferencias en anime. Zac Efron es más joven, y en su día
+                        comentó que es muy fan de Death Note; de hecho, se planteó su nombre en la primera adaptación
+                        americana del anime varios años antes de que Netflix tomase las riendas.</p>
+                    <a href="#" class="btn-4">Leer mas</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col">
+                    <img src="img/LogoComicVerse.png" alt="">
+                </div>
+                <div class="footer-col">
+                    <h4>Sobre nosotros</h4>
+                    <ul>
+                        <li><a href="#">En ComicVerse, nuestra pasión por los cómics y el manga nos impulsa a ofrecerte
+                                una selección cuidadosamente curada de los mejores títulos. Desde los clásicos hasta las
+                                últimas novedades, queremos ser tu primera opción para descubrir y disfrutar de
+                                historias increíbles.</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contacto</h4>
+                    <ul>
+                        <li><a href="#"></a>Email: contacto@comicverse.com</li>
+                        <li><a href="#"></a>Teléfono: 098 952 820</li>
+                        <li><a href="#">Dirección: Calle Ficticia, 123, Montevideo, Uruguay</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Síguenos</h4>
+                    <ul>
+                        <li><a href="#"></a><i class="fa-brands fa-youtube"></i></li>
+                        <li><a href="#"></a><i class="fa-brands fa-github"></i></li>
+                        <li><a href="#"></a><i class="fa-brands fa-instagram"></i></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Explora</h4>
+                    <ul>
+                        <li><a href="#">Novedades</a></li>
+                        <li><a href="#">Más Vendidos</a></li>
+                        <li><a href="#">Recomendaciones</a></li>
+                        <li><a href="#">Ofertas Especiales</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </footer>
+    <script src="../mediadores/scriptCarga.js"></script>
+    <script src="https://kit.fontawesome.com/6f8b5d1a66.js" crossorigin="anonymous"></script>
+    <script src="../mediadores/script.js"></script>
+    <script src="../mediadores/scriptBuscarProductos.js"></script>
+    <script src="../mediadores/slider.js"></script>
+</body>
+
+</html>
