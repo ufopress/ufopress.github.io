@@ -2,8 +2,6 @@
 include "conectar.php";
 
 try {
-    // Simular una base de datos o una lógica para devolver la imagen del logo
-    
     $sql = "SELECT Logo FROM DATOS_EMPRESA;";
     $sentencia=$conexion->prepare($sql);
     $sentencia->execute();

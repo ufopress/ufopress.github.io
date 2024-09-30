@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     // Fetch para obtener la imagen desde PHP
-    const DATA_URL = "php/getEmpresa.php";
+    const DATA_URL = "./php/getEmpresa.php";
 
     fetch(DATA_URL)
     .then(response => {
@@ -11,6 +11,9 @@ document.addEventListener("DOMContentLoaded", function() {
     })
     .then(data => {
         if (data[0].Logo) {
+            const logoModal = document.getElementById('logoModal');
+            logoModal.src = data[0].Logo;
+
             const logoContainer = document.getElementById('logoHeader');
             const imgElement = document.createElement('img');
             imgElement.src = data[0].Logo; // Asignar la URL de la imagen

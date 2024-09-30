@@ -11,7 +11,6 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="css/styles.css" />
-    <script src="./js/scriptLogin.js"></script>
   </head>
   <header>
     <nav class="navbar navbar-expand-lg p-3 sticky-top" id="navBarHeader">
@@ -88,24 +87,45 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <form>
-              <div class="mb-3">
-                <label for="username" class="form-label">Usuario</label>
-                <input type="text" class="form-control" id="username" placeholder="Ingrese su usuario">
+            <form action="login.php" method="post" class="p-4 rounded shadow-sm" style="max-width: 400px; margin: auto;">
+              <!-- Logo centrado -->
+              <div class="text-center mb-4">
+                <img id="logoModal" height="55px" width="55px" alt="Logo">
               </div>
-              <div class="mb-3">
-                <label for="password" class="form-label">Contraseña</label>
-                <input type="password" class="form-control" id="password" placeholder="Ingrese su contraseña">
+            
+              <!-- Campo de usuario con ícono -->
+              <div class="mb-3 position-relative">
+                <label for="email" class="form-label">Email</label>
+                <input id="email" name="email" type="text" class="form-control" placeholder="Ingrese su usuario" required>
+                <i class='bx bxs-user position-absolute' style="top: 36px; right: 15px; font-size: 1.2rem;"></i>
               </div>
-              <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="rememberMe">
-                <label class="form-check-label" for="rememberMe">Recordarme</label>
+            
+              <!-- Campo de contraseña con ícono -->
+              <div class="mb-3 position-relative">
+                <label for="contrasenia" class="form-label">Contraseña</label>
+                <input id="contrasenia" name="contrasenia" type="password" class="form-control" placeholder="Ingrese su contraseña" required>
+                <i class='bx bxs-lock-alt position-absolute' style="top: 36px; right: 15px; font-size: 1.2rem;"></i>
               </div>
-            </form>
+            
+              <!-- Recordarme y olvidar contraseña -->
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <div class="form-check">
+                  <input type="checkbox" class="form-check-input" id="rememberMe">
+                  <label class="form-check-label" for="rememberMe">Recordarme</label>
+                </div>
+                <a href="#" class="text-decoration-none">¿Olvidaste la contraseña?</a>
+              </div>
+            
+              <!-- Enlace para registrarse -->
+              <div class="text-center">
+                <p class="mb-1">¿No tienes una cuenta? <a href="#" class="text-decoration-none">Registrarse</a></p>
+              </div>
+
+              <button type="submit" value="Enviar" id="btn" class="btn btn-primary">Iniciar sesión</button>
+            </form>            
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-            <button type="button" class="btn btn-primary">Iniciar sesión</button>
+          <div class="modal-footer d-flex justify-content-between mt-2">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Volver</button>
           </div>
         </div>
       </div>
@@ -303,6 +323,7 @@
       </div>
     </div><br><br>
 
+    <script src="./js/showLoginModal.js"></script>
     <script src="js/cargaLogo.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
