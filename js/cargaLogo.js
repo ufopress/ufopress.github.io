@@ -11,9 +11,6 @@ document.addEventListener("DOMContentLoaded", function() {
     })
     .then(data => {
         if (data[0].Logo) {
-            const logoModal = document.getElementById('logoModal');
-            logoModal.src = data[0].Logo;
-
             const logoContainer = document.getElementById('logoHeader');
             const imgElement = document.createElement('img');
             imgElement.src = data[0].Logo; // Asignar la URL de la imagen
@@ -21,6 +18,14 @@ document.addEventListener("DOMContentLoaded", function() {
             imgElement.style.maxWidth = '75px';
             
             logoContainer.appendChild(imgElement);
+
+            const logoModal = document.getElementById('logoModal');
+            logoModal.src = data[0].Logo; // Asignar la URL de la imagen
+            logoModal.alt = "Logo de ComicVerse";
+            logoModal.style.maxWidth = '55px'; 
+            logoModal.style.height = '55px';
+            
+            console.log(logoModal.src);
         } else {
             console.error("No se encontró el atributo 'Logo' en la respuesta.");
         }
