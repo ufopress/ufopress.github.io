@@ -11,17 +11,12 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="css/styles.css" />
+    <script src="./js/scriptLogin.js"></script>
   </head>
   <header>
     <nav class="navbar navbar-expand-lg p-3 sticky-top" id="navBarHeader">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#"
-          ><img
-            class="img-fluid"
-            style="max-width: 5rem"
-            src="LogoComicVerse.png"
-            alt="Logo"
-        /></a>
+        <a id="logoHeader" class="navbar-brand" href="#"></a>
         <button
           class="navbar-toggler"
           type="button"
@@ -36,6 +31,11 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">
+                Iniciar Sesión
+              </a>
+            </li>
+            <li class="nav-item"></li>
               <a class="nav-link active" aria-current="page" href="#">Inicio</a>
             </li>
             <li class="nav-item">
@@ -79,6 +79,39 @@
   </header>
 
   <body>
+    <!-- Modal de Login -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered d-flex align-items-center justify-content-center">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="loginModalLabel">Iniciar sesión</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="username" class="form-label">Usuario</label>
+                <input type="text" class="form-control" id="username" placeholder="Ingrese su usuario">
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" id="password" placeholder="Ingrese su contraseña">
+              </div>
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="rememberMe">
+                <label class="form-check-label" for="rememberMe">Recordarme</label>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-primary">Iniciar sesión</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contenido de la página -->
     <div id="carrouselContainer">
       <div class="d-flex justify-content-center align-items-center">
         <div
@@ -141,6 +174,40 @@
       </div>
     </div>
 
+    <!-- Products Modal -->
+    <div
+      class="modal fade"
+      id="modalProduct"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer justify-content-center">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cerrar
+            </button>
+            <button type="button" class="btn btn-primary">Agregar al carrito</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="container mt-5">
       <h2 class="text-center mb-4">Los más comprados</h2>
       <div class="row row-cols-1 row-cols-md-3 g-4 text-center">
@@ -167,61 +234,6 @@
               >
                 Más información
               </button>
-              <!-- Products Modal -->
-              <div
-                class="modal fade"
-                id="modalProduct"
-                tabindex="-1"
-                aria-labelledby="exampleModalLabel"
-                aria-hidden="true"
-              >
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h1 class="modal-title fs-5" id="exampleModalLabel">
-                        NARUTO VOL. 44 / MASASHI KISHIMOTO
-                      </h1>
-                      <button
-                        type="button"
-                        class="btn-close"
-                        data-bs-dismiss="modal"
-                        aria-label="Close"
-                      ></button>
-                    </div>
-                    <div class="modal-body">
-                      <img
-                        src="img/00004.avif"
-                        class="card-img-top"
-                        alt="Producto 1"
-                      />
-                      <div class="card-body">
-                        <p class="text-success">Precio: $U495</p>
-                        <p>
-                          ¡Una vez que averigua la verdad sobre su hermano,
-                          Sasuke elige el camino que debe seguir! Y, por
-                          compatibilidad de intereses, se alía con Akatsuki y
-                          comienza a buscar las bestias con cola. Mientras
-                          tanto, los Sapos monjes hacen llegar a La Hoja la
-                          noticia del fallecimiento de Jiraiya. A Naruto le
-                          cuesta aceptar la muerte de su maestro...
-                        </p>
-                      </div>
-                    </div>
-                    <div class="modal-footer justify-content-center">
-                      <button
-                        type="button"
-                        class="btn btn-secondary"
-                        data-bs-dismiss="modal"
-                      >
-                        Cerrar
-                      </button>
-                      <button type="button" class="btn btn-primary">
-                        Agregar al carrito
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -289,8 +301,9 @@
           </div>
         </div>
       </div>
-    </div>
+    </div><br><br>
 
+    <script src="js/cargaLogo.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
