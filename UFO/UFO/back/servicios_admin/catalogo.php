@@ -10,11 +10,11 @@ $itemsPerPage = 10;
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $offset = ($page - 1) * $itemsPerPage;
 
-$stmt = $pdo_conn->prepare("SELECT COUNT(*) as total FROM historieta");
+$stmt = $conexion->prepare("SELECT COUNT(*) as total FROM historieta");
 $stmt->execute();
 $totalItems = $stmt->fetch(PDO::FETCH_ASSOC)['total'];
 
-$stmt = $pdo_conn->prepare("SELECT * FROM historieta LIMIT :offset, :itemsPerPage");
+$stmt = $conexion->prepare("SELECT * FROM historieta LIMIT :offset, :itemsPerPage");
 $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
 $stmt->bindParam(':itemsPerPage', $itemsPerPage, PDO::PARAM_INT);
 $stmt->execute();
