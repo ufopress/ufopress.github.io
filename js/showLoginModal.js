@@ -11,6 +11,8 @@ document.addEventListener('DOMContentLoaded', function() {
         if (loginListElement) {
             loginListElement.textContent = usuario;
             loginListElement.setAttribute('href', '#'); // Cambiar el destino del enlace
+            loginListElement.removeAttribute('data-bs-toggle'); // Eliminar atributo
+            loginListElement.removeAttribute('data-bs-target'); // Eliminar atributo
         }
     }
 });
