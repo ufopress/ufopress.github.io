@@ -24,8 +24,6 @@ document.addEventListener("DOMContentLoaded", function() {
             logoModal.alt = "Logo de ComicVerse";
             logoModal.style.maxWidth = '55px'; 
             logoModal.style.height = '55px';
-            
-            console.log(logoModal.src);
         } else {
             console.error("No se encontró el atributo 'Logo' en la respuesta.");
         }
