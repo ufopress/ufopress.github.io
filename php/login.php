@@ -20,7 +20,7 @@ if($rows = $resC->fetch()){
 }else if($rows = $resA->fetch()){
     session_start();
     
-    $_SESSION['usuario'] = $rows['NombreUser'];
+    $_SESSION['usuario'] = $rows['Nombre'];
     $_SESSION['tipo'] = $rows['TipoUsuario'];
     echo '<script>console.log("HolaAdmin");</script>';
 }else{

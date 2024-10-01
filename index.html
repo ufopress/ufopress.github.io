@@ -87,7 +87,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <form action="login.php" method="post" class="p-4 rounded shadow-sm" style="max-width: 400px; margin: auto;">
+            <form action="./php/login.php" method="post" class="p-4 rounded" style="max-width: 400px; margin: auto;">
               <!-- Logo centrado -->
               <div class="text-center mb-4">
                 <img id="logoModal" height="55px" width="55px" alt="Logo">
@@ -96,7 +96,7 @@
               <!-- Campo de usuario con ícono -->
               <div class="mb-3 position-relative">
                 <label for="email" class="form-label">Email</label>
-                <input id="email" name="email" type="text" class="form-control" placeholder="Ingrese su usuario" required>
+                <input id="email" name="email" type="text" class="form-control" placeholder="Ingrese su email" required>
                 <i class='bx bxs-user position-absolute' style="top: 36px; right: 15px; font-size: 1.2rem;"></i>
               </div>
             
@@ -117,14 +117,16 @@
               </div>
             
               <!-- Enlace para registrarse -->
-              <div class="text-center">
+              <br><div class="text-center">
                 <p class="mb-1">¿No tienes una cuenta? <a href="#" class="text-decoration-none">Registrarse</a></p>
               </div>
 
-              <button type="submit" value="Enviar" id="btn" class="btn btn-primary">Iniciar sesión</button>
+              <div class="modal-footer d-flex justify-content-center mt-2">
+                <button type="submit" value="Enviar" id="btn" class="btn btn-warning">Iniciar sesión</button>
+              </div>
             </form>            
           </div>
-          <div class="modal-footer d-flex justify-content-between mt-2">
+          <div class="modal-footer d-flex justify-content-center mt-2">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Volver</button>
           </div>
         </div>
