@@ -1,3 +1,5 @@
+use comicverse;
+
 -- Poblar la tabla ADMINISTRADOR
 INSERT INTO ADMINISTRADOR (Email, Nombre, Apellido, FechaNacimiento, TipoUsuario, NroTelefono, Contraseña) VALUES
 ('admin1@example.com', 'Juan', 'Pérez', '1985-01-15', 'ADM', '123456789', 'password1'),

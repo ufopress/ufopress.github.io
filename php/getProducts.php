@@ -1,23 +1,27 @@
 <?php
 include "conectar.php";
 
-try{
-    $sql = "SELECT * FROM `historieta` WHERE Nombre LIKE '%$nombre%';";
-    $sentencia=$conexion->prepare($sql);
+// Obtener los datos enviados
+$data = json_decode(file_get_contents('php://input'), true);
+$nombre = $data['nombre'] ?? '';
+
+try {
+    $sql = "SELECT * FROM historieta WHERE Nombre LIKE :nombre";
+    $sentencia = $conexion->prepare($sql);
+    $searchTerm = "%$nombre%";
+    $sentencia->bindParam(':nombre', $searchTerm);
     $sentencia->execute();
 
-    $products = [];
-    if ($sentencia) {
-        while ($row = $sentencia->fetch_assoc()) {
-            $products[] = $row;
-        }
+    // Obtener los resultados
+    $products = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+
+    if (count($products) > 0) {
+        echo json_encode($products, JSON_PRETTY_PRINT);
+    } else {
+        echo json_encode([]);
     }
-if(count($result)>0){
-    echo json_encode($result,JSON_PRETTY_PRINT);
-}else{
-    echo json_encode(['resultado'=>false]);
+} catch (PDOException $e) {
+    echo json_encode(['error' => 'Error en la consulta']);
+    // Puedes también redirigir a una página de error si lo prefieres:
+    // header("Location: error.php");
 }
-}catch(PDOException $b){
-    header("location:error.php");
-}
-?>
