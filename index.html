@@ -15,59 +15,63 @@
   <header>
     <nav class="navbar navbar-expand-lg p-3 sticky-top" id="navBarHeader">
       <div class="container-fluid">
-        <a id="logoHeader" class="navbar-brand" href="#"></a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" id="liALogin" aria-current="page" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">
-                Iniciar Sesión
-              </a>
-            </li>
-            <li class="nav-item"></li>
-              <a class="nav-link active" aria-current="page" href="#">Inicio</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Historietas</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Categorías
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Acción</a></li>
-                <li><a class="dropdown-item" href="#">Comedia</a></li>
-                <li><a class="dropdown-item" href="#">Ciencia ficción</a></li>
+          <a id="logoHeader" class="navbar-brand" href="#"></a>
+          <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+          >
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                      <a class="nav-link active" id="liALogin" aria-current="page" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">
+                          Iniciar Sesión
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="#">Historietas</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                      <a
+                          class="nav-link dropdown-toggle"
+                          href="#"
+                          role="button"
+                          data-bs-toggle="dropdown"
+                          aria-expanded="false"
+                      >
+                          Categorías
+                      </a>
+                      <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="#">Acción</a></li>
+                          <li><a class="dropdown-item" href="#">Comedia</a></li>
+                          <li><a class="dropdown-item" href="#">Ciencia ficción</a></li>
+                      </ul>
+                  </li>
+                  <li class="nav-item d-none"></li>
+                    <a class="nav-link" href="#" id="liLogout">
+                      Cerrar sesión
+                    </a>
+                  </li>
               </ul>
-            </li>
-            <li><a id="liLogout" href="#" style="display:none;">Cerrar sesión</a></li>
-          </ul>
-          <form class="d-flex" role="search">
-            <input
-              id="searchInput"
-              class="form-control me-2"
-              type="search"
-              placeholder="Busca aquí: "
-              aria-label="Search"
-            />
-          </form>
-        </div>
+              <form class="d-flex" role="search">
+                  <input
+                      id="searchInput"
+                      class="form-control me-2"
+                      type="search"
+                      placeholder="Busca aquí: "
+                      aria-label="Search"
+                  />
+              </form>
+          </div>
       </div>
     </nav>
   </header>
@@ -327,10 +331,10 @@
       </div>
     </div><br><br>
 
+    <script src="./js/showLoginModal.js"></script>
     <script src="./js/logout.js"></script>
     <script src="./js/searchProducts.js"></script>
     <script src="./js/setNombLogin.js"></script>
-    <script src="./js/showLoginModal.js"></script>
     <script src="./js/cargaLogo.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
