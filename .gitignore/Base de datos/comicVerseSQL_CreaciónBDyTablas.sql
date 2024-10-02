@@ -60,8 +60,8 @@ CREATE TABLE CLIENTE(
     PRIMARY KEY (NombreUser, Email),
     
     -- Claves foráneas para evitar creación de tabla relación
-    NombreAdmin VARCHAR(50), 
-    EmailAdmin VARCHAR(50),
+    NombreAdmin VARCHAR(50) NOT NULL, 
+    EmailAdmin VARCHAR(50) NOT NULL,
     FOREIGN KEY (EmailAdmin, NombreAdmin) REFERENCES ADMINISTRADOR(Email, Nombre)
 );
 
