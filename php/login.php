@@ -36,5 +36,5 @@ if($rows = $resC->fetch()){
     $response['message'] = "error de conexión";
 }
 
-echo json_encode($response);
+echo json_encode(value: $response);
 ?>

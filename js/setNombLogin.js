@@ -27,10 +27,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 console.log("Tipo guardado:", localStorage.getItem("tipoUsuario"));*/
                 
                 // Redirigir a la página correspondiente
-                if (data.tipo === "ADM") {
-                    window.location.href = "panel_admin.html"; // Redirigir al panel de admin
+                if (data.tipo === "ADM" || data.tipo === "VEN") {
+                    window.location.href = "index.html"; // Redirigir al index
                 } else if (data.tipo === "CLI") {
-                    window.location.href = "index.html"; // Redirigir a otra página
+                    window.location.href = "index.html"; // Redirigir al index
                 }
             } else {
                 alert("Credenciales incorrectas");
