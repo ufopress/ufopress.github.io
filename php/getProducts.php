@@ -22,6 +22,5 @@ try {
     }
 } catch (PDOException $e) {
     echo json_encode(['error' => 'Error en la consulta']);
-    // Puedes también redirigir a una página de error si lo prefieres:
     // header("Location: error.php");
 }

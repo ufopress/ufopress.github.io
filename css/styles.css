@@ -26,6 +26,10 @@ body{
   color: #000;
 }
 
+.no-link {
+  cursor: pointer;
+}
+
 .text-danger {
   color: red; /* Cambia el color del texto a rojo para destacarlo */
 }

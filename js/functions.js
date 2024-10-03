@@ -1,4 +1,4 @@
-function verificarUsuario(){
+function verificarUsuario() {
     const usuario = localStorage.getItem('nombreUsuario');
     const loginListElement = document.getElementById('liALogin'); // El botón de iniciar sesión
     const logoutListElement = document.getElementById('liLogout'); // El botón de cerrar sesión
@@ -103,4 +103,103 @@ function verificarAdminMenu() {
             productosSubmenu.style.display = 'none';
         });
     }
+}
+
+// Función para cargar productos desde el servidor
+function cargarProductos() {
+    const productosContainer = document.getElementById('productosContainer');
+
+    // Mostrar mensaje de carga mientras se obtienen los productos
+    productosContainer.innerHTML = 'Cargando productos...';
+
+    fetch(`./php/getAllProducts.php`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.resultado === false) {
+                productosContainer.innerHTML = 'No se encontraron productos.';
+                return;
+            }
+
+            productosContainer.innerHTML = ''; // Limpiar el contenedor de productos
+
+            // Recorrer los productos y mostrarlos
+            data.forEach(element => {
+                productosContainer.innerHTML += `
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="${element.Imagen}" class="card-img-top" alt="${element.Nombre}" />
+                        <div class="card-body">
+                            <p class="text-success">Precio: $U${element.Precio}</p>
+                            <h5 class="card-title">${element.Nombre}</h5>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn btn-warning w-100 mb-1">
+                                Agregar al carrito
+                            </button>
+                            <button type="button" class="btn btn-secondary w-100" data-bs-toggle="modal" data-bs-target="#modalProduct">
+                                Más información
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                `;
+            });
+        })
+        .catch(error => {
+            productosContainer.innerHTML = 'Error al cargar productos.';
+            console.error('Error:', error);
+        });
+}
+
+function getProductsForCategory() {
+    document.querySelectorAll('.category-button').forEach(button => {
+        button.addEventListener('click', function () {
+            const categoriaSeleccionada = this.getAttribute('data-category'); // Obtener la categoría
+
+            // Enviar la categoría al PHP usando fetch y el método POST
+            fetch('./php/getProductsByCategory.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ categoria: categoriaSeleccionada }) // Enviar la categoría en el cuerpo de la solicitud
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.resultado === false) {
+                        productosContainer.innerHTML = 'No se encontraron productos.';
+                        return;
+                    }
+        
+                    productosContainer.innerHTML = ''; // Limpiar el contenedor de productos
+        
+                    // Recorrer los productos y mostrarlos
+                    data.forEach(element => {
+                        productosContainer.innerHTML += `
+                        <div class="col">
+                            <div class="card h-100">
+                                <img src="${element.Imagen}" class="card-img-top" alt="${element.Nombre}" />
+                                <div class="card-body">
+                                    <p class="text-success">Precio: $U${element.Precio}</p>
+                                    <h5 class="card-title">${element.Nombre}</h5>
+                                </div>
+                                <div class="card-footer">
+                                    <button class="btn btn-warning w-100 mb-1">
+                                        Agregar al carrito
+                                    </button>
+                                    <button type="button" class="btn btn-secondary w-100" data-bs-toggle="modal" data-bs-target="#modalProduct">
+                                        Más información
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        `;
+                    });
+                })
+                .catch(error => {
+                    console.error('Error al cargar los productos:', error);
+                });
+        });
+    });
+
 }

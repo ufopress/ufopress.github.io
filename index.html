@@ -20,7 +20,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" id="liALogin" aria-current="page" href="#" data-bs-toggle="modal"
+            <a class="nav-link active no-link" id="liALogin" aria-current="page" data-bs-toggle="modal"
               data-bs-target="#loginModal">
               Iniciar Sesión
             </a>
@@ -29,16 +29,16 @@
             <a class="nav-link active" aria-current="page" href="#">Inicio</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Historietas</a>
+            <a class="nav-link no-link" data-bs-toggle="modal" data-bs-target="#mostrarProductosModal">Historietas</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle no-link" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Categorías
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Acción</a></li>
-              <li><a class="dropdown-item" href="#">Comedia</a></li>
-              <li><a class="dropdown-item" href="#">Ciencia ficción</a></li>
+              <li><a class="dropdown-item no-link" data-category="Acción" data-bs-toggle="modal" data-bs-target="#mostrarProductosModal">Acción</a></li>
+              <li><a class="dropdown-item no-link" data-category="Comedia" data-bs-toggle="modal" data-bs-target="#mostrarProductosModal">Comedia</a></li>
+              <li><a class="dropdown-item no-link" data-category="Ciencia ficción" data-bs-toggle="modal" data-bs-target="#mostrarProductosModal">Ciencia ficción</a></li>
             </ul>
           </li>
         </ul>
@@ -57,6 +57,36 @@
 </header>
 
 <body>
+  <!-- Modal para Mostrar Productos con Paginación -->
+  <div class="modal fade" id="mostrarProductosModal" tabindex="-1" aria-labelledby="mostrarProductosModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header d-flex justify-content-center">
+          <h5 class="modal-title" id="mostrarProductosModalLabel">Lista de Productos</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Contenedor para mostrar los productos -->
+          <div class="container mb-5 mt-5">
+            <div class="row row-cols-1 row-cols-3 g-4 text-center" id="productosContainer">
+              <!-- Aquí se cargarán los productos dinámicamente -->
+            </div>
+          </div>
+
+          <!-- Paginación -->
+          <div id="paginacionContainer" class="mt-3">
+            <h6>Seleccionar página:</h6>
+            <!-- Aquí se crearán los radios dinámicamente -->
+          </div>
+        </div>
+        <div class="modal-footer d-flex justify-content-center w-100">
+          <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Modal para agregar usuario (Cliente o Vendedor) -->
   <div class="modal fade" id="agregarUsuarioModal" tabindex="-1" aria-labelledby="agregarUsuarioModalLabel"
     aria-hidden="true">
@@ -85,8 +115,8 @@
             <!-- Nombre de Usuario -->
             <div class="mb-3">
               <label for="nombreUser" class="form-label">Nombre de Usuario</label>
-              <input type="text" class="form-control" id="nombreUserModal" name="nombreUser" placeholder="Nombre de usuario"
-                required>
+              <input type="text" class="form-control" id="nombreUserModal" name="nombreUser"
+                placeholder="Nombre de usuario" required>
               <div class="invalid-feedback">
                 Por favor, introduce un nombre de usuario.
               </div>
@@ -115,8 +145,8 @@
             <!-- Número de Teléfono -->
             <div class="mb-3">
               <label for="nroTelefono" class="form-label">Número de Teléfono</label>
-              <input type="tel" class="form-control" id="nroTelefonoModal" name="nroTelefono" placeholder="Ej: 091234567"
-                required>
+              <input type="tel" class="form-control" id="nroTelefonoModal" name="nroTelefono"
+                placeholder="Ej: 091234567" required>
               <div class="invalid-feedback">
                 Por favor, introduce un número de teléfono.
               </div>
@@ -125,8 +155,8 @@
             <!-- Nacionalidad -->
             <div class="mb-3">
               <label for="nacionalidad" class="form-label">Nacionalidad</label>
-              <input type="text" class="form-control" id="nacionalidadModal" name="nacionalidad" placeholder="Ej: Uruguaya"
-                required>
+              <input type="text" class="form-control" id="nacionalidadModal" name="nacionalidad"
+                placeholder="Ej: Uruguaya" required>
               <div class="invalid-feedback">
                 Por favor, introduce una nacionalidad.
               </div>
@@ -135,8 +165,8 @@
             <!-- Año de Nacimiento -->
             <div class="mb-3">
               <label for="anioNacimiento" class="form-label">Año de Nacimiento</label>
-              <input type="number" class="form-control" id="anioNacimientoModal" name="anioNacimiento" placeholder="Ej: 1995"
-                required>
+              <input type="number" class="form-control" id="anioNacimientoModal" name="anioNacimiento"
+                placeholder="Ej: 1995" required>
               <div class="invalid-feedback">
                 Por favor, introduce tu año de nacimiento.
               </div>
@@ -204,7 +234,7 @@
                 Por favor, ingrese un ISBN válido para buscar el producto.
               </div>
             </div>
-            <button type="button" class="btn btn-primary" id="buscarProductoBtn">Buscar Producto</button>
+            <button type="button" class="btn btn-warning" id="buscarProductoBtn">Buscar Producto</button>
           </form>
 
           <hr>
@@ -401,7 +431,7 @@
 
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-              <button type="submit" class="btn btn-primary">Agregar Producto</button>
+              <button type="submit" class="btn btn-warning">Agregar Producto</button>
             </div>
           </form>
         </div>
@@ -525,7 +555,7 @@
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
             Cerrar
           </button>
-          <button type="button" class="btn btn-primary">Agregar al carrito</button>
+          <button type="button" class="btn btn-warning">Agregar al carrito</button>
         </div>
       </div>
     </div>
@@ -545,7 +575,7 @@
             </h5>
           </div>
           <div class="card-footer">
-            <button class="btn btn-primary w-100 mb-1">
+            <button class="btn btn-warning w-100 mb-1">
               Agregar al carrito
             </button>
             <!-- Button trigger modal -->
@@ -568,7 +598,7 @@
             </h5>
           </div>
           <div class="card-footer">
-            <button class="btn btn-primary w-100 mb-1">
+            <button class="btn btn-warning w-100 mb-1">
               Agregar al carrito
             </button>
             <!-- Button trigger modal -->
@@ -598,7 +628,7 @@
             </p>
           </div>
           <div class="card-footer">
-            <button class="btn btn-primary w-100 mb-1">
+            <button class="btn btn-warning w-100 mb-1">
               Agregar al carrito
             </button>
             <!-- Button trigger modal -->
@@ -618,6 +648,8 @@
   <script src="./js/setNombLogin.js"></script>
   <script src="./js/cargaLogo.js"></script>
   <script src="./js/addNavBarAdm.js"></script>
+  <script src="./js/getAllProducts.js"></script>
+  <script src="./js/getForCategories.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
