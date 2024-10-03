@@ -19,6 +19,13 @@ body{
   text-align: center;
 }
 
+.dropdown-item.active,
+.dropdown-item:active,
+.dropdown-item:hover{
+  background-color: #ffc107;
+  color: #000;
+}
+
 .text-danger {
   color: red; /* Cambia el color del texto a rojo para destacarlo */
 }
