@@ -57,6 +57,133 @@
 </header>
 
 <body>
+  <!-- Modal para agregar usuario (Cliente o Vendedor) -->
+  <div class="modal fade" id="agregarUsuarioModal" tabindex="-1" aria-labelledby="agregarUsuarioModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="agregarUsuarioModalLabel">Agregar Usuario</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="formAgregarUsuario" action="./php/agregarUsuario.php" method="post" class="needs-validation"
+            novalidate>
+            <!-- Tipo de Usuario (Cliente o Vendedor) -->
+            <div class="mb-3">
+              <label for="tipoUsuario" class="form-label">Tipo de Usuario</label>
+              <select class="form-select" id="tipoUsuarioModal" name="tipoUsuario" required>
+                <option value="" disabled selected>Selecciona un tipo de usuario</option>
+                <option value="CLI">Cliente</option>
+                <option value="VEN">Vendedor</option>
+              </select>
+              <div class="invalid-feedback">
+                Por favor, selecciona un tipo de usuario.
+              </div>
+            </div>
+
+            <!-- Nombre de Usuario -->
+            <div class="mb-3">
+              <label for="nombreUser" class="form-label">Nombre de Usuario</label>
+              <input type="text" class="form-control" id="nombreUserModal" name="nombreUser" placeholder="Nombre de usuario"
+                required>
+              <div class="invalid-feedback">
+                Por favor, introduce un nombre de usuario.
+              </div>
+            </div>
+
+            <!-- Correo Electrónico -->
+            <div class="mb-3">
+              <label for="email" class="form-label">Correo Electrónico</label>
+              <input type="email" class="form-control" id="emailModal" name="email" placeholder="correo@ejemplo.com"
+                required>
+              <div class="invalid-feedback">
+                Por favor, introduce un correo válido.
+              </div>
+            </div>
+
+            <!-- Contraseña -->
+            <div class="mb-3">
+              <label for="password" class="form-label">Contraseña</label>
+              <input type="password" class="form-control" id="passwordModal" name="password" placeholder="Contraseña"
+                required>
+              <div class="invalid-feedback">
+                Por favor, introduce una contraseña.
+              </div>
+            </div>
+
+            <!-- Número de Teléfono -->
+            <div class="mb-3">
+              <label for="nroTelefono" class="form-label">Número de Teléfono</label>
+              <input type="tel" class="form-control" id="nroTelefonoModal" name="nroTelefono" placeholder="Ej: 091234567"
+                required>
+              <div class="invalid-feedback">
+                Por favor, introduce un número de teléfono.
+              </div>
+            </div>
+
+            <!-- Nacionalidad -->
+            <div class="mb-3">
+              <label for="nacionalidad" class="form-label">Nacionalidad</label>
+              <input type="text" class="form-control" id="nacionalidadModal" name="nacionalidad" placeholder="Ej: Uruguaya"
+                required>
+              <div class="invalid-feedback">
+                Por favor, introduce una nacionalidad.
+              </div>
+            </div>
+
+            <!-- Año de Nacimiento -->
+            <div class="mb-3">
+              <label for="anioNacimiento" class="form-label">Año de Nacimiento</label>
+              <input type="number" class="form-control" id="anioNacimientoModal" name="anioNacimiento" placeholder="Ej: 1995"
+                required>
+              <div class="invalid-feedback">
+                Por favor, introduce tu año de nacimiento.
+              </div>
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              <button type="submit" class="btn btn-warning">Agregar Usuario</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal para generar reportes -->
+  <div class="modal fade" id="reporteModal" tabindex="-1" aria-labelledby="reporteModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="reporteModalLabel">Generar Reporte</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="formReporte" action="./php/generarReporte.php" method="post" class="needs-validation" novalidate>
+            <!-- Contenido del reporte -->
+            <div class="mb-3">
+              <label for="contenidoReporte" class="form-label">Contenido del Reporte</label>
+              <textarea class="form-control" id="contenidoReporte" name="contenidoReporte" rows="4"
+                placeholder="Describe el contenido del reporte aquí..." required></textarea>
+              <div class="invalid-feedback">Por favor, introduce el contenido del reporte.</div>
+            </div>
+
+            <!-- Campos ocultos para el email y nombre del admin -->
+            <input type="hidden" id="emailAdmin" name="emailAdmin" />
+            <input type="hidden" id="nombreAdmin" name="nombreAdmin" />
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              <button type="submit" class="btn btn-warning">Generar Reporte</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Modal para modificar producto -->
   <div class="modal fade" id="modificarProductoModal" tabindex="-1" aria-labelledby="modificarProductoModalLabel"
     aria-hidden="true">

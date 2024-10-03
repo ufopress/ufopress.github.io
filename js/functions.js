@@ -66,7 +66,7 @@ function verificarAdminMenu() {
                 Administración
             </a>
             <ul class="dropdown-menu" aria-labelledby="adminDropdown">
-                <li><a class="dropdown-item" href="#" id="gestionUsuarios">Gestión de Usuarios</a></li>
+                <li><a class="dropdown-item" href="#" id="gestionUsuarios" data-bs-toggle="modal" data-bs-target="#agregarUsuarioModal">Gestión de Usuarios</a></li>
                 <li class="dropdown-submenu">
                     <a class="dropdown-item dropdown-toggle" href="#" id="gestionProductos" aria-expanded="false">
                         Gestión de Productos
@@ -77,7 +77,7 @@ function verificarAdminMenu() {
                         <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modificarProductoModal">Modificar producto</a></li>
                     </ul>
                 </li>
-                <li><a class="dropdown-item" href="#">Reportes</a></li>
+                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#reporteModal">Reportes</a></li>
             </ul>
         `;
 
