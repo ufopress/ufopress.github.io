@@ -40,7 +40,7 @@ function verificarUsuario(){
 function eliminarAdminMenu() {
     const adminDropdown = document.getElementById('adminDropdownMenu');
     if (adminDropdown) {
-        adminDropdown.remove();
+        adminDropdown.remove(); // Remueve el menú de administración
     }
 }
 
@@ -52,10 +52,10 @@ function verificarAdminMenu() {
 
     // Si existe un menú de administración anterior, eliminarlo primero
     if (adminDropdown) {
-        adminDropdown.remove();
+        adminDropdown.remove(); // Elimina el menú de administración si ya existe
     }
 
-    if (tipoUsuario === 'ADM' || tipoUsuario === "VEN") {
+    if (tipoUsuario === 'ADM' || tipoUsuario === 'VEN') {
         // Crear el nuevo menú de administración
         adminDropdown = document.createElement('li');
         adminDropdown.classList.add('nav-item', 'dropdown');
@@ -73,8 +73,8 @@ function verificarAdminMenu() {
                     </a>
                     <ul class="dropdown-menu submenu" aria-labelledby="gestionProductos" style="display: none; position: absolute; left: 100%; top: 0;">
                         <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#agregarProductoModal">Agregar producto</a></li>
-                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#agregarProductoModal">Eliminar producto</a></li>
-                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#agregarProductoModal">Modificar producto</a></li>
+                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#eliminarProductoModal">Eliminar producto</a></li>
+                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modificarProductoModal">Modificar producto</a></li>
                     </ul>
                 </li>
                 <li><a class="dropdown-item" href="#">Reportes</a></li>
