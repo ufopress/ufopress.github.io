@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
         abrirRegWindow();
         modificarDatosEmpresa.style.display = 'none';
         gestionarProductos.style.display = 'none';
+        agregarUsuarios.style.display = 'none';
     });
 
 });
@@ -39,6 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
         abrirModificar();
         agregarProductos.style.display = 'none';
         gestionarProductos.style.display = 'none';
+        agregarUsuarios.style.display = 'none';
     });
 
 });
@@ -62,7 +64,31 @@ document.addEventListener('DOMContentLoaded', function () {
         abrirGestionar();
         agregarProductos.style.display = 'none';
         modificarDatosEmpresa.style.display = 'none';
+        agregarUsuarios.style.display = 'none';
         
+    });
+
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+
+    const agregarUsuarios = document.getElementById('agregarUsuarios');
+    const agregarUserBtn = document.getElementById('agregarUserBtn');
+
+    function abrirRegWindow() {
+        agregarUsuarios.style.display = 'block';
+    }
+
+    function cerrarRegWindow() {
+        agregarUsuarios.style.display = 'none';
+    }
+
+
+    agregarUserBtn.addEventListener('click', function () {
+        abrirRegWindow();
+        agregarProductos.style.display = 'none';
+        modificarDatosEmpresa.style.display = 'none';
+        gestionarProductos.style.display = 'none';
     });
 
 });
