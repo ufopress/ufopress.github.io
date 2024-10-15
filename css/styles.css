@@ -1,5 +1,5 @@
 body{
-  background: linear-gradient(to top, rgba(255, 255, 255, 0.9), rgb(245, 160, 2, 0.87));
+  background: linear-gradient(to top, rgba(255, 255, 255, 0.9), rgba(235, 42, 8, 0.87));
 }
 
 #carrouselContainer{
@@ -9,6 +9,10 @@ body{
 #navBarHeader{
   background: rgba(255, 255, 255, 0.8); /* Fondo transparente/blanco */
   background: linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(245, 160, 2, 0.87));
+}
+
+#sidenavAccordion, #navBarAdmin{
+  background: linear-gradient(to top, rgba(255, 255, 255, 0.9), rgb(245 58 2 / 87%));
 }
 
 #sidebar-wrapper {
@@ -315,3 +319,4 @@ a.custom-card:hover {
     width: 100%;
   }
 }
+
