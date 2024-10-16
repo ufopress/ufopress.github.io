@@ -11,6 +11,13 @@ body {
   background-attachment: fixed; /* Para que el fondo permanezca fijo al hacer scroll */
 }
 
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1030; /* Asegura que esté por encima de otros elementos */
+}
+
 #carrouselContainer{
   background: linear-gradient(to top, rgba(255, 255, 255), rgb(245, 160, 2));
 }
