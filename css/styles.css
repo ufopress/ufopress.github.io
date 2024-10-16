@@ -18,6 +18,10 @@ header {
   z-index: 1030; /* Asegura que esté por encima de otros elementos */
 }
 
+#carrouselContainer, #modalProduct{
+  padding-top: 72px;
+}
+
 #carrouselContainer{
   background: linear-gradient(to top, rgba(255, 255, 255), rgb(245, 160, 2));
 }
