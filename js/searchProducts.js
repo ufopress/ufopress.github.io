@@ -1,16 +1,27 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const searchInput = document.getElementById('searchInput');
-    const contenido = document.getElementById('productList'); // Asegúrate de que este ID exista
+    const contenido = document.getElementById('productList');
+    const carrouselContainer = document.getElementById('carrouselContainer');
+    const productosDestacados = document.getElementById('productosDestacados');
 
     // Escuchar el evento de entrada en el campo de búsqueda
-    searchInput.addEventListener('input', function() {
+    searchInput.addEventListener('input', function () {
         let producto = searchInput.value;
-        
+
         // Limpiar el contenido si el campo de búsqueda está vacío
         if (producto.trim() === '') {
-            contenido.innerHTML = ''; // Limpiar el contenido del div
+            contenido.innerHTML = '';
+
+            // Mostrar el carrusel y los productos destacados nuevamente
+            carrouselContainer.style.display = 'block';
+            productosDestacados.style.display = 'block';
+
             return; // No continuar con el resto del código
         }
+
+        // Ocultar el carrusel y los productos destacados cuando se realiza una búsqueda
+        carrouselContainer.style.display = 'none';
+        productosDestacados.style.display = 'none';
 
         fetch('./php/getProducts.php', {
             method: 'POST',
@@ -19,20 +30,20 @@ document.addEventListener('DOMContentLoaded', function() {
             },
             body: JSON.stringify({ nombre: producto })
         })
-        .then(response => response.json())
-        .then(data => {
-            // Limpiar el contenido anterior
-            contenido.innerHTML = ''; // Limpia el contenido anterior
+            .then(response => response.json())
+            .then(data => {
+                // Limpiar el contenido anterior
+                contenido.innerHTML = ''; // Limpia el contenido anterior
 
-            // Verificar si hay productos en los resultados
-            if (data.length > 0) {
-                contenido.innerHTML = ` 
+                // Verificar si hay productos en los resultados
+                if (data.length > 0) {
+                    contenido.innerHTML = ` 
                 <div class="text-center mb-4 w-100 container mt-5"> <!-- Div que ocupa el total del ancho -->
                     <h2 class="text-center mb-4 destacado">Resultados de la búsqueda:</h2> <!-- Título centrado -->
                 </div>`;
 
-                data.forEach(element => {
-                    contenido.innerHTML += `
+                    data.forEach(element => {
+                        contenido.innerHTML += `
                     <div class="col">
                         <div class="card h-100">
                             <img src="${element.Imagen}" class="card-img-top" alt="${element.Nombre}" />
@@ -51,20 +62,20 @@ document.addEventListener('DOMContentLoaded', function() {
                         </div>
                     </div>
                     `;
-                });
+                    });
 
-                contenido.innerHTML += `
+                    contenido.innerHTML += `
                     </div> <!-- row -->
                     </div> <!-- container -->
                     <br><br>
                 `;
-            } else {
-                contenido.innerHTML = ` 
+                } else {
+                    contenido.innerHTML = ` 
                 <div class="text-center mb-4 w-100"> <!-- Div que ocupa el total del ancho -->
                     <h2>No se encontraron productos.</h2> <!-- Título centrado -->
                 </div>`;
-            }
-        })
-        .catch(error => console.error('Error:', error));
+                }
+            })
+            .catch(error => console.error('Error:', error));
     });
 });
