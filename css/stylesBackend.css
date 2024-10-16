@@ -74,8 +74,8 @@
     --bs-border-radius-xl: 1rem;
     --bs-border-radius-2xl: 2rem;
     --bs-border-radius-pill: 50rem;
-    --bs-link-color: #0d6efd;
-    --bs-link-hover-color: #0a58ca;
+    --bs-link-color: #fff;
+    --bs-link-hover-color: #fff;
     --bs-code-color: #d63384;
     --bs-highlight-bg: #fff3cd;
 }
@@ -12753,14 +12753,6 @@ body {
 
 #layoutSidenav {
     display: flex;
-}
-
-#layoutSidenav #layoutSidenav_nav {
-    flex-basis: 225px;
-    flex-shrink: 0;
-    transition: transform 0.15s ease-in-out;
-    z-index: 1038;
-    transform: translateX(-225px);
 }
 
 #layoutSidenav #layoutSidenav_content {

@@ -170,9 +170,9 @@ function getProductsForCategory() {
                         productosContainer.innerHTML = 'No se encontraron productos.';
                         return;
                     }
-        
+
                     productosContainer.innerHTML = ''; // Limpiar el contenedor de productos
-        
+
                     // Recorrer los productos y mostrarlos
                     data.forEach(element => {
                         productosContainer.innerHTML += `
@@ -201,5 +201,6 @@ function getProductsForCategory() {
                 });
         });
     });
-
 }
+
+
