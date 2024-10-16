@@ -41,10 +41,10 @@ document.addEventListener('DOMContentLoaded', function() {
                                 <h5 class="card-title">${element.Nombre}</h5>
                             </div>
                             <div class="card-footer">
-                                <button class="btn btn-primary w-100 mb-1">
+                                <button class="btn btn-warning w-100 mb-1">
                                     Agregar al carrito
                                 </button>
-                                <button type="button" class="btn btn-warning w-100" data-bs-toggle="modal" data-bs-target="#modalProduct">
+                                <button type="button" class="btn btn-secondary w-100" data-bs-toggle="modal" data-bs-target="#modalProduct">
                                     Más información
                                 </button>
                             </div>
