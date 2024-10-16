@@ -1,5 +1,10 @@
+* {
+  scrollbar-width: thin;
+  scrollbar-color: orange rgba(0, 0, 0, 0.1);
+}
+
 body {
-  background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 166, 0, 0)), 
+  background: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 166, 0, 0.2)), 
                 url('../img/fondo.webp');
   background-size: cover; /* Ajusta la imagen al tamaño del contenedor */
   background-position: center; /* Centra la imagen */
@@ -20,14 +25,13 @@ body {
   color: white;
 }
 
-/* Sidebar - Mantén un tono similar para que el cambio no sea abrupto */
 #sidenavAccordion {
   background: linear-gradient(to bottom, rgba(240, 178, 63), rgba(255, 145, 0));
 }
 
 #sidebar-wrapper {
-  width: 260px; /* Puedes ajustar el ancho si deseas */
-  font-size: 1.2rem; /* Aumenta el tamaño del texto */
+  width: 260px; 
+  font-size: 1.2rem;
 }
 
 #sidebar-wrapper .list-group-item {
@@ -45,6 +49,73 @@ body {
 
 #page-content-wrapper p {
   font-size: 1.2rem; /* Aumenta el tamaño de los párrafos */
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  background-color: rgba(0, 0, 0, 0.1); /* Color de fondo */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: orange; /* Color de la barra */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* Color de la barra cuando se desplaza */
+}
+
+.footer {
+  background-color: #F5A002; /* Fondo anaranjado */
+  color: black; /* Texto en color negro */
+}
+
+.footer h5 {
+  color: black; /* Cambia el color de los títulos a negro */
+}
+
+.footer a {
+  color: black; /* Links en negro */
+}
+
+.footer a:hover {
+  color: darkorange; /* Links en naranja oscuro al pasar el cursor */
+}
+
+.footer .form-control {
+  background-color: #ffe6cc; /* Color claro en los inputs */
+  color: black; /* Texto negro en los inputs */
+  border-color: black; /* Bordes negros */
+}
+
+.footer .form-control:focus {
+  background-color: #ffcc99; /* Color más oscuro al hacer focus */
+  color: black;
+}
+
+.footer button {
+  background-color: orange; /* Fondo naranja */
+  border-color: black; /* Borde negro */
+  color: black; /* Texto negro */
+}
+
+.footer button:hover {
+  background-color: darkorange; /* Fondo naranja oscuro al pasar el cursor */
+  border-color: black; /* Mantiene el borde negro */
+}
+
+.footer .container p, 
+.footer .container ul li {
+  color: black; /* Texto general en negro */
+}
+
+.destacado {
+  background-color: #ff9000; /* Color de fondo naranja */
+  color: white; /* Color del texto en blanco */
+  padding: 10px; /* Espaciado interior */
+  border-radius: 15px; /* Bordes redondeados */
+  text-align: center; /* Centrar el texto */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Sombra para darle profundidad */
 }
 
 .logo-img {

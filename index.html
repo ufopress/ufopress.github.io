@@ -57,6 +57,142 @@
 </header>
 
 <body>
+
+  <!-- Contenido de la página -->
+  <div id="carrouselContainer">
+    <div class="d-flex justify-content-center align-items-center">
+      <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+            aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+            aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+            aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="img/carrousel1.webp" class="d-block w-100" alt="img" />
+          </div>
+          <div class="carousel-item">
+            <img src="img/carrousel2.webp" class="d-block w-100" alt="img" />
+          </div>
+          <div class="carousel-item">
+            <img src="img/carrousel3.webp" class="d-block w-100" alt="img" />
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+          data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+          data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="container mb-5 mt-5">
+    <div class="row row-cols-1 row-cols-3 g-4 text-center" id="productList">
+      <!-- Aquí se cargarán los productos dinámicamente -->
+    </div>
+  </div>
+  
+  <!-- Products Modal -->
+  <div class="modal fade" id="modalProduct" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body"></div>
+        <div class="modal-footer justify-content-center">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            Cerrar
+          </button>
+          <button type="button" class="btn btn-warning">Agregar al carrito</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container mt-5">
+    <h2 class="text-center mb-4 destacado">Los más comprados</h2>
+    <div class="row row-cols-1 row-cols-md-3 g-4 text-center">
+      <!-- Producto 1 -->
+      <div class="col">
+        <div class="card h-100">
+          <img src="img/00001.avif" class="card-img-top" alt="Producto 1" />
+          <div class="card-body">
+            <p class="text-success">Precio: $U558</p>
+            <h5 class="card-title">
+              THE AMAZING SPIDER-MAN: UN MUNDO SIN AMOR (PARTE 2) / MARVEL
+            </h5>
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-warning w-100 mb-1">
+              Agregar al carrito
+            </button>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-secondary w-100" data-bs-toggle="modal" data-bs-target="#modalProduct">
+              Más información
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Producto 2 -->
+      <div class="col">
+        <div class="card h-100">
+          <img src="img/00002.avif" class="card-img-top" alt="Producto 2" />
+          <div class="card-body">
+            <p class="text-success">Precio: $U621</p>
+            <h5 class="card-title">
+              UNIVERSO MARVEL: LA GUERRA DE LOS REINOS / AARON, DAUTERMAN,
+              WILSON
+            </h5>
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-warning w-100 mb-1">
+              Agregar al carrito
+            </button>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-secondary w-100" data-bs-toggle="modal" data-bs-target="#modalProduct">
+              Más información
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Producto 3 -->
+      <div class="col">
+        <div class="card h-100">
+          <img src="img/00003.avif" class="card-img-top" alt="Producto 3" />
+          <div class="card-body">
+            <p class="text-success">Precio: $U711</p>
+            <h5 class="card-title">
+              SPIDERMAN SIMBIONTE: LA ENCRUCIJADA / DAVID, LAND, LEISTEN,
+              D'ARMATA
+            </h5>
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-warning w-100 mb-1">
+              Agregar al carrito
+            </button>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-secondary w-100" data-bs-toggle="modal" data-bs-target="#modalProduct">
+              Más información
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><br><br>
+
   <!-- Modal para Mostrar Productos con Paginación -->
   <div class="modal fade" id="mostrarProductosModal" tabindex="-1" aria-labelledby="mostrarProductosModalLabel"
     aria-hidden="true">
@@ -498,144 +634,7 @@
     </div>
   </div>
 
-  <!-- Contenido de la página -->
-  <div id="carrouselContainer">
-    <div class="d-flex justify-content-center align-items-center">
-      <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
-            aria-current="true" aria-label="Slide 1"></button>
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-            aria-label="Slide 2"></button>
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-            aria-label="Slide 3"></button>
-        </div>
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img src="img/carrousel1.webp" class="d-block w-100" alt="img" />
-          </div>
-          <div class="carousel-item">
-            <img src="img/carrousel2.webp" class="d-block w-100" alt="img" />
-          </div>
-          <div class="carousel-item">
-            <img src="img/carrousel3.webp" class="d-block w-100" alt="img" />
-          </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-          data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-          data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Products Modal -->
-  <div class="modal fade" id="modalProduct" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body"></div>
-        <div class="modal-footer justify-content-center">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-            Cerrar
-          </button>
-          <button type="button" class="btn btn-warning">Agregar al carrito</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="container mt-5">
-    <h2 class="text-center mb-4">Los más comprados</h2>
-    <div class="row row-cols-1 row-cols-md-3 g-4 text-center">
-      <!-- Producto 1 -->
-      <div class="col">
-        <div class="card h-100">
-          <img src="img/00001.avif" class="card-img-top" alt="Producto 1" />
-          <div class="card-body">
-            <p class="text-success">Precio: $U558</p>
-            <h5 class="card-title">
-              THE AMAZING SPIDER-MAN: UN MUNDO SIN AMOR (PARTE 2) / MARVEL
-            </h5>
-          </div>
-          <div class="card-footer">
-            <button class="btn btn-warning w-100 mb-1">
-              Agregar al carrito
-            </button>
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-secondary w-100" data-bs-toggle="modal" data-bs-target="#modalProduct">
-              Más información
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Producto 2 -->
-      <div class="col">
-        <div class="card h-100">
-          <img src="img/00002.avif" class="card-img-top" alt="Producto 2" />
-          <div class="card-body">
-            <p class="text-success">Precio: $U621</p>
-            <h5 class="card-title">
-              UNIVERSO MARVEL: LA GUERRA DE LOS REINOS / AARON, DAUTERMAN,
-              WILSON
-            </h5>
-          </div>
-          <div class="card-footer">
-            <button class="btn btn-warning w-100 mb-1">
-              Agregar al carrito
-            </button>
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-secondary w-100" data-bs-toggle="modal" data-bs-target="#modalProduct">
-              Más información
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Producto 3 -->
-      <div class="col">
-        <div class="card h-100">
-          <img src="img/00003.avif" class="card-img-top" alt="Producto 3" />
-          <div class="card-body">
-            <p class="text-success">Precio: $U711</p>
-            <h5 class="card-title">
-              SPIDERMAN SIMBIONTE: LA ENCRUCIJADA / DAVID, LAND, LEISTEN,
-              D'ARMATA
-            </h5>
-            <p class="card-text">
-              El equipo de las anteriores miniseries ambientadas en la época
-              en que Peter vestía el traje negro sin sospechar que se trataba
-              de un simbionte alienígena te ofrece su más ambiciosa historia
-              hasta la fecha: Spidey, con su traje, viaja hasta el lugar en
-              que se encuentra atrapado El Increíble Hulk: ¡La Encrucijada!
-            </p>
-          </div>
-          <div class="card-footer">
-            <button class="btn btn-warning w-100 mb-1">
-              Agregar al carrito
-            </button>
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-secondary w-100" data-bs-toggle="modal" data-bs-target="#modalProduct">
-              Más información
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div><br><br>
-
   <script src="./js/functions.js"></script>
-  <script src="./js/showLoginModal.js"></script>
   <script src="./js/logout.js"></script>
   <script src="./js/searchProducts.js"></script>
   <script src="./js/setNombLogin.js"></script>
@@ -643,10 +642,63 @@
   <script src="./js/addNavBarAdm.js"></script>
   <script src="./js/getAllProducts.js"></script>
   <script src="./js/getForCategories.js"></script>
-
+  <script src="./js/showLoginModal.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
 </body>
+
+<footer class="footer">
+  <div class="container py-4">
+      <div class="row">
+          <!-- Información de la empresa -->
+          <div class="col-md-4">
+              <h5>Sobre Nosotros</h5>
+              <p>ComicVerse es tu tienda de confianza para cómics, mangas y más. Nos dedicamos a ofrecer lo mejor en entretenimiento gráfico.</p>
+              <p><strong>Dirección:</strong> Calle Ficticia 123, Ciudad Fantasía</p>
+              <p><strong>Teléfono:</strong> +123 456 789</p>
+              <p><strong>Email:</strong> contacto@comicverse.com</p>
+          </div>
+          
+          <!-- Formulario de contacto -->
+          <div class="col-md-4">
+              <h5>Envíanos tu consulta</h5>
+              <form action="mailto:ufopress@hotmail.com" method="post" enctype="text/plain">
+                  <div class="mb-3">
+                      <label for="name" class="form-label">Nombre</label>
+                      <input type="text" class="form-control" id="name" placeholder="Tu nombre" required>
+                  </div>
+                  <div class="mb-3">
+                      <label for="email" class="form-label">Email</label>
+                      <input type="email" class="form-control" id="emailFooter" placeholder="Tu email" required>
+                  </div>
+                  <div class="mb-3">
+                      <label for="message" class="form-label">Mensaje</label>
+                      <textarea class="form-control" id="message" rows="3" placeholder="Escribe tu mensaje..." required></textarea>
+                  </div>
+                  <button type="submit" class="btn btn-warning">Enviar</button>
+              </form>
+          </div>
+          
+          <!-- Información de contacto adicional -->
+          <div class="col-md-4">
+              <h5>Contacto</h5>
+              <ul class="list-unstyled">
+                  <li><strong>Teléfonos:</strong></li>
+                  <li>+123 456 789 (Oficina)</li>
+                  <li>+987 654 321 (Soporte)</li>
+                  <li><strong>Dirección:</strong></li>
+                  <li>Calle Ficticia 123, Ciudad Fantasía</li>
+                  <li><strong>Email:</strong></li>
+                  <li>contacto@comicverse.com</li>
+              </ul>
+          </div>
+      </div>
+
+      <div class="text-center mt-4">
+          <p>&copy; 2024 ComicVerse. Todos los derechos reservados.</p>
+      </div>
+  </div>
+</footer>
 
 </html>
