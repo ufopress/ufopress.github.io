@@ -27,8 +27,8 @@ document.addEventListener('DOMContentLoaded', function() {
             // Verificar si hay productos en los resultados
             if (data.length > 0) {
                 contenido.innerHTML = ` 
-                <div class="text-center mb-4 w-100"> <!-- Div que ocupa el total del ancho -->
-                    <h2 class="destacado">Resultados de la búsqueda:</h2> <!-- Título centrado -->
+                <div class="text-center mb-4 w-100 container mt-5"> <!-- Div que ocupa el total del ancho -->
+                    <h2 class="text-center mb-4 destacado">Resultados de la búsqueda:</h2> <!-- Título centrado -->
                 </div>`;
 
                 data.forEach(element => {
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 <button class="btn btn-primary w-100 mb-1">
                                     Agregar al carrito
                                 </button>
-                                <button type="button" class="btn btn-secondary w-100" data-bs-toggle="modal" data-bs-target="#modalProduct">
+                                <button type="button" class="btn btn-warning w-100" data-bs-toggle="modal" data-bs-target="#modalProduct">
                                     Más información
                                 </button>
                             </div>
