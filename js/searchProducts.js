@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (data.length > 0) {
                 contenido.innerHTML = ` 
                 <div class="text-center mb-4 w-100"> <!-- Div que ocupa el total del ancho -->
-                    <h2>Resultados de la búsqueda:</h2> <!-- Título centrado -->
+                    <h2 class="destacado">Resultados de la búsqueda:</h2> <!-- Título centrado -->
                 </div>`;
 
                 data.forEach(element => {
@@ -39,7 +39,6 @@ document.addEventListener('DOMContentLoaded', function() {
                             <div class="card-body">
                                 <p class="text-success">Precio: $U${element.Precio}</p>
                                 <h5 class="card-title">${element.Nombre}</h5>
-                                <p class="card-text">${element.Contenido}</p>
                             </div>
                             <div class="card-footer">
                                 <button class="btn btn-primary w-100 mb-1">
