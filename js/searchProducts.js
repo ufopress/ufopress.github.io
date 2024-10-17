@@ -71,8 +71,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 `;
                 } else {
                     contenido.innerHTML = ` 
-                <div class="text-center mb-4 w-100"> <!-- Div que ocupa el total del ancho -->
-                    <h2>No se encontraron productos.</h2> <!-- Título centrado -->
+                <div class="text-center mb-4 w-100 container mt-5"> <!-- Div que ocupa el total del ancho -->
+                    <h2 class="text-center mb-4 destacado">No hay historietas con ese nombre</h2> <!-- Título centrado -->
                 </div>`;
                 }
             })
