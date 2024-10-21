@@ -112,7 +112,7 @@ function cargarProductos() {
     // Mostrar mensaje de carga mientras se obtienen los productos
     productosContainer.innerHTML = 'Cargando productos...';
 
-    fetch(`./php/getAllProducts.php`)
+    fetch(`./front/php/getAllProducts.php`)
         .then(response => response.json())
         .then(data => {
             if (data.resultado === false) {
@@ -157,7 +157,7 @@ function getProductsForCategory() {
             const categoriaSeleccionada = this.getAttribute('data-category'); // Obtener la categoría
 
             // Enviar la categoría al PHP usando fetch y el método POST
-            fetch('./php/getProductsByCategory.php', {
+            fetch('./front/php/getProductsByCategory.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
