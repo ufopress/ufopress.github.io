@@ -22,12 +22,14 @@ if (isset($_POST['isbn2'])) {
     // Verifica si se ha subido una nueva imagen
     if (isset($_FILES['imagen2']) && $_FILES['imagen2']['error'] === UPLOAD_ERR_OK) {
         $uploadDir = '../vistas/img/';
-        $fileName = basename($_FILES['imagen2']['name']);
+        
+        // Usar el ISBN como nombre de archivo y agregar la extensión .png
+        $fileName = $isbn2 . '.png';
         $uploadFile = $uploadDir . $fileName;
 
         // Mueve el archivo y guarda solo el nombre
         if (move_uploaded_file($_FILES['imagen2']['tmp_name'], $uploadFile)) {
-            $imagen = $fileName;
+            $imagen = $fileName; // Guarda el nombre de archivo
         } else {
             echo json_encode(['error' => 'Error al subir la imagen']);
             exit;
