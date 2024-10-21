@@ -1,7 +1,8 @@
 window.addEventListener('DOMContentLoaded', event => {
     const sidebarToggle = document.querySelector('#sidebarToggle');
     const sidenav = document.querySelector('#layoutSidenav_nav');
-    
+    const body = document.body;
+
     // Toggle the side navigation
     if (sidebarToggle) {
         sidebarToggle.addEventListener('click', event => {
@@ -13,26 +14,24 @@ window.addEventListener('DOMContentLoaded', event => {
     // Cierra el sidenav al hacer clic fuera de él
     document.addEventListener('click', event => {
         const isClickInside = sidenav.contains(event.target) || sidebarToggle.contains(event.target);
-        
-        // Solo cerrar si está abierto
-        if (!isClickInside && document.body.classList.contains('sb-sidenav-toggled')) {
+        if (!isClickInside && body.classList.contains('sb-sidenav-toggled')) {
             toggleSidenav();
         }
     });
 
     // Cierra el sidenav al hacer clic en los botones específicos
-    const actionButtons = document.querySelectorAll('#agregarBtn, #agregarUserBtn');
+    const actionButtons = document.querySelectorAll('#agregarBtn, #gestionarBtn, #modificarBtn, #sliderBtn, #agregarUserBtn, #regFormBtn');
     actionButtons.forEach(button => {
         button.addEventListener('click', () => {
-            if (document.body.classList.contains('sb-sidenav-toggled')) {
+            if (body.classList.contains('sb-sidenav-toggled')) {
                 toggleSidenav();
             }
         });
     });
 
     function toggleSidenav() {
-        document.body.classList.toggle('sb-sidenav-toggled');
-        localStorage.setItem('sb|sidebar-toggle', document.body.classList.contains('sb-sidenav-toggled'));
+        body.classList.toggle('sb-sidenav-toggled');
+        localStorage.setItem('sb|sidebar-toggle', body.classList.contains('sb-sidenav-toggled'));
     }
 });
 
