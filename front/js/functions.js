@@ -127,7 +127,7 @@ function cargarProductos() {
                 productosContainer.innerHTML += `
                 <div class="col">
                     <div class="card h-100">
-                        <img src="${element.Imagen}" class="card-img-top" alt="${element.Nombre}" />
+                        <img src="./front/${element.Imagen}" class="card-img-top" alt="${element.Nombre}" />
                         <div class="card-body">
                             <p class="text-success">Precio: $U${element.Precio}</p>
                             <h5 class="card-title">${element.Nombre}</h5>
@@ -178,7 +178,7 @@ function getProductsForCategory() {
                         productosContainer.innerHTML += `
                         <div class="col">
                             <div class="card h-100">
-                                <img src="${element.Imagen}" class="card-img-top" alt="${element.Nombre}" />
+                                <img src="./front/${element.Imagen}" class="card-img-top" alt="${element.Nombre}" />
                                 <div class="card-body">
                                     <p class="text-success">Precio: $U${element.Precio}</p>
                                     <h5 class="card-title">${element.Nombre}</h5>
