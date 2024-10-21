@@ -168,7 +168,7 @@ function loadProducts(page = 1) {
                 const productElement = document.createElement('div');
                 productElement.classList.add('product');
                 productElement.innerHTML = `
-        <img src="./${product.Imagen}" alt="${product.Nombre}">
+        <img src="../vistas/img/${product.Imagen}" alt="${product.Nombre}">
         <div class="text-container">
             <h3>${product.Nombre}</h3>
             <p>${product.Contenido}</p>

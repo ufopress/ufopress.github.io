@@ -19,10 +19,13 @@ $precio = $_POST['precio'];
 
 if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
     $uploadDir = '../vistas/img/';
-    $uploadFile = $uploadDir . basename($_FILES['imagen']['name']);
-    $imagen = $uploadFile;
+    $fileName = basename($_FILES['imagen']['name']);
+    $uploadFile = $uploadDir . $fileName;
+
     if (move_uploaded_file($_FILES['imagen']['tmp_name'], $uploadFile)) {
-        $imagen = $uploadFile;
+        // Guarda solo el nombre de la imagen
+        $imagen = $fileName;
+        // Puedes retornar $imagen si lo necesitas
     } else {
         echo json_encode(['error' => 'Error al subir la imagen']);
         exit;

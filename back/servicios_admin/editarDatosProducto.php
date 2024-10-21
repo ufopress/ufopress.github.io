@@ -18,6 +18,24 @@ if (isset($_POST['isbn2'])) {
     $interior2 = $_POST['interior2'];
     $precio2 = $_POST['precio2'];
 
+    if (isset($_FILES['imagen2']) && $_FILES['imagen2']['error'] === UPLOAD_ERR_OK) {
+        $uploadDir = '../vistas/img/';
+        $fileName = basename($_FILES['imagen2']['name']);
+        $uploadFile = $uploadDir . $fileName;
+    
+        if (move_uploaded_file($_FILES['imagen2']['tmp_name'], $uploadFile)) {
+            // Guarda solo el nombre de la imagen
+            $imagen = $fileName;
+            // Puedes retornar $imagen si lo necesitas
+        } else {
+            echo json_encode(['error' => 'Error al subir la imagen']);
+            exit;
+        }
+    } elseif (isset($_FILES['imagen2']) && $_FILES['imagen2']['error'] !== UPLOAD_ERR_NO_FILE) {
+        echo json_encode(['error' => 'Error al subir la imagen']);
+        exit;
+    }
+
     try {
         $res = $conexion->prepare("UPDATE HISTORIETA SET 
                     NombreCategoriaCE=?, Nombre=?, /*Imagen=?,*/ EditOrg=?, Autores=?, Paginas=?, Tamaño=?, Contenido=?, Formato=?, Edad=?, Interior=?, Precio=? 
