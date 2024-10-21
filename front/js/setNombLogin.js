@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const password = document.querySelector("#contrasenia").value;
 
         // Realizar la petición fetch
-        fetch("./php/login.php", {
+        fetch("./front/php/login.php", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',

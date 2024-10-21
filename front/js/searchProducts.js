@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
         carrouselContainer.style.display = 'none';
         productosDestacados.style.display = 'none';
 
-        fetch('./php/getProducts.php', {
+        fetch('./front/php/getProducts.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
