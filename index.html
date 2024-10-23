@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -30,6 +29,9 @@
             <a class="nav-link active" aria-current="page" href="#">Inicio</a>
           </li>
           <li class="nav-item">
+            <a id="generatePDF" class="nav-link active" aria-current="page" href="#">PDF</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link no-link" data-bs-toggle="modal" data-bs-target="#mostrarProductosModal">Historietas</a>
           </li>
           <li class="nav-item dropdown">
@@ -37,9 +39,12 @@
               Categorías
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item no-link" data-category="Acción" data-bs-toggle="modal" data-bs-target="#mostrarProductosModal">Acción</a></li>
-              <li><a class="dropdown-item no-link" data-category="Comedia" data-bs-toggle="modal" data-bs-target="#mostrarProductosModal">Comedia</a></li>
-              <li><a class="dropdown-item no-link" data-category="Ciencia ficción" data-bs-toggle="modal" data-bs-target="#mostrarProductosModal">Ciencia ficción</a></li>
+              <li><a class="dropdown-item no-link" data-category="Acción" data-bs-toggle="modal"
+                  data-bs-target="#mostrarProductosModal">Acción</a></li>
+              <li><a class="dropdown-item no-link" data-category="Comedia" data-bs-toggle="modal"
+                  data-bs-target="#mostrarProductosModal">Comedia</a></li>
+              <li><a class="dropdown-item no-link" data-category="Ciencia ficción" data-bs-toggle="modal"
+                  data-bs-target="#mostrarProductosModal">Ciencia ficción</a></li>
             </ul>
           </li>
         </ul>
@@ -193,6 +198,24 @@
     </div>
   </div><br><br>
 
+  <div class="container my-5 text-center mb-4 destacado" id="reseñasContainer">
+    <h2 class="text-center">Reseñas de Nuestros Clientes</h2>
+    <div id="reseñasCarousel" class="carousel slide my-5" data-bs-ride="carousel">
+      <div class="carousel-inner" id="reseñasCarouselInner">
+        <!-- Aquí se cargarán las reseñas dinámicamente -->
+      </div>
+      <!-- Controles de carrusel -->
+      <button id="btnCarouselResenaPrev" class="carousel-control-prev" type="button" data-bs-target="#reseñasCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Anterior</span>
+      </button>
+      <button id="btnCarouselResenaNext" class="carousel-control-next" type="button" data-bs-target="#reseñasCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Siguiente</span>
+      </button>
+    </div>
+  </div>
+
   <!-- Modal para Mostrar Productos con Paginación -->
   <div class="modal fade" id="mostrarProductosModal" tabindex="-1" aria-labelledby="mostrarProductosModalLabel"
     aria-hidden="true">
@@ -327,7 +350,8 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form id="formReporte" action="./front/php/generarReporte.php" method="post" class="needs-validation" novalidate>
+          <form id="formReporte" action="./front/php/generarReporte.php" method="post" class="needs-validation"
+            novalidate>
             <!-- Contenido del reporte -->
             <div class="mb-3">
               <label for="contenidoReporte" class="form-label">Contenido del Reporte</label>
@@ -643,6 +667,10 @@
   <script src="./front/js/getAllProducts.js"></script>
   <script src="./front/js/getForCategories.js"></script>
   <script src="./front/js/showLoginModal.js"></script>
+  <script src="./front/js/generatePdf.js"></script>
+  <script src="./front/js/getResenas.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
@@ -650,54 +678,56 @@
 
 <footer class="footer">
   <div class="container py-4">
-      <div class="row">
-          <!-- Información de la empresa -->
-          <div class="col-md-4">
-              <h5>Sobre Nosotros</h5>
-              <p>ComicVerse es tu tienda de confianza para cómics, mangas y más. Nos dedicamos a ofrecer lo mejor en entretenimiento gráfico.</p>
-              <p><strong>Dirección:</strong> Calle Ficticia 123, Ciudad Fantasía</p>
-              <p><strong>Teléfono:</strong> +123 456 789</p>
-              <p><strong>Email:</strong> contacto@comicverse.com</p>
-          </div>
-          
-          <!-- Formulario de contacto -->
-          <div class="col-md-4">
-              <h5>Envíanos tu consulta</h5>
-              <form action="mailto:ufopress@hotmail.com" method="post" enctype="text/plain">
-                  <div class="mb-3">
-                      <label for="name" class="form-label">Nombre</label>
-                      <input type="text" class="form-control" id="name" placeholder="Tu nombre" required>
-                  </div>
-                  <div class="mb-3">
-                      <label for="email" class="form-label">Email</label>
-                      <input type="email" class="form-control" id="emailFooter" placeholder="Tu email" required>
-                  </div>
-                  <div class="mb-3">
-                      <label for="message" class="form-label">Mensaje</label>
-                      <textarea class="form-control" id="message" rows="3" placeholder="Escribe tu mensaje..." required></textarea>
-                  </div>
-                  <button type="submit" class="btn btn-warning">Enviar</button>
-              </form>
-          </div>
-          
-          <!-- Información de contacto adicional -->
-          <div class="col-md-4">
-              <h5>Contacto</h5>
-              <ul class="list-unstyled">
-                  <li><strong>Teléfonos:</strong></li>
-                  <li>+123 456 789 (Oficina)</li>
-                  <li>+987 654 321 (Soporte)</li>
-                  <li><strong>Dirección:</strong></li>
-                  <li>Calle Ficticia 123, Ciudad Fantasía</li>
-                  <li><strong>Email:</strong></li>
-                  <li>contacto@comicverse.com</li>
-              </ul>
-          </div>
+    <div class="row">
+      <!-- Información de la empresa -->
+      <div class="col-md-4">
+        <h5>Sobre Nosotros</h5>
+        <p>ComicVerse es tu tienda de confianza para cómics, mangas y más. Nos dedicamos a ofrecer lo mejor en
+          entretenimiento gráfico.</p>
+        <p><strong>Dirección:</strong> Calle Ficticia 123, Ciudad Fantasía</p>
+        <p><strong>Teléfono:</strong> +123 456 789</p>
+        <p><strong>Email:</strong> contacto@comicverse.com</p>
       </div>
 
-      <div class="text-center mt-4">
-          <p>&copy; 2024 ComicVerse. Todos los derechos reservados.</p>
+      <!-- Formulario de contacto -->
+      <div class="col-md-4">
+        <h5>Envíanos tu consulta</h5>
+        <form action="mailto:ufopress@hotmail.com" method="post" enctype="text/plain">
+          <div class="mb-3">
+            <label for="name" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="name" placeholder="Tu nombre" required>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="emailFooter" placeholder="Tu email" required>
+          </div>
+          <div class="mb-3">
+            <label for="message" class="form-label">Mensaje</label>
+            <textarea class="form-control" id="message" rows="3" placeholder="Escribe tu mensaje..."
+              required></textarea>
+          </div>
+          <button type="submit" class="btn btn-warning">Enviar</button>
+        </form>
       </div>
+
+      <!-- Información de contacto adicional -->
+      <div class="col-md-4">
+        <h5>Contacto</h5>
+        <ul class="list-unstyled">
+          <li><strong>Teléfonos:</strong></li>
+          <li>+123 456 789 (Oficina)</li>
+          <li>+987 654 321 (Soporte)</li>
+          <li><strong>Dirección:</strong></li>
+          <li>Calle Ficticia 123, Ciudad Fantasía</li>
+          <li><strong>Email:</strong></li>
+          <li>contacto@comicverse.com</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="text-center mt-4">
+      <p>&copy; 2024 ComicVerse. Todos los derechos reservados.</p>
+    </div>
   </div>
 </footer>
 

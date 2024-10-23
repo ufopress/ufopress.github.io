@@ -20,12 +20,26 @@ INSERT INTO DATOS_EMPRESA_DIRECCION (NombreEmpresa, Email, Calle, Numero) VALUES
 -- Poblar la tabla CLIENTE
 INSERT INTO CLIENTE (NombreUser, Email, Contraseña, TipoUsuario, NroTelefono, Nacionalidad, AñoNacimiento, NombreAdmin, EmailAdmin) VALUES
 ('cliente1', 'cliente1@example.com', 'password1', 'CLI', '1234567890', 'Uruguayo', '1995', 'Juan', 'admin1@example.com'),
-('cliente2', 'cliente2@example.com', 'password2', 'CLI', '0987654321', 'Argentino', '1992', 'Juan', 'admin1@example.com');
+('cliente2', 'cliente2@example.com', 'password2', 'CLI', '0987654321', 'Argentino', '1992', 'Juan', 'admin1@example.com'),
+('lector_entusiasta', 'lector1@comicverse.com', 'hashed_password1', 'CLI', '091234567', 'Uruguaya', '1990', NULL, NULL),
+('comic_lover', 'comiclover@comicverse.com', 'hashed_password2', 'CLI', '092345678', 'Uruguaya', '1985', NULL, NULL),
+('aventurero92', 'aventurero92@comicverse.com', 'hashed_password3', 'CLI', '093456789', 'Uruguaya', '1992', NULL, NULL),
+('drama_fan', 'dramafan@comicverse.com', 'hashed_password4', 'CLI', '094567890', 'Uruguaya', '1991', NULL, NULL),
+('ficcion_fan', 'ficcionfan@comicverse.com', 'hashed_password5', 'CLI', '095678901', 'Uruguaya', '1993', NULL, NULL),
+('coleccionista', 'coleccionista@comicverse.com', 'hashed_password6', 'CLI', '096789012', 'Uruguaya', '1987', NULL, NULL),
+('manga_fan', 'mangafan@comicverse.com', 'hashed_password7', 'CLI', '097890123', 'Uruguaya', '1995', NULL, NULL),
+('novato_comics', 'novatocomics@comicverse.com', 'hashed_password8', 'CLI', '098901234', 'Uruguaya', '1998', NULL, NULL);
 
 -- Poblar la tabla RESEÑA
 INSERT INTO RESEÑA (IdReseña, Fecha, Contenido, NombreUser, Email) VALUES
-(1, '2024-09-01', 'Excelente historia!', 'cliente1', 'cliente1@example.com'),
-(2, '2024-09-02', 'No me gustó mucho.', 'cliente2', 'cliente2@example.com');
+(1, '2024-09-03', 'Una colección impresionante, ¡me encanta el arte y las historias!', 'lector_entusiasta', 'lector1@comicverse.com'),
+(2, '2024-09-04', 'Los mejores cómics que he leído en mucho tiempo. Volveré a comprar.', 'comic_lover', 'comiclover@comicverse.com'),
+(3, '2024-09-05', 'Historietas llenas de acción y tramas intrigantes. ¡Recomendado!', 'aventurero92', 'aventurero92@comicverse.com'),
+(4, '2024-09-06', 'El drama está perfectamente equilibrado con la acción. Historietas que te atrapan.', 'drama_fan', 'dramafan@comicverse.com'),
+(5, '2024-09-07', 'Las historietas de ciencia ficción tienen un nivel excepcional. ¡Grandes títulos!', 'ficcion_fan', 'ficcionfan@comicverse.com'),
+(6, '2024-09-08', 'Soy coleccionista y esta tienda tiene lo que necesito. Buenos precios y calidad.', 'coleccionista', 'coleccionista@comicverse.com'),
+(7, '2024-09-09', 'El mejor lugar para conseguir mangas difíciles de encontrar. ¡Excelente servicio!', 'manga_fan', 'mangafan@comicverse.com'),
+(8, '2024-09-10', 'Soy nuevo en el mundo de los cómics y me han ayudado mucho a encontrar mi primera colección.', 'novato_comics', 'novatocomics@comicverse.com');
 
 -- Poblar la tabla REPORTE
 INSERT INTO REPORTE (NroReporte, Contenido, EmailAdmin, NombreAdmin) VALUES
