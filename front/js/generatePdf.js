@@ -40,7 +40,6 @@ document.getElementById('generatePDF').addEventListener('click', async () => {
         const logoBase64 = await loadImageAsBase64(`./front/${logoEmpresa}`);  // Ruta donde se almacena el logo
         if (logoBase64) {
             pdf.addImage(logoBase64, 'PNG', 80, 10, 50, 30);  // Centrar el logo en el PDF
-            startY += 0;  // Ajustar la posición inicial de Y después del logo
         }
     }
 
@@ -58,7 +57,7 @@ document.getElementById('generatePDF').addEventListener('click', async () => {
 
         // Añadir la imagen al PDF
         if (imgBase64) {
-            pdf.addImage(imgBase64, 'PNG', margin, startY, 40, 40);  // Imagen en la primera columna
+            pdf.addImage(imgBase64, 'AVIF', margin, startY, 40, 40);  // Imagen en la primera columna
         }
 
         // Añadir el nombre y precio del producto
@@ -67,8 +66,8 @@ document.getElementById('generatePDF').addEventListener('click', async () => {
 
         // Verificar si la siguiente fila excede la altura de la página
         startY += rowHeight;
-        if (startY + rowHeight > pageHeight) {
-            pdf.addPage();  // Añadir una nueva página si se alcanza el límite
+        if (startY + rowHeight > pageHeight && i < historietas.length - 1) { // Solo agregar página si hay más productos
+            pdf.addPage();  // Añadir una nueva página si se alcanza el límite y aún hay productos por mostrar
             startY = 20;  // Reiniciar la posición Y en la nueva página
 
             // Redibujar la cabecera de la tabla en la nueva página
