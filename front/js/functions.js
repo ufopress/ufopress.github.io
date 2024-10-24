@@ -109,6 +109,12 @@ function cargarProductos() {
         });
 }
 
+function actualizarContadorCarrito() {
+    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    let totalItems = carrito.reduce((acc, item) => acc + item.cantidad, 0);
+    document.getElementById('cart-count').textContent = totalItems;
+}
+
 // Función para agregar eventos a los botones de "Agregar al carrito"
 function agregarEventosCarrito() {
     const botonesAgregarCarrito = document.querySelectorAll('.agregar-carrito');
@@ -138,6 +144,9 @@ function agregarProductoAlCarrito(isbn) {
 
     // Guardar el carrito actualizado en localStorage
     localStorage.setItem('carrito', JSON.stringify(carrito));
+
+    // Actualizar el contador del carrito
+    actualizarContadorCarrito();
     
     alert('Producto agregado al carrito!');
 }
