@@ -88,7 +88,7 @@ function cargarProductos() {
                             <h5 class="card-title">${element.Nombre}</h5>
                         </div>
                         <div class="card-footer">
-                            <button class="btn btn-warning w-100 mb-1">
+                            <button class="btn btn-warning w-100 mb-1 agregar-carrito" data-isbn="${element.ISBN}">
                                 Agregar al carrito
                             </button>
                             <button type="button" class="btn btn-secondary w-100" data-bs-toggle="modal" data-bs-target="#modalProduct">
@@ -99,11 +99,47 @@ function cargarProductos() {
                 </div>
                 `;
             });
+
+            // Añadir eventos a los botones de "Agregar al carrito"
+            agregarEventosCarrito();
         })
         .catch(error => {
             productosContainer.innerHTML = 'Error al cargar productos.';
             console.error('Error:', error);
         });
+}
+
+// Función para agregar eventos a los botones de "Agregar al carrito"
+function agregarEventosCarrito() {
+    const botonesAgregarCarrito = document.querySelectorAll('.agregar-carrito');
+
+    botonesAgregarCarrito.forEach((boton) => {
+        boton.addEventListener('click', (e) => {
+            const isbnProducto = e.target.getAttribute('data-isbn');
+            agregarProductoAlCarrito(isbnProducto);
+        });
+    });
+}
+
+// Función para agregar un producto al carrito
+function agregarProductoAlCarrito(isbn) {
+    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+    // Verificar si el producto ya está en el carrito
+    const productoExistente = carrito.find((producto) => producto.isbn === isbn);
+    
+    if (productoExistente) {
+        // Incrementar la cantidad del producto si ya está en el carrito
+        productoExistente.cantidad += 1;
+    } else {
+        // Agregar el nuevo producto al carrito
+        carrito.push({ isbn, cantidad: 1 });
+    }
+
+    // Guardar el carrito actualizado en localStorage
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+    
+    alert('Producto agregado al carrito!');
 }
 
 function getProductsForCategory() {
