@@ -164,9 +164,8 @@ function getProductsForCategory() {
 
                     productosContainer.innerHTML = ''; // Limpiar el contenedor de productos
 
-                    // Recorrer los productos y mostrarlos
                     data.forEach(element => {
-                        productosContainer.innerHTML += `
+                        contenido.innerHTML += `
                         <div class="col">
                             <div class="card h-100">
                                 <img src="./front/${element.Imagen}" class="card-img-top" alt="${element.Nombre}" />
@@ -175,7 +174,7 @@ function getProductsForCategory() {
                                     <h5 class="card-title">${element.Nombre}</h5>
                                 </div>
                                 <div class="card-footer">
-                                    <button class="btn btn-warning w-100 mb-1">
+                                    <button class="btn btn-warning w-100 mb-1 agregar-carrito" data-isbn="${element.ISBN}">
                                         Agregar al carrito
                                     </button>
                                     <button type="button" class="btn btn-secondary w-100" data-bs-toggle="modal" data-bs-target="#modalProduct">
@@ -183,9 +182,11 @@ function getProductsForCategory() {
                                     </button>
                                 </div>
                             </div>
-                        </div>
-                        `;
+                        </div>`;
                     });
+    
+                    // Agregar eventos de click a los botones de "Agregar al carrito"
+                    agregarEventosCarrito();
                 })
                 .catch(error => {
                     console.error('Error al cargar los productos:', error);
