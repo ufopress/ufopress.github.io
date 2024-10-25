@@ -1,21 +1,28 @@
 <?php
 // Conexión a la base de datos
-include('db.php');
+include('conectar.php');
 
-$input = json_decode(json: file_get_contents(filename: 'php://input'), associative: true);
-$isbn = $input['isbn'];
+// Verificar si recibimos el ISBN desde el POST
+$input = json_decode(file_get_contents('php://input'), true);
+$isbn = isset($input['isbn']) ? $input['isbn'] : '';
 
-// Consulta para obtener el nombre y precio del producto
-$query = "SELECT Nombre, Precio FROM HISTORIETA WHERE ISBN = '$isbn'";
-$result = mysqli_query(mysql: $conn, query: $query);
+// Verificar que el ISBN no esté vacío
+if (!empty($isbn)) {
+    // Consulta para obtener el nombre y precio de la historieta con el ISBN dado
+    $query = "SELECT Nombre, Precio FROM HISTORIETA WHERE ISBN = :isbn";
+    $sentencia = $conexion->prepare($query);
+    $sentencia->bindParam(':isbn', $isbn, PDO::PARAM_STR);
+    $sentencia->execute();
 
-if (mysqli_num_rows(result: $result) > 0) {
-    $row = mysqli_fetch_assoc(result: $result);
-    echo json_encode(value: [
-        'Nombre' => $row['Nombre'],
-        'Precio' => $row['Precio']
-    ]);
+    $result = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+    
+    if (count($result) > 0) {
+        echo json_encode($result, JSON_PRETTY_PRINT);
+    } else {
+        echo json_encode(['resultado' => false, 'mensaje' => 'Producto no encontrado']);
+    }
 } else {
-    echo json_encode(value: ['resultado' => false]);
+    // Si el ISBN está vacío, enviamos una respuesta de error
+    echo json_encode(['resultado' => false, 'mensaje' => 'No se proporcionó un ISBN válido']);
 }
-mysqli_close(mysql: $conn);
+?>

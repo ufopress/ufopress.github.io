@@ -24,39 +24,85 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Crear la tabla para los productos
         let tableHTML = `
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Producto</th>
-                        <th scope="col">Cantidad</th>
-                        <th scope="col">Precio</th>
-                        <th scope="col">Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-        `;
-
-        carrito.forEach((producto, index) => {
-            tableHTML += `
+        <table class="table">
+            <thead>
                 <tr>
-                    <td>${producto.nombre}</td>
-                    <td>${producto.cantidad}</td>
-                    <td>$U${producto.precio}</td>
-                    <td>
-                        <button class="btn btn-danger btn-sm" onclick="eliminarProductoDelCarrito(${index})">Eliminar</button>
-                        <button class="btn btn-secondary btn-sm" onclick="disminuirCantidad(${index})">-</button>
-                        <button class="btn btn-secondary btn-sm" onclick="aumentarCantidad(${index})">+</button>
-                    </td>
+                    <th scope="col">Producto</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Acciones</th>
                 </tr>
-            `;
+            </thead>
+            <tbody>
+    `;
+
+        // Declarar la variable para el total del carrito
+        let totalCarrito = 0;
+
+        const promises = carrito.map((producto, index) => {
+            return fetch('./front/php/getProductByISBN.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ isbn: producto.isbn }) // Enviar el ISBN al servidor
+            })
+                .then(response => response.json()) // Convertir la respuesta a JSON
+                .then(data => {
+                    if (data.resultado === false) {
+                        console.error('Error:', data.mensaje);
+                        return null; // Si falla, devuelvo null
+                    } else {
+                        const [productoDatos] = data;
+                        // Sumar al total el precio del producto multiplicado por la cantidad
+                        totalCarrito += productoDatos.Precio * producto.cantidad;
+                        return {
+                            index,
+                            nombre: productoDatos.Nombre,
+                            precio: productoDatos.Precio,
+                            cantidad: producto.cantidad
+                        };
+                    }
+                })
+                .catch(error => {
+                    console.error('Error en el fetch:', error);
+                    return null;
+                });
         });
 
-        tableHTML += `
-                </tbody>
-            </table>
+        Promise.all(promises).then(productosInfo => {
+            productosInfo.forEach(productoInfo => {
+                if (productoInfo) { // Solo agregamos si no es null
+                    tableHTML += `
+                <tr>
+                    <td>${productoInfo.nombre}</td>
+                    <td>${productoInfo.cantidad}</td>
+                    <td>$U${productoInfo.precio}</td>
+                    <td>
+                        <button class="btn btn-danger btn-sm" onclick="eliminarProductoDelCarrito(${productoInfo.index})">Eliminar</button>
+                        <button class="btn btn-secondary btn-sm" onclick="disminuirCantidad(${productoInfo.index})">-</button>
+                        <button class="btn btn-secondary btn-sm" onclick="aumentarCantidad(${productoInfo.index})">+</button>
+                    </td>
+                </tr>
+                `;
+                }
+            });
+
+            tableHTML += `
+            </tbody>
+        </table>
         `;
 
-        cartItemsContainer.innerHTML = tableHTML;
+            // Agregar el total al final
+            tableHTML += `
+            <div class="d-flex justify-content-center mt-3 text-end fw-bold">
+                Total: $U${totalCarrito.toFixed(2)}
+            </div>
+        `;
+
+            // Mostrar la tabla y el total
+            cartItemsContainer.innerHTML = tableHTML;
+        });
     }
 
     // Mostrar el carrito cuando se abre el modal

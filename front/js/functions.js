@@ -127,28 +127,76 @@ function agregarEventosCarrito() {
     });
 }
 
-// Función para agregar un producto al carrito
 function agregarProductoAlCarrito(isbn) {
     let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
-    // Verificar si el producto ya está en el carrito
-    const productoExistente = carrito.find((producto) => producto.isbn === isbn);
-    
-    if (productoExistente) {
-        // Incrementar la cantidad del producto si ya está en el carrito
-        productoExistente.cantidad += 1;
-    } else {
-        // Agregar el nuevo producto al carrito
-        carrito.push({ isbn, cantidad: 1 });
-    }
+    // Hacer una consulta al servidor para obtener nombre y precio por ISBN
+    fetch(`./front/php/getProductByISBN.php`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ isbn: isbn })
+    })
+    .then(response => {
+        // Verificar si la respuesta es JSON válida
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        if (data.resultado === false) {
+            alert(data.mensaje || 'Producto no encontrado.');
+            return;
+        }
 
-    // Guardar el carrito actualizado en localStorage
-    localStorage.setItem('carrito', JSON.stringify(carrito));
+        const { Nombre, Precio } = data;
 
-    // Actualizar el contador del carrito
-    actualizarContadorCarrito();
-    
-    alert('Producto agregado al carrito!');
+        // Verificar si el producto ya está en el carrito
+        const productoExistente = carrito.find(producto => producto.isbn === isbn);
+
+        if (productoExistente) {
+            // Incrementar la cantidad del producto si ya está en el carrito
+            productoExistente.cantidad += 1;
+        } else {
+            // Agregar el nuevo producto al carrito
+            carrito.push({ isbn, Nombre, precio: Precio, cantidad: 1 });
+        }
+
+        // Guardar el carrito actualizado en localStorage
+        localStorage.setItem('carrito', JSON.stringify(carrito));
+
+        // Actualizar el contador del carrito
+        actualizarContadorCarrito();
+
+        alert('Producto agregado al carrito!');
+    })
+    .catch(error => {
+        console.error('Error al agregar el producto al carrito:', error);
+        alert('Error al agregar el producto al carrito.');
+    });
+}
+
+function obtenerProductoPorISBN(isbn) {
+    fetch('./front/php/getProductByISBN.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ isbn: isbn })  // Enviar el ISBN al servidor
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.resultado === false) {
+            console.error('Error:', data.mensaje);
+        } else {
+            const producto = data[0];  // Primer producto
+            console.log('Nombre:', producto.Nombre);
+            console.log('Precio: $U', producto.Precio);
+        }
+    })
+    .catch(error => console.error('Error en el fetch:', error));
 }
 
 function getProductsForCategory() {
