@@ -77,7 +77,7 @@ CREATE TABLE HISTORIETA (
     Autores VARCHAR(80) NOT NULL,
     Paginas INT(5) NOT NULL,
     Tamaño VARCHAR(10) NOT NULL,
-    Contenido VARCHAR(30) NOT NULL,
+    Contenido VARCHAR(100) NOT NULL,
     Formato VARCHAR(20) NOT NULL,
     Edad INT(5) NOT NULL,
     Interior VARCHAR(20) NOT NULL,
