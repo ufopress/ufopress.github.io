@@ -44,7 +44,7 @@
                 </ul>
             </li>
         </ul>
-    </nav>    
+    </nav>
     <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
@@ -55,7 +55,7 @@
                         <div class="sb-sidenav-menu-heading">Interfaz</div>
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                             data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                            Productos
+                            Modulo Productos
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
@@ -89,8 +89,19 @@
                                 <a class="nav-link" id="agregarUserBtn">Agregar Usuarios</a>
                             </nav>
                         </div>
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePromo"
+                            aria-expanded="false" aria-controls="collapsePromo">
+                            Modulo Promociones
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapsePromo" aria-labelledby="headingFour"
+                            data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                                <a class="nav-link" id="agregarPromotionBtn">Agregar Promociones</a>
+                            </nav>
+                        </div>
 
-                       <!-- <div class="sb-sidenav-footer">
+                        <!-- <div class="sb-sidenav-footer">
                             <div class="small">Logged in as:</div>
                             Start Bootstrap
                         </div>-->
@@ -98,7 +109,6 @@
         </div>
         <div id="layoutSidenav_content">
             <main>
-
                 <div class="container-fluid px-4">
                     <h1 class="mt-4">Bienvenido</h1>
                     <div id="result" style="margin-top: 20px; color: green;" display="none"></div>
@@ -236,7 +246,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="mt-3 mb-0">
+                                                            <div class="card-footer text-left">
                                                                 <input class="btn btn-primary btn-block" type="button"
                                                                     value="Agregar" id="regFormBtn">
                                                             </div>
@@ -381,7 +391,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="mt-3 mb-0">
+                                                            <div class="card-footer text-left">
                                                                 <input class="btn btn-primary btn-block" type="button"
                                                                     value="Actualizar" id="regUpdateBtn">
                                                             </div>
@@ -410,77 +420,84 @@
                                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                                     <div class="card-header">
                                                         <h3 class="text-center font-weight-light my-4">
-                                                            Modificar Datos de la
-                                                            Empresa
+                                                            Modificar Datos de la Empresa
                                                         </h3>
                                                     </div>
                                                     <div class="card-body">
+                                                        <!-- Datos Empresa -->
+                                                        <h5>Datos Empresa</h5>
                                                         <div class="row mb-3">
                                                             <div class="col-md-6">
                                                                 <div class="form-floating mb-3 mb-md-0">
                                                                     <input class="form-control" name="nombreempresa"
-                                                                        type="text" value=""
-                                                                        placeholder="Nombre de la empresa"
+                                                                        type="text" placeholder="Nombre de la empresa"
                                                                         id="nombreempresa" />
                                                                     <label for="nombreempresa">Nombre</label>
-                                                                    <input name="viejonombreempresa" type="hidden"
-                                                                        value="">
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <div class="form-floating mb-3 mb-md-0">
-                                                                    <input class="form-control" name="direccion"
-                                                                        type="text" value='$direccion'
-                                                                        placeholder="Direccion de la empresa"
-                                                                        id="direccion" />
-                                                                    <label for="direccion">Direccion</label>
-                                                                    <input name="viejodireccion" type="hidden"
-                                                                        value="$direccion">
+                                                                    <input class="form-control" name="rubro" type="text"
+                                                                        placeholder="Rubro de la empresa" id="rubro" />
+                                                                    <label for="rubro">Rubro</label>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="row mb-3">
                                                             <div class="col-md-6">
                                                                 <div class="form-floating mb-3 mb-md-0">
-                                                                    <input class="form-control" name="rubro" type="text"
-                                                                        value='$rubro' placeholder="Rubro de la empresa"
-                                                                        id="rubro" />
-                                                                    <label for="rubro">Rubro</label>
-                                                                    <input name="viejorubro" type="hidden"
-                                                                        value="$rubro">
+                                                                    <input class="form-control" name="logo" type="text"
+                                                                        placeholder="Logo de la empresa" id="logo" />
+                                                                    <label for="logo">Logo</label>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <div class="form-floating mb-3 mb-md-0">
-                                                                    <input class="form-control" name="logo" type="text"
-                                                                        value='$logo' placeholder="Logo de la empresa"
-                                                                        id="logo" />
-                                                                    <label for="logo">Logo</label>
-                                                                    <input name="viejologo" type="hidden" value="$logo">
+                                                                    <input class="form-control" name="email" type="text"
+                                                                        placeholder="Email de la empresa" id="email" />
+                                                                    <label for="email">Email</label>
                                                                 </div>
                                                             </div>
                                                         </div>
+
+                                                        <!-- Dirección -->
+                                                        <h5>Dirección</h5>
+                                                        <div class="row mb-3">
+                                                            <div class="col-md-6">
+                                                                <div class="form-floating mb-3 mb-md-0">
+                                                                    <input class="form-control" name="calle" type="text"
+                                                                        placeholder="Calle de la empresa" id="calle" />
+                                                                    <label for="calle">Calle</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-floating mb-3 mb-md-0">
+                                                                    <input class="form-control" name="numero"
+                                                                        type="text" placeholder="Número de la empresa"
+                                                                        id="numero" />
+                                                                    <label for="numero">Número</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Contacto -->
+                                                        <h5>Contacto</h5>
                                                         <div class="row mb-3">
                                                             <div class="col-md-6">
                                                                 <div class="form-floating mb-3 mb-md-0">
                                                                     <input class="form-control" name="instagram"
-                                                                        type="text" value='$instagram'
+                                                                        type="text"
                                                                         placeholder="Instagram de la empresa"
                                                                         id="instagram" />
                                                                     <label for="instagram">Instagram</label>
-                                                                    <input name="viejoinstagram" type="hidden"
-                                                                        value="$instagram">
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <div class="form-floating mb-3 mb-md-0">
                                                                     <input class="form-control" name="facebook"
-                                                                        type="text" value='$facebook'
-                                                                        placeholder="Facebook de la empresa"
+                                                                        type="text" placeholder="Facebook de la empresa"
                                                                         id="facebook" />
                                                                     <label for="facebook">Facebook</label>
-                                                                    <input name="viejofacebook" type="hidden"
-                                                                        value="$facebook">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -488,23 +505,18 @@
                                                             <div class="col-md-6">
                                                                 <div class="form-floating mb-3 mb-md-0">
                                                                     <input class="form-control" name="xtwitter"
-                                                                        type="text" value='$xtwitter'
+                                                                        type="text"
                                                                         placeholder="X_Twitter de la empresa"
                                                                         id="xtwitter" />
                                                                     <label for="xtwitter">X_Twitter</label>
-                                                                    <input name="viejoxtwitter" type="hidden"
-                                                                        value="$xtwitter">
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <div class="form-floating mb-3 mb-md-0">
                                                                     <input class="form-control" name="celular1"
-                                                                        type="text" value='$celular1'
-                                                                        placeholder="Celular1 de la empresa"
+                                                                        type="text" placeholder="Celular1 de la empresa"
                                                                         id="celular1" />
                                                                     <label for="celular1">Celular1</label>
-                                                                    <input name="viejocelular1" type="hidden"
-                                                                        value="$celular1">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -512,27 +524,14 @@
                                                             <div class="col-md-6">
                                                                 <div class="form-floating mb-3 mb-md-0">
                                                                     <input class="form-control" name="celular2"
-                                                                        type="text" value='$celular2'
-                                                                        placeholder="Celular2 de la empresa"
+                                                                        type="text" placeholder="Celular2 de la empresa"
                                                                         id="celular2" />
                                                                     <label for="celular2">Celular2</label>
-                                                                    <input name="viejocelular2" type="hidden"
-                                                                        value="$celular2">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <div class="form-floating mb-3 mb-md-0">
-                                                                    <input class="form-control" name="email" type="text"
-                                                                        value='$email' placeholder="Email de la empresa"
-                                                                        id="email" />
-                                                                    <label for="email">Email</label>
-                                                                    <input name="viejoemail" type="hidden"
-                                                                        value="$email">
                                                                 </div>
                                                             </div>
                                                         </div>
 
-                                                        <div class="mt-3 mb-0">
+                                                        <div class="card-footer text-left">
                                                             <input class="btn btn-primary btn-block" type="submit"
                                                                 value="Modificar" id="modFormBtn2">
                                                         </div>
@@ -558,80 +557,64 @@
                                                 <div class="col-lg-7">
                                                     <div class="card shadow-lg border-0 rounded-lg mt-5">
                                                         <div class="card-header">
-                                                            <h3 class="text-center font-weight-light my-4">
-                                                                Agregar
-                                                                Usuarios
-                                                            </h3>
+                                                            <h3 class="text-center font-weight-light my-4">Agregar Usuarios</h3>
                                                         </div>
                                                         <div class="card-body">
                                                             <div class="row mb-3">
                                                                 <div class="col-md-6">
-                                                                    <div class="form-floating mb-3 mb-md-0">
-                                                                        <input class="form-control" name="nombreusuario"
-                                                                            type="text" required
-                                                                            placeholder="Nombre de Usuario"
-                                                                            id="nombreusuario" />
-                                                                        <label for="nombreusuario">Nombre
-                                                                            de Usuario</label>
+                                                                    <div class="form-floating mb-3">
+                                                                        <input class="form-control" name="nombreusuario" type="text" required placeholder="Nombre de Usuario" id="nombreusuario" />
+                                                                        <label for="nombreusuario">Nombre de Usuario</label>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6">
-                                                                    <div class="form-floating">
-                                                                        <input class="form-control" name="emailuser"
-                                                                            type="email" required placeholder="Email"
-                                                                            id="emailuser" />
+                                                                    <div class="form-floating mb-3">
+                                                                        <input class="form-control" name="emailuser" type="email" required placeholder="Email" id="emailuser" />
                                                                         <label for="emailuser">Email</label>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div class="row mb-3">
-                                                                <div class="col-md-6"></div>
-                                                                <div class="form-floating mb-3 mb-md-0">
-                                                                    <input class="form-control" name="contrasenia"
-                                                                        type="password" required
-                                                                        placeholder="Contraseña" id="contrasenia" />
-                                                                    <label for="contrasenia">Contraseña</label>
+                                                                <div class="col-md-12">
+                                                                    <div class="form-floating mb-3">
+                                                                        <input class="form-control" name="contrasenia" type="password" required placeholder="Contraseña" id="contrasenia" />
+                                                                        <label for="contrasenia">Contraseña</label>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                             <div class="row mb-3">
                                                                 <div class="col-md-4">
-                                                                    <div class="form-floating mb-3 mb-md-0">
-                                                                        <input class="form-control" name="telefono"
-                                                                            type="number" required
-                                                                            placeholder="Telefono" id="telefono" />
-                                                                        <label for="telefono">Telefono</label>
+                                                                    <div class="form-floating mb-3">
+                                                                        <input class="form-control" name="telefono" type="number" required placeholder="Teléfono" id="telefono" />
+                                                                        <label for="telefono">Teléfono</label>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-4">
-                                                                    <div class="form-floating mb-3 mb-md-0">
-                                                                        <input class="form-control" name="nacionalidad"
-                                                                            type="text" required
-                                                                            placeholder="Nacionalidad"
-                                                                            id="nacionalidad" />
+                                                                    <div class="form-floating mb-3">
+                                                                        <input class="form-control" name="nacionalidad" type="text" required placeholder="Nacionalidad" id="nacionalidad" />
                                                                         <label for="nacionalidad">Nacionalidad</label>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-4">
-                                                                    <div class="form-floating mb-3 mb-md-0">
-                                                                        <input class="form-control" name="añonacimiento"
-                                                                            type="number" required
-                                                                            placeholder="Año de Nacimiento"
-                                                                            id="añonacimiento" />
-                                                                        <label for="añonacimiento">Año
-                                                                            de Nacimiento</label>
+                                                                    <div class="form-floating mb-3">
+                                                                        <input class="form-control" name="añonacimiento" type="number" required placeholder="Año de Nacimiento" id="añonacimiento" />
+                                                                        <label for="añonacimiento">Año de Nacimiento</label>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="mt-3 mb-0">
-                                                            <input class="btn btn-primary btn-block" type="button"
-                                                                value="Agregar" id="regUserBtn">
+                                                        <div class="card-footer text-left">
+                                                            <input class="btn btn-primary btn-block" type="button" value="Agregar" id="regUserBtn">
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+                                    </main>
                                 </div>
+                            </form>
+                        </div>                        
+
             </main>
         </div>
         </form>

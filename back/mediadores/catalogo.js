@@ -90,7 +90,6 @@ function eliminar(ISBN) {   //const elim = document.querySelectorAll(".eliminar"
 
 //})
 const regUpdateBtn = document.getElementById('regUpdateBtn');//Boton de actualizar
-// const gestionarProductos = document.getElementById('gestionarProductos');div de catalogo de productos
 const actualizarProdForm = document.getElementById('actualizarProdForm');// formulario dentro del div de actualizacion de productos
 
 const actualizarProductos = document.getElementById('actualizarProductos');// div de actualizacion de productos
@@ -128,7 +127,7 @@ function actualizar(ISBN) {
         })
 };
 
-regUpdateBtn.addEventListener('click', function () { // id del formulario
+regUpdateBtn.addEventListener('click', function () {
     const formData = new FormData(document.getElementById('actualizarProdForm'));
     formData.append('actualizarProdForm', 'actualizarProdForm');
 
@@ -141,14 +140,34 @@ regUpdateBtn.addEventListener('click', function () { // id del formulario
         console.log(data);
         // Verificar si la respuesta tiene éxito
         if (data.success) {
-            result.textContent = 'Cambios Realizados'; // Mensaje de éxito
-            loadProducts();
+            Swal.fire({
+                icon: 'success',
+                title: '¡Éxito!',
+                text: 'Cambios Realizados',
+            }).then(() => {
+                // Mostrar la sección de gestión y cargar productos actualizados
+                gestionarProductos.style.display = 'block'; 
+                loadProducts(); // Recargar los productos
+                // Cerrar la ventana de actualización si es necesario
+                actualizarProductos.style.display = 'none';
+            });
         } else {
-            result.textContent = 'Error'; // Mensaje de error genérico
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: data.message || 'No se pudieron realizar los cambios.',
+            });
         }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Error al procesar la solicitud.', // Mensaje de error genérico
+        });
     });
 });
-
 
 loadProducts();
 
@@ -168,7 +187,7 @@ function loadProducts(page = 1) {
                 const productElement = document.createElement('div');
                 productElement.classList.add('product');
                 productElement.innerHTML = `
-        <img src="../vistas/img/${product.Imagen}" alt="${product.Nombre}">
+        <img src="../vistas/img/${product.Imagen}?t=${Date.now()}" alt="${product.Nombre}">
         <div class="text-container">
             <h3>${product.Nombre}</h3>
             <p>${product.Contenido}</p>

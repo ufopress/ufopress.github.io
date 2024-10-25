@@ -15,7 +15,7 @@ try {
 
 $stmt = $conexion->prepare("INSERT INTO CLIENTE 
 (NombreUser, Email, Contrasenia, TipoUsuario, NroTelefono, Nacionalidad, AñoNacimiento) VALUES
-(?,?,?,1,?,?,?)");
+(?,?,?,'CLI',?,?,?)");
 
     $stmt->execute([$nombreusuario, $emailuser, $contrasenia, $telefono, $nacionalidad, $añonacimiento]);
     echo json_encode(['success' => 'Usuario creado correctamente']);
