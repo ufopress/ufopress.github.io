@@ -87,6 +87,8 @@
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
                                 <a class="nav-link" id="agregarUserBtn">Agregar Usuarios</a>
+                                <a class="nav-link" id="gestionarAdminBtn">Gestion Administradores</a>
+                                <a class="nav-link" id="gestionarClienteBtn">Gestion Clientes</a>
                             </nav>
                         </div>
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePromo"
@@ -409,7 +411,6 @@
                             <div id="productContainer"></div>
                             <div id="paginationContainer"></div>
                         </div>
-
                         <!--Datos Empresa-->
                         <div id="modificarDatosEmpresa" style="display: none;">
                             <div id="layoutAuthentication_content">
@@ -459,7 +460,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                        
+
                                                         <!-- Dirección -->
                                                         <h5>Dirección</h5>
                                                         <div class="row mb-3">
@@ -479,7 +480,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                        
+
                                                         <!-- Contacto -->
                                                         <h5>Contacto</h5>
                                                         <div class="row mb-3">
@@ -530,7 +531,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                        
+
                                                         <div class="card-footer text-left">
                                                             <input class="btn btn-primary btn-block" type="submit"
                                                                 value="Modificar" id="modFormBtn2">
@@ -543,7 +544,7 @@
                                 </main>
                             </div>
                         </div>
-                        
+
                         <!-- <div class="row">
 
                         </div>-->
@@ -564,10 +565,11 @@
                                                             <div class="row mb-3">
                                                                 <div class="col-md-6">
                                                                     <div class="form-floating mb-3">
-                                                                        <input class="form-control" name="nombre"
-                                                                            type="text" required placeholder="Nombre"
-                                                                            id="nombre" />
-                                                                        <label for="nombre">Nombre</label>
+                                                                        <input class="form-control" name="nombreusuario"
+                                                                            type="text" required
+                                                                            placeholder="Nombre Usuario"
+                                                                            id="nombreusuario" />
+                                                                        <label for="nombreusuario">Nombre</label>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6">
@@ -582,30 +584,31 @@
                                                             <div class="row mb-3">
                                                                 <div class="col-md-12">
                                                                     <div class="form-floating mb-3">
-                                                                        <input class="form-control" name="email"
-                                                                            type="email" required placeholder="Email"
-                                                                            id="email" />
-                                                                        <label for="email">Email</label>
+                                                                        <input class="form-control" name="emailusuario"
+                                                                            type="email" required
+                                                                            placeholder="Email Usuario"
+                                                                            id="emailusuario" />
+                                                                        <label for="emailusuario">Email</label>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div class="row mb-3">
                                                                 <div class="col-md-12">
                                                                     <div class="form-floating mb-3">
-                                                                        <input class="form-control" name="contrasenia"
+                                                                        <input class="form-control" name="contraseña"
                                                                             type="password" required
-                                                                            placeholder="Contraseña" id="contrasenia" />
-                                                                        <label for="contrasenia">Contraseña</label>
+                                                                            placeholder="Contraseña" id="contraseña" />
+                                                                        <label for="contraseña">Contraseña</label>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div class="row mb-3">
                                                                 <div class="col-md-6">
                                                                     <div class="form-floating mb-3">
-                                                                        <input class="form-control" name="nrotelefono"
+                                                                        <input class="form-control" name="telefono"
                                                                             type="number" required
-                                                                            placeholder="Teléfono" id="nrotelefono" />
-                                                                        <label for="nrotelefono">Teléfono</label>
+                                                                            placeholder="Teléfono" id="telefono" />
+                                                                        <label for="telefono">Telefono</label>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6">
@@ -614,33 +617,38 @@
                                                                             name="fechanacimiento" type="date" required
                                                                             placeholder="Fecha de Nacimiento"
                                                                             id="fechanacimiento" />
-                                                                        <label for="fechanacimiento">Fecha de
-                                                                            Nacimiento</label>
+                                                                        <label
+                                                                            for="fechanacimiento">Fecha de Nacimiento</label>
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                        </div>
+                                                        <div class="card-footer text-left">
+                                                            <input class="btn btn-primary btn-block" type="button"
+                                                                value="Agregar" id="regUserBtn">
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-
-                                        <div class="card-footer text-left">
-                                            <input class="btn btn-primary btn-block" type="button" value="Agregar"
-                                                id="regUserBtn">
-                                        </div>
+                                    </main>
                                 </div>
+                            </form>
                         </div>
+                    </div>
+                    <div id="gestionarAdministradores" style="display: none;">
+                        <div id="resultDiv2"></div>
+                        <div id="productContainer2"></div>
+                        <div id="paginationContainer2"></div>
+                    </div>
+                    <div id="gestionarCliente" style="display: none;">
+                        <div id="resultDiv3"></div>
+                        <div id="productContainer3"></div>
+                        <div id="paginationContainer3"></div>
                     </div>
                 </div>
             </main>
         </div>
-        </form>
-    </div>
-
-    </main>
-    </div>
-    </form>
     </div>
     </main>
     <footer class="py-4 bg-light mt-auto">

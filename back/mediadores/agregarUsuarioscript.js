@@ -1,25 +1,37 @@
 const regUserBtn = document.getElementById('regUserBtn');
-const result2 = document.getElementById('result');
 
-regUserBtn.addEventListener('click', function() {              //id del formulario
+regUserBtn.addEventListener('click', function() {              
     const formData2 = new FormData(document.getElementById('registrarUserForm'));
     formData2.append('registrarUserForm', 'registrarUserForm');
     fetch('./../servicios_admin/agregarUsuarios.php', {
         method: 'POST',
         body: formData2,
     })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network Error');
-            }
-            return response.json();
-        })
+        .then(response => response.json())
         .then(data => {
             if (data.success) {
-                result2.textContent = 'Usuario agregado';
-
+                Swal.fire({
+                    title: 'Éxito',
+                    text: 'Usuario agregado',
+                    icon: 'success',
+                    showConfirmButton: false,
+                    timer: 1500
+                }).then(() => {
+                });
             } else {
-                result2.textContent = data.error;
+                Swal.fire({
+                    title: 'Error',
+                    text: data.error || 'No se pudo agregar el usuario',
+                    icon: 'error',
+                });
             }
+        })
+        .catch(error => {
+            console.error('Error en la solicitud:', error);
+            Swal.fire({
+                title: 'Error',
+                text: 'Error en la solicitud',
+                icon: 'error',
+            });
         });
 });

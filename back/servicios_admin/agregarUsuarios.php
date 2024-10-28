@@ -1,25 +1,26 @@
 <?php
 include "../controladores/conectar.php";
 
-header('content-type:application/json');
+header('Content-Type: application/json');
 
 $nombreusuario = $_POST['nombreusuario'];
-$emailuser = $_POST['emailuser'];
-$contrasenia = $_POST['contrasenia'];
+$apellido = $_POST['apellido'];
+$emailusuario = $_POST['emailusuario'];
+$contraseña = $_POST['contraseña'];
 $telefono = $_POST['telefono'];
-$nacionalidad = $_POST['nacionalidad'];
-$añonacimiento = $_POST['añonacimiento'];
+$fechanacimiento = $_POST['fechanacimiento']; 
 
+
+$contraseñaHasheada = password_hash($contraseña, PASSWORD_DEFAULT);
 
 try {
+    $stmt = $conexion->prepare("INSERT INTO ADMINISTRADOR 
+        (Nombre, Apellido, Email, Contraseña, TipoUsuario, NroTelefono, NombreEmpresaCE, FechaNacimiento) VALUES 
+        (?, ?, ?, ?, 'ADM', ?, 'ComicVerse', ?)");
 
-$stmt = $conexion->prepare("INSERT INTO ADMINISTRADOR 
-(, Email, Contrasenia, TipoUsuario, NroTelefono, Nacionalidad, AñoNacimiento) VALUES
-(?,?,?,'ADM',?,?,?)");
+    $stmt->execute([$nombreusuario, $apellido, $emailusuario, $contraseñaHasheada, $telefono, $fechanacimiento]);
 
-    $stmt->execute([$nombreusuario, $emailuser, $contrasenia, $telefono, $nacionalidad, $añonacimiento]);
     echo json_encode(['success' => 'Usuario creado correctamente']);
 } catch (PDOException $e) {
-    echo json_encode(['error' => 'Error al ejecutar la consulta: ']);
+    echo json_encode(['error' => 'Error al ejecutar la consulta: ' . $e->getMessage()]);
 }
-?>
