@@ -88,7 +88,7 @@ function cargarProductos() {
                             <h5 class="card-title">${element.Nombre}</h5>
                         </div>
                         <div class="card-footer">
-                            <button class="btn btn-warning w-100 mb-1">
+                            <button class="btn btn-warning w-100 mb-1 agregar-carrito" data-isbn="${element.ISBN}">
                                 Agregar al carrito
                             </button>
                             <button type="button" class="btn btn-secondary w-100" data-bs-toggle="modal" data-bs-target="#modalProduct">
@@ -99,11 +99,104 @@ function cargarProductos() {
                 </div>
                 `;
             });
+
+            // Añadir eventos a los botones de "Agregar al carrito"
+            agregarEventosCarrito();
         })
         .catch(error => {
             productosContainer.innerHTML = 'Error al cargar productos.';
             console.error('Error:', error);
         });
+}
+
+function actualizarContadorCarrito() {
+    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    let totalItems = carrito.reduce((acc, item) => acc + item.cantidad, 0);
+    document.getElementById('cart-count').textContent = totalItems;
+}
+
+// Función para agregar eventos a los botones de "Agregar al carrito"
+function agregarEventosCarrito() {
+    const botonesAgregarCarrito = document.querySelectorAll('.agregar-carrito');
+
+    botonesAgregarCarrito.forEach((boton) => {
+        boton.addEventListener('click', (e) => {
+            const isbnProducto = e.target.getAttribute('data-isbn');
+            agregarProductoAlCarrito(isbnProducto);
+        });
+    });
+}
+
+function agregarProductoAlCarrito(isbn) {
+    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+    // Hacer una consulta al servidor para obtener nombre y precio por ISBN
+    fetch(`./front/php/getProductByISBN.php`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ isbn: isbn })
+    })
+    .then(response => {
+        // Verificar si la respuesta es JSON válida
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        if (data.resultado === false) {
+            alert(data.mensaje || 'Producto no encontrado.');
+            return;
+        }
+
+        const { Nombre, Precio } = data;
+
+        // Verificar si el producto ya está en el carrito
+        const productoExistente = carrito.find(producto => producto.isbn === isbn);
+
+        if (productoExistente) {
+            // Incrementar la cantidad del producto si ya está en el carrito
+            productoExistente.cantidad += 1;
+        } else {
+            // Agregar el nuevo producto al carrito
+            carrito.push({ isbn, Nombre, precio: Precio, cantidad: 1 });
+        }
+
+        // Guardar el carrito actualizado en localStorage
+        localStorage.setItem('carrito', JSON.stringify(carrito));
+
+        // Actualizar el contador del carrito
+        actualizarContadorCarrito();
+
+        alert('Producto agregado al carrito!');
+    })
+    .catch(error => {
+        console.error('Error al agregar el producto al carrito:', error);
+        alert('Error al agregar el producto al carrito.');
+    });
+}
+
+function obtenerProductoPorISBN(isbn) {
+    fetch('./front/php/getProductByISBN.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ isbn: isbn })  // Enviar el ISBN al servidor
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.resultado === false) {
+            console.error('Error:', data.mensaje);
+        } else {
+            const producto = data[0];  // Primer producto
+            console.log('Nombre:', producto.Nombre);
+            console.log('Precio: $U', producto.Precio);
+        }
+    })
+    .catch(error => console.error('Error en el fetch:', error));
 }
 
 function getProductsForCategory() {
@@ -128,9 +221,8 @@ function getProductsForCategory() {
 
                     productosContainer.innerHTML = ''; // Limpiar el contenedor de productos
 
-                    // Recorrer los productos y mostrarlos
                     data.forEach(element => {
-                        productosContainer.innerHTML += `
+                        contenido.innerHTML += `
                         <div class="col">
                             <div class="card h-100">
                                 <img src="./front/${element.Imagen}" class="card-img-top" alt="${element.Nombre}" />
@@ -139,7 +231,7 @@ function getProductsForCategory() {
                                     <h5 class="card-title">${element.Nombre}</h5>
                                 </div>
                                 <div class="card-footer">
-                                    <button class="btn btn-warning w-100 mb-1">
+                                    <button class="btn btn-warning w-100 mb-1 agregar-carrito" data-isbn="${element.ISBN}">
                                         Agregar al carrito
                                     </button>
                                     <button type="button" class="btn btn-secondary w-100" data-bs-toggle="modal" data-bs-target="#modalProduct">
@@ -147,9 +239,11 @@ function getProductsForCategory() {
                                     </button>
                                 </div>
                             </div>
-                        </div>
-                        `;
+                        </div>`;
                     });
+    
+                    // Agregar eventos de click a los botones de "Agregar al carrito"
+                    agregarEventosCarrito();
                 })
                 .catch(error => {
                     console.error('Error al cargar los productos:', error);

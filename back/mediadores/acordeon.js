@@ -34,5 +34,3 @@ window.addEventListener('DOMContentLoaded', event => {
         localStorage.setItem('sb|sidebar-toggle', body.classList.contains('sb-sidenav-toggled'));
     }
 });
-
-

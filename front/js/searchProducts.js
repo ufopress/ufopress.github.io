@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const contenido = document.getElementById('productList');
     const carrouselContainer = document.getElementById('carrouselContainer');
     const productosDestacados = document.getElementById('productosDestacados');
+    const reseñasContainer = document.getElementById('reseñasContainer');
 
     // Escuchar el evento de entrada en el campo de búsqueda
     searchInput.addEventListener('input', function () {
@@ -13,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
             contenido.innerHTML = '';
 
             // Mostrar el carrusel y los productos destacados nuevamente
+            reseñasContainer.style.display = 'block';
             carrouselContainer.style.display = 'block';
             productosDestacados.style.display = 'block';
 
@@ -22,6 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Ocultar el carrusel y los productos destacados cuando se realiza una búsqueda
         carrouselContainer.style.display = 'none';
         productosDestacados.style.display = 'none';
+        reseñasContainer.style.display = 'none';
 
         fetch('./front/php/getProducts.php', {
             method: 'POST',
@@ -42,8 +45,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     <h2 class="text-center mb-4 destacado">Resultados de la búsqueda:</h2> <!-- Título centrado -->
                 </div>`;
 
-                    data.forEach(element => {
-                        contenido.innerHTML += `
+                data.forEach(element => {
+                    contenido.innerHTML += `
                     <div class="col">
                         <div class="card h-100">
                             <img src="./front/${element.Imagen}" class="card-img-top" alt="${element.Nombre}" />
@@ -52,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                 <h5 class="card-title">${element.Nombre}</h5>
                             </div>
                             <div class="card-footer">
-                                <button class="btn btn-warning w-100 mb-1">
+                                <button class="btn btn-warning w-100 mb-1 agregar-carrito" data-isbn="${element.ISBN}">
                                     Agregar al carrito
                                 </button>
                                 <button type="button" class="btn btn-secondary w-100" data-bs-toggle="modal" data-bs-target="#modalProduct">
@@ -60,15 +63,16 @@ document.addEventListener('DOMContentLoaded', function () {
                                 </button>
                             </div>
                         </div>
-                    </div>
-                    `;
-                    });
+                    </div>`;
+                });
 
-                    contenido.innerHTML += `
-                    </div> <!-- row -->
-                    </div> <!-- container -->
-                    <br><br>
-                `;
+                contenido.innerHTML += `
+                </div> <!-- row -->
+                </div> <!-- container -->
+                <br><br>`;
+
+                // Agregar eventos de click a los botones de "Agregar al carrito"
+                agregarEventosCarrito();
                 } else {
                     contenido.innerHTML = ` 
                 <div class="text-center mb-4 w-100 container mt-5"> <!-- Div que ocupa el total del ancho -->

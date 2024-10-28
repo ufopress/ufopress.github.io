@@ -19,7 +19,7 @@ $precio = $_POST['precio'];
 
 if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
     $uploadDir = '../vistas/img/';
-    $fileName = basename($_FILES['imagen']['name']);
+    $fileName = $isbn . '.png';
     $uploadFile = $uploadDir . $fileName;
 
     if (move_uploaded_file($_FILES['imagen']['tmp_name'], $uploadFile)) {
@@ -61,5 +61,3 @@ $stmt->bindParam(':precio', );
     echo json_encode(['error' => 'Error al ejecutar la consulta: ' . $e->getMessage() . $imagen]);
 }
 ?>
-
-

@@ -17,8 +17,7 @@
 
 .product img {
     width: 180px; /* Ancho fijo para la imagen */
-    height: auto; /* Alto automático para que ajuste a la imagen */
-    max-height: 270px; /* Alto máximo para la imagen */
+    height: 270px; /* Alto fijo para la imagen */
     object-fit: cover; /* Mantener proporciones y cubrir el área */
     border-radius: 5px; /* Bordes redondeados en la imagen */
     margin-right: 15px; /* Espaciado entre la imagen y el texto */
@@ -49,8 +48,8 @@
     border-radius: 5px; /* Bordes redondeados en el botón */
     cursor: pointer; /* Cambiar el cursor al pasar el mouse */
     transition: background-color 0.3s, border-color 0.3s; /* Transición suave para el color de fondo y del borde */
-    align-self: flex-start; /* Alinear el botón al inicio */
-    margin-top: 10px; /* Espaciado superior para separar de otros elementos */
+    align-self: flex-start; /* Puedes dejar esto o cambiar a flex-end si deseas alinearlo a la derecha */
+    margin-top: auto; /* Cambia esto para empujar el botón hacia abajo */
     width: 120px; /* Ancho fijo para todos los botones */
 }
 
