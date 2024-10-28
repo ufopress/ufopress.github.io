@@ -13,9 +13,9 @@ $añonacimiento = $_POST['añonacimiento'];
 
 try {
 
-$stmt = $conexion->prepare("INSERT INTO CLIENTE 
-(NombreUser, Email, Contrasenia, TipoUsuario, NroTelefono, Nacionalidad, AñoNacimiento) VALUES
-(?,?,?,'CLI',?,?,?)");
+$stmt = $conexion->prepare("INSERT INTO ADMINISTRADOR 
+(, Email, Contrasenia, TipoUsuario, NroTelefono, Nacionalidad, AñoNacimiento) VALUES
+(?,?,?,'ADM',?,?,?)");
 
     $stmt->execute([$nombreusuario, $emailuser, $contrasenia, $telefono, $nacionalidad, $añonacimiento]);
     echo json_encode(['success' => 'Usuario creado correctamente']);

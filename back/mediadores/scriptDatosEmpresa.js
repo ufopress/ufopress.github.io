@@ -88,6 +88,8 @@ modFormBtn2.addEventListener('click', function () {
                 title: 'Éxito',
                 text: 'Cambios Realizados',
                 icon: 'success',
+                showConfirmButton: false,
+                timer: 1500
             }).then(() => {
                 modificarDatosEmpresa.style.display = 'none'; // Cambia el display a none si es necesario
             });

@@ -72,11 +72,13 @@ function eliminar(ISBN) {   //const elim = document.querySelectorAll(".eliminar"
     }).then((result) => {
         if (result.isConfirmed) {
             deleteProduct(ISBN);
-            Swal.fire(
-                'Eliminado!',
-                'El producto ha sido eliminado.',
-                'success'
-            );
+            Swal.fire({
+                title: 'Eliminado!',
+                text: 'El producto ha sido eliminado.',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 1500
+        });
             //document.location.reload();
             setTimeout(loadProducts, 500);
         }
@@ -144,6 +146,8 @@ regUpdateBtn.addEventListener('click', function () {
                 icon: 'success',
                 title: '¡Éxito!',
                 text: 'Cambios Realizados',
+                showConfirmButton: false,
+                timer: 1500
             }).then(() => {
                 // Mostrar la sección de gestión y cargar productos actualizados
                 gestionarProductos.style.display = 'block'; 
