@@ -36,30 +36,6 @@ function verificarUsuario() {
     }
 }
 
-// Función para eliminar el menú de administración cuando se cierra sesión
-function eliminarAdminMenu() {
-    const adminDropdown = document.getElementById('adminDropdownMenu');
-    if (adminDropdown) {
-        adminDropdown.remove(); // Remueve el menú de administración
-    }
-}
-
-// Función para verificar y agregar el menú de administración si el usuario es ADM o VEN
-function verificarAdminMenu() {
-    const tipoUsuario = localStorage.getItem('tipoUsuario');
-    const navBar = document.getElementById('navbarSupportedContent');
-    let adminDropdown = document.getElementById('adminDropdownMenu');
-
-    // Si existe un menú de administración anterior, eliminarlo primero
-    if (adminDropdown) {
-        adminDropdown.remove(); // Elimina el menú de administración si ya existe
-    }
-
-    if (tipoUsuario === 'ADM' || tipoUsuario === 'VEN') {
-        // Hacer que te redirija al html del backend
-    }
-}
-
 // Función para cargar productos desde el servidor
 function cargarProductos() {
     const productosContainer = document.getElementById('productosContainer');

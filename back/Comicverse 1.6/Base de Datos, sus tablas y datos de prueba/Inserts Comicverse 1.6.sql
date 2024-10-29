@@ -1,3 +1,5 @@
+use comicverse;
+
 -- Poblar la tabla DATOS_EMPRESA
 INSERT INTO DATOS_EMPRESA (NombreEmpresa, Email, Rubro, Logo) VALUES
 ('ComicVerse', 'comicverse@example.com', 'Comics', 'img/LogoComicVerse.png');
