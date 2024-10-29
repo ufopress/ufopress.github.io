@@ -36,9 +36,16 @@ function verificarUsuario() {
     }
 }
 
+// Variables globales para la paginación
+let productosPorPagina = 3;
+let paginaActual = 1;
+let totalPaginas = 1;
+let productos = [];
+
 // Función para cargar productos desde el servidor
 function cargarProductos() {
     const productosContainer = document.getElementById('productosContainer');
+    const paginacionContainer = document.getElementById('paginacionContainer');
 
     // Mostrar mensaje de carga mientras se obtienen los productos
     productosContainer.innerHTML = 'Cargando productos...';
@@ -51,38 +58,87 @@ function cargarProductos() {
                 return;
             }
 
-            productosContainer.innerHTML = ''; // Limpiar el contenedor de productos
-
-            // Recorrer los productos y mostrarlos
-            data.forEach(element => {
-                productosContainer.innerHTML += `
-                <div class="col">
-                    <div class="card h-100">
-                        <img src="../back/vistas/img/${element.Imagen}" class="card-img-top" alt="${element.Nombre}" />
-                        <div class="card-body">
-                            <p class="text-success">Precio: $U${element.Precio}</p>
-                            <h5 class="card-title">${element.Nombre}</h5>
-                        </div>
-                        <div class="card-footer">
-                            <button class="btn btn-warning w-100 mb-1 agregar-carrito" data-isbn="${element.ISBN}">
-                                Agregar al carrito
-                            </button>
-                            <button type="button" class="btn btn-secondary w-100" data-bs-toggle="modal" data-bs-target="#modalProduct">
-                                Más información
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                `;
-            });
-
-            // Añadir eventos a los botones de "Agregar al carrito"
-            agregarEventosCarrito();
+            productos = data; // Guardar todos los productos
+            totalPaginas = Math.ceil(productos.length / productosPorPagina);
+            paginaActual = 1; // Reiniciar la página actual
+            mostrarProductosPorPagina(); // Mostrar los productos de la primera página
+            crearPaginacion(); // Crear los controles de paginación
         })
         .catch(error => {
             productosContainer.innerHTML = 'Error al cargar productos.';
             console.error('Error:', error);
         });
+}
+
+// Función para mostrar los productos de la página actual
+function mostrarProductosPorPagina() {
+    const productosContainer = document.getElementById('productosContainer');
+    productosContainer.innerHTML = ''; // Limpiar el contenedor de productos
+
+    // Calcular el índice de inicio y fin de los productos a mostrar
+    const inicio = (paginaActual - 1) * productosPorPagina;
+    const fin = inicio + productosPorPagina;
+
+    // Recorrer los productos de la página actual y mostrarlos
+    const productosPagina = productos.slice(inicio, fin);
+    productosPagina.forEach(element => {
+        productosContainer.innerHTML += `
+            <div class="col">
+                <div class="card h-100">
+                    <img src="../back/vistas/img/${element.Imagen}" class="card-img-top" alt="${element.Nombre}" />
+                    <div class="card-body">
+                        <p class="text-success">Precio: $U${element.Precio}</p>
+                        <h5 class="card-title">${element.Nombre}</h5>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-warning w-100 mb-1 agregar-carrito" data-isbn="${element.ISBN}">
+                            Agregar al carrito
+                        </button>
+                        <button type="button" class="btn btn-secondary w-100" data-bs-toggle="modal" data-bs-target="#modalProduct">
+                            Más información
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+    });
+
+    // Añadir eventos a los botones de "Agregar al carrito"
+    agregarEventosCarrito();
+}
+
+// Función para crear los controles de paginación
+function crearPaginacion() {
+    const paginacionContainer = document.getElementById('paginacionContainer');
+    paginacionContainer.innerHTML = ''; // Limpiar la paginación existente
+
+    // Crear los botones de paginación
+    for (let i = 1; i <= totalPaginas; i++) {
+        const boton = document.createElement('input');
+        boton.type = 'radio';
+        boton.name = 'page';
+        boton.value = i;
+        boton.id = `page-${i}`;
+        boton.classList.add('btn-check');
+
+        const label = document.createElement('label');
+        label.htmlFor = `page-${i}`;
+        label.classList.add('btn', 'btn-outline-warning', 'mx-1');
+        label.textContent = i;
+
+        if (i === paginaActual) {
+            boton.checked = true;
+        }
+
+        // Agregar evento para cambiar de página
+        boton.addEventListener('change', () => {
+            paginaActual = i;
+            mostrarProductosPorPagina();
+        });
+
+        paginacionContainer.appendChild(boton);
+        paginacionContainer.appendChild(label);
+    }
 }
 
 function actualizarContadorCarrito() {
@@ -114,44 +170,44 @@ function agregarProductoAlCarrito(isbn) {
         },
         body: JSON.stringify({ isbn: isbn })
     })
-    .then(response => {
-        // Verificar si la respuesta es JSON válida
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
-    })
-    .then(data => {
-        if (data.resultado === false) {
-            alert(data.mensaje || 'Producto no encontrado.');
-            return;
-        }
+        .then(response => {
+            // Verificar si la respuesta es JSON válida
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.resultado === false) {
+                alert(data.mensaje || 'Producto no encontrado.');
+                return;
+            }
 
-        const { Nombre, Precio } = data;
+            const { Nombre, Precio } = data;
 
-        // Verificar si el producto ya está en el carrito
-        const productoExistente = carrito.find(producto => producto.isbn === isbn);
+            // Verificar si el producto ya está en el carrito
+            const productoExistente = carrito.find(producto => producto.isbn === isbn);
 
-        if (productoExistente) {
-            // Incrementar la cantidad del producto si ya está en el carrito
-            productoExistente.cantidad += 1;
-        } else {
-            // Agregar el nuevo producto al carrito
-            carrito.push({ isbn, Nombre, precio: Precio, cantidad: 1 });
-        }
+            if (productoExistente) {
+                // Incrementar la cantidad del producto si ya está en el carrito
+                productoExistente.cantidad += 1;
+            } else {
+                // Agregar el nuevo producto al carrito
+                carrito.push({ isbn, Nombre, precio: Precio, cantidad: 1 });
+            }
 
-        // Guardar el carrito actualizado en localStorage
-        localStorage.setItem('carrito', JSON.stringify(carrito));
+            // Guardar el carrito actualizado en localStorage
+            localStorage.setItem('carrito', JSON.stringify(carrito));
 
-        // Actualizar el contador del carrito
-        actualizarContadorCarrito();
+            // Actualizar el contador del carrito
+            actualizarContadorCarrito();
 
-        alert('Producto agregado al carrito!');
-    })
-    .catch(error => {
-        console.error('Error al agregar el producto al carrito:', error);
-        alert('Error al agregar el producto al carrito.');
-    });
+            alert('Producto agregado al carrito!');
+        })
+        .catch(error => {
+            console.error('Error al agregar el producto al carrito:', error);
+            alert('Error al agregar el producto al carrito.');
+        });
 }
 
 function obtenerProductoPorISBN(isbn) {
@@ -162,17 +218,17 @@ function obtenerProductoPorISBN(isbn) {
         },
         body: JSON.stringify({ isbn: isbn })  // Enviar el ISBN al servidor
     })
-    .then(response => response.json())
-    .then(data => {
-        if (data.resultado === false) {
-            console.error('Error:', data.mensaje);
-        } else {
-            const producto = data[0];  // Primer producto
-            console.log('Nombre:', producto.Nombre);
-            console.log('Precio: $U', producto.Precio);
-        }
-    })
-    .catch(error => console.error('Error en el fetch:', error));
+        .then(response => response.json())
+        .then(data => {
+            if (data.resultado === false) {
+                console.error('Error:', data.mensaje);
+            } else {
+                const producto = data[0];  // Primer producto
+                console.log('Nombre:', producto.Nombre);
+                console.log('Precio: $U', producto.Precio);
+            }
+        })
+        .catch(error => console.error('Error en el fetch:', error));
 }
 
 function getProductsForCategory() {
@@ -217,7 +273,7 @@ function getProductsForCategory() {
                             </div>
                         </div>`;
                     });
-    
+
                     // Agregar eventos de click a los botones de "Agregar al carrito"
                     agregarEventosCarrito();
                 })

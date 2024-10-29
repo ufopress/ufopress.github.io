@@ -49,10 +49,10 @@
             </ul>
           </li>
           <li class="nav-item"></li>
-            <a id="generatePDF" class="nav-link active" aria-current="page" href="#">Descargar catálogo</a>
+          <a id="generatePDF" class="nav-link active" aria-current="page" href="#">Descargar catálogo</a>
           </li>
         </ul>
-        
+
         <form class="d-flex" role="search">
           <input id="searchInput" class="form-control me-2" type="search" placeholder="Busca aquí: "
             aria-label="Search" />
@@ -62,7 +62,8 @@
         <div class="cart-container d-flex align-items-center">
           <a href="#" class="nav-link position-relative" data-bs-toggle="modal" data-bs-target="#cartModal">
             <i class="fas fa-shopping-cart fa-lg"></i>
-            <span id="cart-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+            <span id="cart-count"
+              class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
               0
             </span>
           </a>
@@ -193,101 +194,6 @@
     </div>
   </div>
 
-  <!-- Modal para agregar usuario (Cliente o Vendedor) -->
-  <div class="modal fade" id="agregarUsuarioModal" tabindex="-1" aria-labelledby="agregarUsuarioModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="agregarUsuarioModalLabel">Agregar Usuario</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form id="formAgregarUsuario" action="./front/php/agregarUsuario.php" method="post" class="needs-validation"
-            novalidate>
-            <!-- Tipo de Usuario (Cliente o Vendedor) -->
-            <div class="mb-3">
-              <label for="tipoUsuario" class="form-label">Tipo de Usuario</label>
-              <select class="form-select" id="tipoUsuarioModal" name="tipoUsuario" required>
-                <option value="" disabled selected>Selecciona un tipo de usuario</option>
-                <option value="CLI">Cliente</option>
-                <option value="VEN">Vendedor</option>
-              </select>
-              <div class="invalid-feedback">
-                Por favor, selecciona un tipo de usuario.
-              </div>
-            </div>
-
-            <!-- Nombre de Usuario -->
-            <div class="mb-3">
-              <label for="nombreUser" class="form-label">Nombre de Usuario</label>
-              <input type="text" class="form-control" id="nombreUserModal" name="nombreUser"
-                placeholder="Nombre de usuario" required>
-              <div class="invalid-feedback">
-                Por favor, introduce un nombre de usuario.
-              </div>
-            </div>
-
-            <!-- Correo Electrónico -->
-            <div class="mb-3">
-              <label for="email" class="form-label">Correo Electrónico</label>
-              <input type="email" class="form-control" id="emailModal" name="email" placeholder="correo@ejemplo.com"
-                required>
-              <div class="invalid-feedback">
-                Por favor, introduce un correo válido.
-              </div>
-            </div>
-
-            <!-- Contraseña -->
-            <div class="mb-3">
-              <label for="password" class="form-label">Contraseña</label>
-              <input type="password" class="form-control" id="passwordModal" name="password" placeholder="Contraseña"
-                required>
-              <div class="invalid-feedback">
-                Por favor, introduce una contraseña.
-              </div>
-            </div>
-
-            <!-- Número de Teléfono -->
-            <div class="mb-3">
-              <label for="nroTelefono" class="form-label">Número de Teléfono</label>
-              <input type="tel" class="form-control" id="nroTelefonoModal" name="nroTelefono"
-                placeholder="Ej: 091234567" required>
-              <div class="invalid-feedback">
-                Por favor, introduce un número de teléfono.
-              </div>
-            </div>
-
-            <!-- Nacionalidad -->
-            <div class="mb-3">
-              <label for="nacionalidad" class="form-label">Nacionalidad</label>
-              <input type="text" class="form-control" id="nacionalidadModal" name="nacionalidad"
-                placeholder="Ej: Uruguaya" required>
-              <div class="invalid-feedback">
-                Por favor, introduce una nacionalidad.
-              </div>
-            </div>
-
-            <!-- Año de Nacimiento -->
-            <div class="mb-3">
-              <label for="anioNacimiento" class="form-label">Año de Nacimiento</label>
-              <input type="number" class="form-control" id="anioNacimientoModal" name="anioNacimiento"
-                placeholder="Ej: 1995" required>
-              <div class="invalid-feedback">
-                Por favor, introduce tu año de nacimiento.
-              </div>
-            </div>
-
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-              <button type="submit" class="btn btn-warning">Agregar Usuario</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- Modal para generar reportes -->
   <div class="modal fade" id="reporteModal" tabindex="-1" aria-labelledby="reporteModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -314,231 +220,6 @@
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
               <button type="submit" class="btn btn-warning">Generar Reporte</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal para modificar producto -->
-  <div class="modal fade" id="modificarProductoModal" tabindex="-1" aria-labelledby="modificarProductoModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="modificarProductoModalLabel">Modificar Producto</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <!-- Formulario para buscar el producto por ISBN -->
-          <form id="formBuscarProducto">
-            <div class="mb-3">
-              <label for="isbnBuscar" class="form-label">Buscar producto por ISBN</label>
-              <input type="text" class="form-control" id="isbnBuscar" name="isbnBuscar"
-                placeholder="Ej: 978-3-16-148410-0" required>
-              <div class="invalid-feedback">
-                Por favor, ingrese un ISBN válido para buscar el producto.
-              </div>
-            </div>
-            <button type="button" class="btn btn-warning" id="buscarProductoBtn">Buscar Producto</button>
-          </form>
-
-          <hr>
-
-          <!-- Formulario para modificar el producto (autocompletar después de buscar) -->
-          <form id="formModificarProducto" style="display: none;">
-            <!-- Campos de producto -->
-            <div class="mb-3">
-              <label for="nombreProducto" class="form-label">Nombre del Producto</label>
-              <input type="text" class="form-control" id="nombreProducto" name="nombreProducto" required>
-            </div>
-            <div class="mb-3">
-              <label for="imagenProducto" class="form-label">URL de la Imagen</label>
-              <input type="text" class="form-control" id="imagenProducto" name="imagenProducto">
-            </div>
-            <div class="mb-3">
-              <label for="editorialProducto" class="form-label">Editorial</label>
-              <input type="text" class="form-control" id="editorialProducto" name="editorialProducto" required>
-            </div>
-            <div class="mb-3">
-              <label for="autoresProducto" class="form-label">Autores</label>
-              <input type="text" class="form-control" id="autoresProducto" name="autoresProducto" required>
-            </div>
-            <div class="mb-3">
-              <label for="paginasProducto" class="form-label">Páginas</label>
-              <input type="number" class="form-control" id="paginasProducto" name="paginasProducto" required>
-            </div>
-            <div class="mb-3">
-              <label for="tamanioProducto" class="form-label">Tamaño</label>
-              <input type="text" class="form-control" id="tamanioProducto" name="tamanioProducto" required>
-            </div>
-            <div class="mb-3">
-              <label for="contenidoProducto" class="form-label">Contenido</label>
-              <textarea class="form-control" id="contenidoProducto" name="contenidoProducto" rows="3"
-                required></textarea>
-            </div>
-            <div class="mb-3">
-              <label for="formatoProducto" class="form-label">Formato</label>
-              <input type="text" class="form-control" id="formatoProducto" name="formatoProducto" required>
-            </div>
-            <div class="mb-3">
-              <label for="edadProducto" class="form-label">Edad recomendada</label>
-              <input type="number" class="form-control" id="edadProducto" name="edadProducto" required>
-            </div>
-            <div class="mb-3">
-              <label for="interiorProducto" class="form-label">Interior</label>
-              <input type="text" class="form-control" id="interiorProducto" name="interiorProducto">
-            </div>
-            <div class="mb-3">
-              <label for="precioProducto" class="form-label">Precio</label>
-              <input type="number" step="0.01" class="form-control" id="precioProducto" name="precioProducto" required>
-            </div>
-            <div class="mb-3">
-              <label for="categoriaProducto" class="form-label">Categoría</label>
-              <input type="text" class="form-control" id="categoriaProducto" name="categoriaProducto" required>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-              <button type="submit" class="btn btn-warning">Modificar Producto</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal para eliminar producto -->
-  <div class="modal fade" id="eliminarProductoModal" tabindex="-1" aria-labelledby="eliminarProductoModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="eliminarProductoModalLabel">Eliminar Producto</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form id="formEliminarProducto" action="./front/php/eliminarProducto.php" method="post">
-            <div class="mb-3">
-              <label for="isbnProducto" class="form-label">Ingrese el ISBN del producto</label>
-              <input type="text" class="form-control" id="isbnProducto" name="isbnProducto"
-                placeholder="Ej: 978-3-16-148410-0" required>
-              <div class="invalid-feedback">
-                Por favor, ingrese un ISBN válido.
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-              <button type="submit" class="btn btn-danger">Eliminar Producto</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  <!-- Modal para Agregar Productos -->
-  <div class="modal fade" id="agregarProductoModal" tabindex="-1" aria-labelledby="agregarProductoModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="agregarProductoModalLabel">Agregar Producto (Historieta)</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form id="formAgregarProducto" action="./front/php/agregarProducto.php" method="post" class="needs-validation"
-            novalidate enctype="multipart/form-data">
-            <div class="row mb-3">
-              <div class="col-md-6">
-                <label for="isbn" class="form-label">ISBN</label>
-                <input type="text" class="form-control" id="isbn" name="isbn" required>
-                <div class="invalid-feedback">Por favor, introduce el ISBN.</div>
-              </div>
-              <div class="col-md-6">
-                <label for="nombre" class="form-label">Nombre</label>
-                <input type="text" class="form-control" id="nombre" name="nombre" required>
-                <div class="invalid-feedback">Por favor, introduce el nombre del producto.</div>
-              </div>
-            </div>
-
-            <div class="mb-3">
-              <label for="imagen" class="form-label">Imagen</label>
-              <input type="file" class="form-control" id="imagen" name="imagen" accept="image/*">
-            </div>
-
-            <div class="row mb-3">
-              <div class="col-md-6">
-                <label for="editorial" class="form-label">Editorial</label>
-                <input type="text" class="form-control" id="editorial" name="editorial" required>
-                <div class="invalid-feedback">Por favor, introduce la editorial.</div>
-              </div>
-              <div class="col-md-6">
-                <label for="autores" class="form-label">Autores</label>
-                <input type="text" class="form-control" id="autores" name="autores" required>
-                <div class="invalid-feedback">Por favor, introduce los autores.</div>
-              </div>
-            </div>
-
-            <div class="row mb-3">
-              <div class="col-md-4">
-                <label for="paginas" class="form-label">Páginas</label>
-                <input type="number" class="form-control" id="paginas" name="paginas" required>
-                <div class="invalid-feedback">Por favor, introduce el número de páginas.</div>
-              </div>
-              <div class="col-md-4">
-                <label for="tamano" class="form-label">Tamaño</label>
-                <input type="text" class="form-control" id="tamano" name="tamano" required>
-                <div class="invalid-feedback">Por favor, introduce el tamaño.</div>
-              </div>
-              <div class="col-md-4">
-                <label for="edad" class="form-label">Edad recomendada</label>
-                <input type="number" class="form-control" id="edad" name="edad" required>
-                <div class="invalid-feedback">Por favor, introduce la edad recomendada.</div>
-              </div>
-            </div>
-
-            <div class="mb-3">
-              <label for="contenido" class="form-label">Contenido</label>
-              <textarea class="form-control" id="contenido" name="contenido" rows="3" required></textarea>
-              <div class="invalid-feedback">Por favor, introduce el contenido.</div>
-            </div>
-
-            <div class="row mb-3">
-              <div class="col-md-4">
-                <label for="formato" class="form-label">Formato</label>
-                <input type="text" class="form-control" id="formato" name="formato" required>
-                <div class="invalid-feedback">Por favor, introduce el formato.</div>
-              </div>
-              <div class="col-md-4">
-                <label for="interior" class="form-label">Interior</label>
-                <input type="text" class="form-control" id="interior" name="interior">
-              </div>
-              <div class="col-md-4">
-                <label for="precio" class="form-label">Precio</label>
-                <input type="number" step="0.01" class="form-control" id="precio" name="precio" required>
-                <div class="invalid-feedback">Por favor, introduce el precio.</div>
-              </div>
-            </div>
-
-            <div class="mb-3">
-              <label for="nombreCategoria" class="form-label">Categoría</label>
-              <select class="form-select" id="nombreCategoria" name="nombreCategoria" required>
-                <option value="">Selecciona una categoría</option>
-                <option value="Acción">Acción</option>
-                <option value="Comedia">Comedia</option>
-                <option value="Drama">Drama</option>
-                <option value="Ciencia ficción">Ciencia ficción</option>
-                <option value="Fantasía">Fantasía</option>
-                <!-- Añadir más categorías si es necesario -->
-              </select>
-              <div class="invalid-feedback">Por favor, selecciona una categoría.</div>
-            </div>
-
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-              <button type="submit" class="btn btn-warning">Agregar Producto</button>
             </div>
           </form>
         </div>
@@ -589,7 +270,10 @@
             <!-- Enlace para registrarse -->
             <br>
             <div class="text-center">
-              <p class="mb-1">¿No tienes una cuenta? <a href="#" class="text-decoration-none">Registrarse</a></p>
+              <p class="mb-1">¿No tienes una cuenta?
+                <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#registerModal"
+                  data-bs-dismiss="modal">Registrarse</a>
+              </p>
             </div>
 
             <div class="modal-footer d-flex justify-content-center mt-2">
@@ -604,26 +288,114 @@
     </div>
   </div>
 
-  <!-- Modal para mostrar el carrito -->
-<div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="cartModalLabel">Carrito de Compras</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <!-- Contenido del carrito -->
-        <div id="cartItemsContainer"></div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" id="vaciarCarrito">Vaciar Carrito</button>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-warning" id="irConfirmarPago">Confirmar y Pagar</button>
+  <!-- Modal de Registro -->
+  <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered d-flex align-items-center justify-content-center">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="registerModalLabel">Registrarse</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="formRegister" action="./front/php/register.php" method="post" class="p-4 rounded"
+            style="max-width: 400px; margin: auto;">
+
+            <!-- Campo de nombre de usuario -->
+            <div class="mb-3 position-relative">
+              <label for="nombreUser" class="form-label">Nombre de Usuario</label>
+              <input id="nombreUser" name="nombreUser" type="text" class="form-control"
+                placeholder="Ingrese su nombre de usuario" required>
+            </div>
+
+            <!-- Campo de email -->
+            <div class="mb-3 position-relative">
+              <label for="email" class="form-label">Email</label>
+              <input id="emailR" name="email" type="email" class="form-control" placeholder="Ingrese su email" required>
+            </div>
+
+            <!-- Campo de contraseña -->
+            <div class="mb-3 position-relative">
+              <label for="contrasenia" class="form-label">Contraseña</label>
+              <input id="contraseniaR" name="contrasenia" type="password" class="form-control"
+                placeholder="Ingrese su contraseña" required>
+            </div>
+
+            <!-- Campo de número de teléfono -->
+            <div class="mb-3 position-relative">
+              <label for="nroTelefono" class="form-label">Número de Teléfono</label>
+              <input id="nroTelefono" name="nroTelefono" type="text" class="form-control"
+                placeholder="Ingrese su número de teléfono" required>
+            </div>
+
+            <!-- Campo de nacionalidad -->
+            <div class="mb-3 position-relative">
+              <label for="nacionalidad" class="form-label">Nacionalidad</label>
+              <select id="nacionalidad" name="nacionalidad" class="form-select" required>
+                <option value="" disabled selected>Seleccione su nacionalidad</option>
+                <option value="Argentina">Argentina</option>
+                <option value="Bolivia">Bolivia</option>
+                <option value="Brasil">Brasil</option>
+                <option value="Chile">Chile</option>
+                <option value="Colombia">Colombia</option>
+                <option value="Costa Rica">Costa Rica</option>
+                <option value="Cuba">Cuba</option>
+                <option value="Ecuador">Ecuador</option>
+                <option value="El Salvador">El Salvador</option>
+                <option value="España">España</option>
+                <option value="Estados Unidos">Estados Unidos</option>
+                <option value="Guatemala">Guatemala</option>
+                <option value="Honduras">Honduras</option>
+                <option value="México">México</option>
+                <option value="Panamá">Panamá</option>
+                <option value="Paraguay">Paraguay</option>
+                <option value="Perú">Perú</option>
+                <option value="Uruguay">Uruguay</option>
+                <option value="Venezuela">Venezuela</option>
+                <!-- Añadir más países si lo deseas -->
+              </select>
+            </div>
+
+            <!-- Campo de año de nacimiento -->
+            <!-- Campo de año de nacimiento con un selector de calendario -->
+            <div class="mb-3 position-relative">
+              <label for="anioNacimiento" class="form-label">Fecha de Nacimiento</label>
+              <input id="anioNacimiento" name="anioNacimiento" type="date" class="form-control" required>
+            </div>
+
+            <input type="hidden" name="tipoUsuario" value="CLI"> <!-- Usuario por defecto será cliente -->
+
+            <div class="modal-footer d-flex justify-content-center mt-2">
+              <button type="submit" value="Enviar" id="btnRegister" class="btn btn-warning">Registrarse</button>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer d-flex justify-content-center mt-2">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
+
+  <!-- Modal para mostrar el carrito -->
+  <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="cartModalLabel">Carrito de Compras</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Contenido del carrito -->
+          <div id="cartItemsContainer"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" id="vaciarCarrito">Vaciar Carrito</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-warning" id="irConfirmarPago">Confirmar y Pagar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script src="./front/js/functions.js"></script>
   <script src="./front/js/logout.js"></script>
@@ -652,9 +424,6 @@
         <h5>Sobre Nosotros</h5>
         <p>ComicVerse es tu tienda de confianza para cómics, mangas y más. Nos dedicamos a ofrecer lo mejor en
           entretenimiento gráfico.</p>
-        <p><strong>Dirección:</strong> Calle Ficticia 123, Ciudad Fantasía</p>
-        <p><strong>Teléfono:</strong> +123 456 789</p>
-        <p><strong>Email:</strong> contacto@comicverse.com</p>
       </div>
 
       <!-- Formulario de contacto -->
@@ -683,10 +452,10 @@
         <h5>Contacto</h5>
         <ul class="list-unstyled">
           <li><strong>Teléfonos:</strong></li>
-          <li>+123 456 789 (Oficina)</li>
-          <li>+987 654 321 (Soporte)</li>
+          <li>+598 097 157 789 (Oficina)</li>
+          <li>+598 091 654 321 (Soporte)</li>
           <li><strong>Dirección:</strong></li>
-          <li>Calle Ficticia 123, Ciudad Fantasía</li>
+          <li>Dr. Luis Bonavita 1294, WTC Montevideo</li>
           <li><strong>Email:</strong></li>
           <li>contacto@comicverse.com</li>
         </ul>
