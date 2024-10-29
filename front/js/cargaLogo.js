@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if (data[0].Logo) {
             const logoContainer = document.getElementById('logoHeader');
             const imgElement = document.createElement('img');
-            imgElement.src = "../front/"+data[0].Logo; // Asignar la URL de la imagen
+            imgElement.src = "../back/vistas/"+data[0].Logo; // Asignar la URL de la imagen
             
             imgElement.alt = "Logo de ComicVerse";
             imgElement.style.maxWidth = '55px';
@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function() {
             logoContainer.appendChild(imgElement);
 
             const logoModal = document.getElementById('logoModal');
-            logoModal.src = "../front/"+data[0].Logo; // Asignar la URL de la imagen
+            logoModal.src = "../back/vistas/"+data[0].Logo; // Asignar la URL de la imagen
             logoModal.alt = "Logo de ComicVerse";
             logoModal.style.maxWidth = '100px'; 
             logoModal.style.height = '100px';

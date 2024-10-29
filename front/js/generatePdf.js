@@ -37,7 +37,7 @@ document.getElementById('generatePDF').addEventListener('click', async () => {
 
     // Añadir el logo de la empresa centrado si existe
     if (logoEmpresa) {
-        const logoBase64 = await loadImageAsBase64(`./front/${logoEmpresa}`);  // Ruta donde se almacena el logo
+        const logoBase64 = await loadImageAsBase64(`../back/vistas/${logoEmpresa}`);  // Ruta donde se almacena el logo
         if (logoBase64) {
             pdf.addImage(logoBase64, 'PNG', 80, 10, 50, 30);  // Centrar el logo en el PDF
         }
@@ -53,7 +53,7 @@ document.getElementById('generatePDF').addEventListener('click', async () => {
 
     // Recorrer los productos y añadirlos uno por uno
     for (let i = 0; i < historietas.length; i++) {
-        const imgBase64 = await loadImageAsBase64(`./front/${historietas[i].Imagen}`); // Obtener la imagen desde la ruta de la historieta
+        const imgBase64 = await loadImageAsBase64(`../back/vistas/img/${historietas[i].Imagen}`); // Obtener la imagen desde la ruta de la historieta
 
         // Añadir la imagen al PDF
         if (imgBase64) {
