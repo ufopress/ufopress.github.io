@@ -114,7 +114,7 @@ function actualizar(ISBN) {
             if (data.product) {
                 document.getElementById('isbn2').value = data.product.ISBN;
                 document.getElementById('nombre2').value = data.product.Nombre;
-                //document.getElementById('imagen2').value = data.product.Imagen;
+                document.getElementById('imagen2').value = data.product.Imagen;
                 document.getElementById('nombrecategoria2').value = data.product.NombreCategoriaCE;
                 document.getElementById('editorg2').value = data.product.EditOrg;
                 document.getElementById('autores2').value = data.product.Autores;
