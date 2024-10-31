@@ -1,5 +1,3 @@
-use comicverse;
-
 -- Poblar la tabla DATOS_EMPRESA
 INSERT INTO DATOS_EMPRESA (NombreEmpresa, Email, Rubro, Logo) VALUES
 ('ComicVerse', 'comicverse@example.com', 'Comics', 'img/LogoComicVerse.png');
@@ -164,3 +162,15 @@ VALUES
 (3, 'Consulta sobre el producto'),
 (4, 'Reclamo de garantía');
 
+-- Insertar datos en la tabla RESEÑA
+INSERT INTO RESEÑA (IdClienteCE, IdUsuarioCE, Fecha, Contenido)
+VALUES 
+(1, 1, '2024-04-30', 'Mala facturación'),
+(2, 2, '2024-05-01', 'Producto defectuoso'),
+(3, 2, '2024-04-30', 'Mala facturación'),
+(4, 2, '2024-05-01', 'Producto defectuoso'),
+(5, 1, '2024-06-15', 'Excelente calidad'),
+(6, 1, '2024-07-20', 'Entrega rápida y eficiente'),
+(7, 2, '2024-08-01', 'Me encantó el producto, volveré a comprar'),
+(8, 2, '2024-08-15', 'Buen servicio al cliente'),
+(9, 1, '2024-09-10', 'Recomiendo este sitio, buena experiencia');
