@@ -4,7 +4,7 @@ const actualizarClientForm = document.getElementById('actualizarClientForm');
 const clientUpdateBtn = document.getElementById('clientUpdateBtn');
 
 
-function setupPagination(totalPages, currentPage) {
+function setupPagination3(totalPages, currentPage) {
     paginationContainer3.innerHTML = '';
 
     // Botón de retroceso
@@ -42,7 +42,7 @@ function setupPagination(totalPages, currentPage) {
     paginationContainer3.appendChild(nextButton);
 }
 
-function deleteProduct(cliente) {
+function deleteClient(cliente) {
 
     fetch('./../servicios_admin/eliminarCliente.php?idcliente=' + cliente)
         .then(response => response.json())
@@ -57,7 +57,7 @@ function deleteProduct(cliente) {
 }
 
 
-function eliminar(IdCliente) {   //const elim = document.querySelectorAll(".eliminar");
+function eliminar3(IdCliente) {   //const elim = document.querySelectorAll(".eliminar");
     //elim.forEach((e) => {
 
 
@@ -72,37 +72,37 @@ function eliminar(IdCliente) {   //const elim = document.querySelectorAll(".elim
         cancelButtonText: 'Cancelar'
     }).then((result) => {
         if (result.isConfirmed) {
-            deleteProduct(IdCliente);
+            deleteClient(IdCliente);
             Swal.fire({
                 title: 'Eliminado!',
                 text: 'El cliente ha sido eliminado.',
                 icon: 'success',
                 showConfirmButton: false,
                 timer: 1500
-        });
+            });
             //document.location.reload();
             setTimeout(loadClients, 500);
         }
     });
 }
 
-function actualizar(IdCliente) {
+function actualizar3(IdCliente) {
     gestionarCliente.style.display = 'none';
     actualizarClientes.style.display = 'block';
 
     console.log(IdCliente);
 
     fetch('./../servicios_admin/recibirDatoCliente.php?IdCliente=' + IdCliente)
-    .then(response => response.json())
-    .then(data => {
-        if (data.cliente) {
-            document.getElementById('nombreuser3').value = data.cliente.NombreUser;
-            document.getElementById('emailusuario3').value = data.cliente.Email;
-            document.getElementById('telefono3').value = data.cliente.NroTelefono;
-            document.getElementById('nacionalidad3').value = data.cliente.Nacionalidad;
-            document.getElementById('anonacimiento3').value = data.cliente.AñoNacimiento;
-        }
-    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.cliente) {
+                document.getElementById('nombreuser3').value = data.cliente.NombreUser;
+                document.getElementById('email3').value = data.cliente.Email;
+                document.getElementById('nrotelefono3').value = data.cliente.NroTelefono;
+                document.getElementById('nacionalidad3').value = data.cliente.Nacionalidad;
+                document.getElementById('anonacimiento3').value = data.cliente.AñoNacimiento;
+            }
+        })
 };
 
 
@@ -114,43 +114,41 @@ clientUpdateBtn.addEventListener('click', function () {
         method: 'POST',
         body: formData,
     })
-    .then(response => response.json())
-    .then(data => {
-        console.log(data);
-        // Verificar si la respuesta tiene éxito
-        if (data.success) {
-            Swal.fire({
-                icon: 'success',
-                title: '¡Éxito!',
-                text: 'Cambios Realizados',
-                showConfirmButton: false,
-                timer: 1500
-            }).then(() => {
-                // Mostrar la sección de gestión y cargar clientes actualizados
-                gestionarCliente.style.display = 'block';
-                loadClients(); // Recargar los clientes
-                // Cerrar la ventana de actualización si es necesario
-                actualizarClientes.style.display = 'none';
-            });
-        } else {
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            // Verificar si la respuesta tiene éxito
+            if (data.success) {
+                Swal.fire({
+                    icon: 'success',
+                    title: '¡Éxito!',
+                    text: 'Cambios Realizados',
+                    showConfirmButton: false,
+                    timer: 1500
+                }).then(() => {
+                    // Mostrar la sección de gestión y cargar clientes actualizados
+                    gestionarCliente.style.display = 'block';
+                    loadClients(); // Recargar los clientes
+                    // Cerrar la ventana de actualización si es necesario
+                    actualizarClientes.style.display = 'none';
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: data.message || 'No se pudieron realizar los cambios.',
+                });
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
-                text: data.message || 'No se pudieron realizar los cambios.',
+                text: 'Error al procesar la solicitud.', // Mensaje de error genérico
             });
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'Error al procesar la solicitud.', // Mensaje de error genérico
         });
-    });
 });
-
-
 
 loadClients();
 
@@ -175,15 +173,15 @@ function loadClients(page = 1) {
                         <p>Nacionalidad: ${cliente.Nacionalidad}</p>
                         <p>Año de Nacimiento: ${cliente.AñoNacimiento}</p>
                         <div>
-                            <button onclick="eliminar(${cliente.IdCliente})">Eliminar</button>
-                            <button onclick="actualizar(${cliente.IdCliente})">Actualizar</button>
+                            <button onclick="eliminar3(${cliente.IdCliente})">Eliminar</button>
+                            <button onclick="actualizar3(${cliente.IdCliente})">Actualizar</button>
                         </div>
                     </div>
                 `;
                 productContainer3.appendChild(clienteElement);
             });
 
-            setupPagination(data.totalPages, data.currentPage);
+            setupPagination3(data.totalPages, data.currentPage);
         })
         .catch(error => {
             console.error('Error:', error);

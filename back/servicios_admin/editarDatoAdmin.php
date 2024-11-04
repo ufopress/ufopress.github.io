@@ -3,17 +3,17 @@ include "../controladores/conectar.php";
 
 header('Content-Type: application/json');
 
-$nombreUser = $_POST['nombreuser3'];
-$telefono = $_POST['telefono3'];
-$nacionalidad = $_POST['nacionalidad3'];
-$anoNacimiento = $_POST['anonacimiento3'];
-$email = $_POST['emailusuario3']; 
+$nombre = $_POST['nombreusuario2'];
+$apellido = $_POST['apellido2'];
+$telefono = $_POST['telefono2'];
+$fechaNacimiento = $_POST['fechanacimiento2'];
+$email = $_POST['emailusuario2']; 
 
 try {
-    $res = $conexion->prepare("UPDATE `cliente` SET 
-                NombreUser=?, NroTelefono=?, Nacionalidad=?, AñoNacimiento=? WHERE 
-                Email=?");
-    $res->execute([$nombreUser, $telefono, $nacionalidad, $anoNacimiento, $email]);
+    $res = $conexion->prepare("UPDATE `administrador` SET 
+                Nombre=?, Apellido=?, NroTelefono=?, FechaNacimiento=? WHERE 
+                Email=?"); 
+    $res->execute([$nombre, $apellido, $telefono, $fechaNacimiento, $email]);
 
     echo json_encode(['success' => true]);
 } catch (PDOException $e) {

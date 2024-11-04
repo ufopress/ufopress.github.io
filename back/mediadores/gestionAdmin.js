@@ -3,7 +3,7 @@ const actualizarAdministradores = document.getElementById('ActualizarAdministrad
 const actualizarUserForm = document.getElementById('actualizarUserForm');
 const userUpdateBtn = document.getElementById('userUpdateBtn'); 
 
-function setupPagination(totalPages, currentPage) {
+function setupPagination2(totalPages, currentPage) {
     const paginationContainer2 = document.getElementById('paginationContainer2');
     paginationContainer2.innerHTML = ''; // Limpiar el contenedor de paginación
 
@@ -43,7 +43,7 @@ function setupPagination(totalPages, currentPage) {
 }
 
 
-function deleteProduct(administrador) {
+function deleteAdmin(administrador) {
 
     fetch('./../servicios_admin/eliminarAdmin.php?idusuario=' + administrador)
         .then(response => response.json())
@@ -58,7 +58,7 @@ function deleteProduct(administrador) {
 }
 
 
-function eliminar(IdUsuario) {   //const elim = document.querySelectorAll(".eliminar");
+function eliminar2(IdUsuario) {   //const elim = document.querySelectorAll(".eliminar");
     //elim.forEach((e) => {
 
 
@@ -73,7 +73,7 @@ function eliminar(IdUsuario) {   //const elim = document.querySelectorAll(".elim
         cancelButtonText: 'Cancelar'
     }).then((result) => {
         if (result.isConfirmed) {
-            deleteProduct(IdUsuario);
+            deleteAdmin(IdUsuario);
             Swal.fire({
                 title: 'Eliminado!',
                 text: 'El administrador ha sido eliminado.',
@@ -89,7 +89,7 @@ function eliminar(IdUsuario) {   //const elim = document.querySelectorAll(".elim
 //})    
 //})
 
-function actualizar(IdUsuario) {
+function actualizar2(IdUsuario) {
     gestionarAdministradores.style.display = 'none';
     actualizarAdministradores.style.display = 'block';
 
@@ -175,15 +175,15 @@ function loadAdmins(page = 1) {
                         <h3>${administrador.Nombre}</h3>
                         <p>${administrador.Apellido}</p>
                         <div>
-                            <button onclick="eliminar(${administrador.IdUsuario})">Eliminar</button>
-                            <button onclick="actualizar(${administrador.IdUsuario})">Actualizar</button>
+                            <button onclick="eliminar2(${administrador.IdUsuario})">Eliminar</button>
+                            <button onclick="actualizar2(${administrador.IdUsuario})">Actualizar</button>
                         </div>
                     </div>
                 `;
                 productContainer2.appendChild(administradorElement);
             });
 
-            setupPagination(data.totalPages, data.currentPage); // Configurar la paginación
+            setupPagination2(data.totalPages, data.currentPage); // Configurar la paginación
         })
         .catch(error => {
             console.error('Error:', error);

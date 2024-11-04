@@ -3,15 +3,15 @@ include "../controladores/conectar.php";
 
 header('content-type: application/json');
 
-$idCliente = $_GET['IdCliente'];
+$idusuario = $_GET['IdUsuario'];
 
-$res = $conexion->prepare("SELECT * FROM CLIENTE WHERE IdCliente = ?");
-$res->execute([$idCliente]);
-$cliente = $res->fetch(PDO::FETCH_ASSOC);
+$res = $conexion->prepare("SELECT * FROM ADMINISTRADOR WHERE IdUsuario = ?");
+$res->execute([$idusuario]);
+$admin = $res->fetch(PDO::FETCH_ASSOC);
 
-if ($cliente) {
-    echo json_encode(['cliente' => $cliente]);
+if ($admin) {
+    echo json_encode(['admin' => $admin]); 
 } else {
-    echo json_encode(['error' => 'Cliente no encontrado']);
+    echo json_encode(['error' => 'Administrador no encontrado']);
 }
 ?>
