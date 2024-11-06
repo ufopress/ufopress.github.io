@@ -125,6 +125,8 @@ function actualizar(ISBN) {
                 document.getElementById('edad2').value = data.product.Edad;
                 document.getElementById('interior2').value = data.product.Interior;
                 document.getElementById('precio2').value = data.product.Precio;
+                document.getElementById('promocionado').value = data.product.Promocionado;
+                document.getElementById('porcentajedescuento').value = data.product.PorcentajeDescuento;
             }
         })
 };

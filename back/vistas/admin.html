@@ -393,6 +393,31 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                            <div class="row mb-3">
+                                                                <div class="col-md-6">
+                                                                    <div class="form-floating mb-3 mb-md-0">
+                                                                        <!-- Combo Box para seleccionar entre 0 (No) y 1 (Sí) -->
+                                                                        <select class="form-control" name="promocionado"
+                                                                            id="promocionado" required>
+                                                                            <option value="0" selected>No</option>
+                                                                            <option value="1">Sí</option>
+                                                                        </select>
+                                                                        <label for="promocionado">Promoción</label>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <div class="form-floating mb-3 mb-md-0">
+                                                                        <!-- Campo de porcentaje, deshabilitado por defecto -->
+                                                                        <input class="form-control"
+                                                                            name="porcentajedescuento" type="number"
+                                                                            id="porcentajedescuento"
+                                                                            placeholder="Porcentaje" required
+                                                                            disabled />
+                                                                        <label
+                                                                            for="porcentajedescuento">Porcentaje</label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                             <div class="card-footer text-left">
                                                                 <input class="btn btn-primary btn-block" type="button"
                                                                     value="Actualizar" id="regUpdateBtn">
@@ -433,14 +458,14 @@
                                                                     <input class="form-control" name="nombreempresa"
                                                                         type="text" placeholder="Nombre de la empresa"
                                                                         id="nombreempresa" />
-                                                                    <label for="nombreempresa">nombreempresa</label>
+                                                                    <label for="nombreempresa">Nombre</label>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <div class="form-floating mb-3 mb-md-0">
                                                                     <input class="form-control" name="rubro" type="text"
                                                                         placeholder="Rubro de la empresa" id="rubro" />
-                                                                    <label for="rubro">rubro</label>
+                                                                    <label for="rubro">Rubro</label>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -449,14 +474,14 @@
                                                                 <div class="form-floating mb-3 mb-md-0">
                                                                     <input class="form-control" name="logo" type="text"
                                                                         placeholder="Logo de la empresa" id="logo" />
-                                                                    <label for="logo">logo</label>
+                                                                    <label for="logo">Logo</label>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <div class="form-floating mb-3 mb-md-0">
                                                                     <input class="form-control" name="email" type="text"
                                                                         placeholder="Email de la empresa" id="email" />
-                                                                    <label for="email">email</label>
+                                                                    <label for="email">Email</label>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -468,7 +493,7 @@
                                                                 <div class="form-floating mb-3 mb-md-0">
                                                                     <input class="form-control" name="calle" type="text"
                                                                         placeholder="Calle de la empresa" id="calle" />
-                                                                    <label for="calle">calle</label>
+                                                                    <label for="calle">Calle</label>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6">
@@ -476,7 +501,7 @@
                                                                     <input class="form-control" name="numero"
                                                                         type="text" placeholder="Número de la empresa"
                                                                         id="numero" />
-                                                                    <label for="numero">numero</label>
+                                                                    <label for="numero">Número</label>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -490,7 +515,7 @@
                                                                         type="text"
                                                                         placeholder="Instagram de la empresa"
                                                                         id="instagram" />
-                                                                    <label for="instagram">instagram</label>
+                                                                    <label for="instagram">Instagram</label>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6">
@@ -498,7 +523,7 @@
                                                                     <input class="form-control" name="facebook"
                                                                         type="text" placeholder="Facebook de la empresa"
                                                                         id="facebook" />
-                                                                    <label for="facebook">facebook</label>
+                                                                    <label for="facebook">Facebook</label>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -509,7 +534,7 @@
                                                                         type="text"
                                                                         placeholder="X_Twitter de la empresa"
                                                                         id="xtwitter" />
-                                                                    <label for="xtwitter">xtwitter</label>
+                                                                    <label for="xtwitter">X_Twitter</label>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6">
@@ -517,7 +542,7 @@
                                                                     <input class="form-control" name="celular1"
                                                                         type="text" placeholder="Celular1 de la empresa"
                                                                         id="celular1" />
-                                                                    <label for="celular1">celular1</label>
+                                                                    <label for="celular1">Celular1</label>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -527,7 +552,7 @@
                                                                     <input class="form-control" name="celular2"
                                                                         type="text" placeholder="Celular2 de la empresa"
                                                                         id="celular2" />
-                                                                    <label for="celular2">celular2</label>
+                                                                    <label for="celular2">Celular2</label>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -640,7 +665,7 @@
                             <div id="productContainer2"></div>
                             <div id="paginationContainer2"></div>
                         </div>
-                        <div id="gestionarCliente" style="display: none;">
+                        <div id="gestionarCliente" class="gestionCliente" style="display: none;">
                             <div id="resultDiv3"></div>
                             <div id="productContainer3"></div>
                             <div id="paginationContainer3"></div>
@@ -827,6 +852,7 @@
     <script src="../mediadores/scriptDatosEmpresa.js"></script>
     <script src="../mediadores/gestionAdmin.js"></script>
     <script src="../mediadores/gestionCliente.js"></script>
+    <script src="../mediadores/scriptPromo.js"></script>
     <script src="https://kit.fontawesome.com/6f8b5d1a66.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"

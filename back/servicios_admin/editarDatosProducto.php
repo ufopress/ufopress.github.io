@@ -16,6 +16,8 @@ if (isset($_POST['isbn2'])) {
     $edad2 = $_POST['edad2'];
     $interior2 = $_POST['interior2'];
     $precio2 = $_POST['precio2'];
+    $promocionado = $_POST['promocionado'];
+    $porcentajedescuento = $_POST['porcentajedescuento'];
 
     $imagen = null; // Inicializa la variable de imagen
 
@@ -39,7 +41,7 @@ if (isset($_POST['isbn2'])) {
     try {
         // Prepara la consulta
         $sql = "UPDATE HISTORIETA SET 
-                NombreCategoriaCE=?, Nombre=?, EditOrg=?, Autores=?, Paginas=?, Tamaño=?, Contenido=?, Formato=?, Edad=?, Interior=?, Precio=?";
+                NombreCategoriaCE=?, Nombre=?, EditOrg=?, Autores=?, Paginas=?, Tamaño=?, Contenido=?, Formato=?, Edad=?, Interior=?, Precio=?, Promocionado=?, PorcentajeDescuento=?";
 
         // Si se subió una nueva imagen, incluirla en la consulta
         if ($imagen) {
@@ -61,7 +63,9 @@ if (isset($_POST['isbn2'])) {
             $formato2,
             $edad2,
             $interior2,
-            $precio2
+            $precio2,
+            $promocionado,
+            $porcentajedescuento
         ];
 
         // Si hay una nueva imagen, añadirla a los parámetros
