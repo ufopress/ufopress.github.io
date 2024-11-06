@@ -20,7 +20,7 @@ window.addEventListener('DOMContentLoaded', event => {
     });
 
     // Cierra el sidenav al hacer clic en los botones específicos
-    const actionButtons = document.querySelectorAll('#agregarBtn, #gestionarBtn, #modificarBtn, #sliderBtn, #agregarUserBtn, #regFormBtn');
+    const actionButtons = document.querySelectorAll('#agregarBtn, #gestionarBtn, #modificarBtn, #sliderBtn, #agregarUserBtn, #gestionarAdminBtn, #gestionarClienteBtn, #regFormBtn');
     actionButtons.forEach(button => {
         button.addEventListener('click', () => {
             if (body.classList.contains('sb-sidenav-toggled')) {
@@ -28,6 +28,7 @@ window.addEventListener('DOMContentLoaded', event => {
             }
         });
     });
+
 
     function toggleSidenav() {
         body.classList.toggle('sb-sidenav-toggled');

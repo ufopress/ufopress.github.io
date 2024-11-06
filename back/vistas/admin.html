@@ -22,12 +22,12 @@
         <a class="navbar-brand ps-2" href="./../../index.html">ComicVerse</a> <!-- Ajuste ps-2 -->
         <!-- Navbar Search-->
         <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-            <div class="input-group">
+            <!-- <div class="input-group"> 
                 <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..."
                     aria-describedby="btnNavbarSearch" id="search" />
                 <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i
                         class="fas fa-search"></i></button>
-            </div>
+             </div> -->
         </form>
         <!-- Navbar-->
         <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
@@ -75,7 +75,7 @@
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
                                 <a class="nav-link" id="modificarBtn">Modificar Datos Empresa</a>
-                                <a class="nav-link" id="sliderBtn">Modificar Slider</a>
+                                <!-- <a class="nav-link" id="sliderBtn">Modificar Slider</a> -->
                             </nav>
                         </div>
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseUsers"
@@ -85,13 +85,13 @@
                         </a>
                         <div class="collapse" id="collapseUsers" aria-labelledby="headingThree"
                             data-bs-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                            <nav cla+ss="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
                                 <a class="nav-link" id="agregarUserBtn">Agregar Usuarios</a>
                                 <a class="nav-link" id="gestionarAdminBtn">Gestion Administradores</a>
                                 <a class="nav-link" id="gestionarClienteBtn">Gestion Clientes</a>
                             </nav>
                         </div>
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePromo"
+                        <!-- <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePromo" 
                             aria-expanded="false" aria-controls="collapsePromo">
                             Modulo Promociones
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
@@ -101,7 +101,7 @@
                             <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
                                 <a class="nav-link" id="agregarPromotionBtn">Agregar Promociones</a>
                             </nav>
-                        </div>
+                         </div> -->
 
                         <!-- <div class="sb-sidenav-footer">
                             <div class="small">Logged in as:</div>
@@ -617,8 +617,8 @@
                                                                             name="fechanacimiento" type="date" required
                                                                             placeholder="Fecha de Nacimiento"
                                                                             id="fechanacimiento" />
-                                                                        <label
-                                                                            for="fechanacimiento">Fecha de Nacimiento</label>
+                                                                        <label for="fechanacimiento">Fecha de
+                                                                            Nacimiento</label>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -635,16 +635,168 @@
                                 </div>
                             </form>
                         </div>
+                        <div id="gestionarAdministradores" style="display: none;">
+                            <div id="resultDiv2"></div>
+                            <div id="productContainer2"></div>
+                            <div id="paginationContainer2"></div>
+                        </div>
+                        <div id="gestionarCliente" style="display: none;">
+                            <div id="resultDiv3"></div>
+                            <div id="productContainer3"></div>
+                            <div id="paginationContainer3"></div>
+                        </div>
                     </div>
-                    <div id="gestionarAdministradores" style="display: none;">
-                        <div id="resultDiv2"></div>
-                        <div id="productContainer2"></div>
-                        <div id="paginationContainer2"></div>
+                    <!-- Modificar Administradores -->
+                    <div id="ActualizarAdministradores" style="display: none;">
+                        <form id="actualizarUserForm" enctype="multipart/form-data" method="POST">
+                            <div id="layoutAuthentication_content">
+                                <main>
+                                    <div class="container">
+                                        <div class="row justify-content-center">
+                                            <div class="col-lg-7">
+                                                <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                                    <div class="card-header">
+                                                        <h3 class="text-center font-weight-light my-4">Modificar
+                                                            Administradores</h3>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <div class="row mb-3">
+                                                            <div class="col-md-6">
+                                                                <div class="form-floating mb-3">
+                                                                    <input class="form-control" name="nombreusuario2"
+                                                                        type="text" required
+                                                                        placeholder="Nombre Usuario"
+                                                                        id="nombreusuario2" />
+                                                                    <label for="nombreusuario2">Nombre</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-floating mb-3">
+                                                                    <input class="form-control" name="apellido2"
+                                                                        type="text" required placeholder="Apellido"
+                                                                        id="apellido2" />
+                                                                    <label for="apellido2">Apellido</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-3">
+                                                            <div class="col-md-12">
+                                                                <div class="form-floating mb-3">
+                                                                    <input class="form-control" name="emailusuario2"
+                                                                        type="email" required
+                                                                        placeholder="Email Usuario"
+                                                                        id="emailusuario2" />
+                                                                    <label for="emailusuario2">Email</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-3">
+                                                            <div class="col-md-6">
+                                                                <div class="form-floating mb-3">
+                                                                    <input class="form-control" name="telefono2"
+                                                                        type="number" required placeholder="Teléfono"
+                                                                        id="telefono2" />
+                                                                    <label for="telefono2">Telefono</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-floating mb-3">
+                                                                    <input class="form-control" name="fechanacimiento2"
+                                                                        type="date" required
+                                                                        placeholder="Fecha de Nacimiento"
+                                                                        id="fechanacimiento2" />
+                                                                    <label for="fechanacimiento2">Fecha de
+                                                                        Nacimiento</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-footer text-left">
+                                                        <input class="btn btn-primary btn-block" type="button"
+                                                            value="Actualizar" id="userUpdateBtn">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </main>
+                            </div>
+                        </form>
                     </div>
-                    <div id="gestionarCliente" style="display: none;">
-                        <div id="resultDiv3"></div>
-                        <div id="productContainer3"></div>
-                        <div id="paginationContainer3"></div>
+                    <!-- Modificar Clientes -->
+                    <div id="ActualizarClientes" style="display: none;">
+                        <form id="actualizarClientForm" enctype="multipart/form-data" method="POST">
+                            <div id="layoutAuthentication_content">
+                                <main>
+                                    <div class="container">
+                                        <div class="row justify-content-center">
+                                            <div class="col-lg-7">
+                                                <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                                    <div class="card-header">
+                                                        <h3 class="text-center font-weight-light my-4">Modificar
+                                                            Clientes</h3>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <div class="row mb-3">
+                                                            <div class="col-md-6">
+                                                                <div class="form-floating mb-3">
+                                                                    <input class="form-control" name="nombreuser3"
+                                                                        type="text" required
+                                                                        placeholder="Nombre Usuario" id="nombreuser3" />
+                                                                    <label for="nombreuser3">Nombre</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-floating mb-3">
+                                                                    <input class="form-control" name="email3"
+                                                                        type="email" required
+                                                                        placeholder="Email Usuario" id="email3" />
+                                                                    <label for="email3">Email</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-3">
+                                                            <div class="col-md-6">
+                                                                <div class="form-floating mb-3">
+                                                                    <input class="form-control" name="nrotelefono3"
+                                                                        type="number" required placeholder="Teléfono"
+                                                                        id="nrotelefono3" />
+                                                                    <label for="nrotelefono3">Teléfono</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-floating mb-3">
+                                                                    <input class="form-control" name="nacionalidad3"
+                                                                        type="text" required placeholder="Nacionalidad"
+                                                                        id="nacionalidad3" />
+                                                                    <label for="nacionalidad3">Nacionalidad</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-3">
+                                                            <div class="col-md-12">
+                                                                <div class="form-floating mb-3">
+                                                                    <input class="form-control" name="anonacimiento3"
+                                                                        type="number" required
+                                                                        placeholder="Año de Nacimiento"
+                                                                        id="anonacimiento3" />
+                                                                    <label for="anonacimiento3">Año de
+                                                                        Nacimiento</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-footer text-left">
+                                                        <input class="btn btn-primary btn-block" type="button"
+                                                            value="Actualizar" id="clientUpdateBtn">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </main>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </main>
@@ -673,6 +825,8 @@
     <script src="../mediadores/agregarProductoscript.js"></script>
     <script src="../mediadores/agregarUsuarioscript.js"></script>
     <script src="../mediadores/scriptDatosEmpresa.js"></script>
+    <script src="../mediadores/gestionAdmin.js"></script>
+    <script src="../mediadores/gestionCliente.js"></script>
     <script src="https://kit.fontawesome.com/6f8b5d1a66.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
