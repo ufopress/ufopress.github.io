@@ -66,14 +66,16 @@ CREATE TABLE CLIENTE(
 );
 
 CREATE TABLE RESEÑA(
-	IdReseña INT PRIMARY KEY NOT NULL,
+	IdReseña INT NOT NULL,
 	Fecha VARCHAR (25) NOT NULL,
     Contenido VARCHAR (250),
     
     -- Claves foráneas para evitar creación de tabla relación
 	NombreUser VARCHAR(100) NOT NULL,
     Email VARCHAR(50) NOT NULL,
-	FOREIGN KEY (NombreUser, Email) REFERENCES CLIENTE(NombreUser, Email)
+	FOREIGN KEY (NombreUser, Email) REFERENCES CLIENTE(NombreUser, Email),
+
+	PRIMARY KEY(IdReseña, Fecha, NombreUser)
 );
 
 CREATE TABLE REPORTE(

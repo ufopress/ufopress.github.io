@@ -37,7 +37,7 @@ document.getElementById('generatePDF').addEventListener('click', async () => {
 
     // Añadir el logo de la empresa centrado si existe
     if (logoEmpresa) {
-        const logoBase64 = await loadImageAsBase64(`../back/vistas/${logoEmpresa}`);  // Ruta donde se almacena el logo
+        const logoBase64 = await loadImageAsBase64(`../front/${logoEmpresa}`);  // Ruta donde se almacena el logo
         if (logoBase64) {
             pdf.addImage(logoBase64, 'PNG', 80, 10, 50, 30);  // Centrar el logo en el PDF
         }

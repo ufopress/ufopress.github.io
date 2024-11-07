@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", function() {
         .then(data => {
             if (data.success) {
                 // Guardar el nombre y tipo de usuario en localStorage
+                localStorage.setItem("emailUser", data.email);
                 localStorage.setItem("nombreUsuario", data.usuario);
                 localStorage.setItem("tipoUsuario", data.tipo);
 
