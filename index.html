@@ -51,8 +51,16 @@
           <li class="nav-item"></li>
           <a id="generatePDF" class="nav-link active" aria-current="page" href="#">Descargar catálogo</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link no-link" data-bs-toggle="modal" data-bs-target="#modalResena">Reseñas</a>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle no-link" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Reseñas
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item no-link" data-category="Acción" data-bs-toggle="modal"
+                  data-bs-target="#modalResena">Realizar reseña</a></li>
+              <li><a class="dropdown-item no-link" data-category="Comedia" data-bs-toggle="modal"
+                  data-bs-target="#mostrarProductosModal">Gestionar mis reseñas</a></li>
+            </ul>
           </li>
         </ul>
 
@@ -457,18 +465,18 @@
       <!-- Formulario de contacto -->
       <div class="col-md-4">
         <h5>Envíanos tu consulta</h5>
-        <form action="mailto:ufopress@hotmail.com" method="post" enctype="text/plain">
+        <form action="https://formsubmit.co/ufopress@hotmail.com" method="POST">
           <div class="mb-3">
             <label for="name" class="form-label">Nombre</label>
-            <input type="text" class="form-control" id="name" placeholder="Tu nombre" required>
+            <input type="text" class="form-control" name="Nombre" id="name" placeholder="Tu nombre" required>
           </div>
           <div class="mb-3">
             <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" id="emailFooter" placeholder="Tu email" required>
+            <input type="email" class="form-control" name="Email" id="emailFooter" placeholder="Tu email" required>
           </div>
           <div class="mb-3">
             <label for="message" class="form-label">Mensaje</label>
-            <textarea class="form-control" id="message" rows="3" placeholder="Escribe tu mensaje..."
+            <textarea class="form-control" name="Consulta" id="message" rows="3" placeholder="Escribe tu mensaje..."
               required></textarea>
           </div>
           <button type="submit" class="btn btn-warning">Enviar</button>

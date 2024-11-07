@@ -12,24 +12,24 @@ document.addEventListener('DOMContentLoaded', function () {
                     data.forEach(element => {
                         productosContainer.innerHTML += `
                             <div class="col">
-                                <div class="card h-100">
-                                    <img src="../back/vistas/img/${element.Imagen}" class="card-img-top" alt="${element.Nombre}" />
-                                    <div class="card-body">
-                                        <p class="text-success">Precio: $U${element.Precio}</p>
-                                        <h5 class="card-title">${element.Nombre}</h5>
-                                    </div>
-                                    <div class="card-footer">
-                                        <button class="btn btn-warning w-100 mb-1 agregar-carrito" data-isbn="${element.ISBN}">
-                                            Agregar al carrito
-                                        </button>
-                                        <button type="button" class="btn btn-secondary w-100" data-bs-toggle="modal" data-bs-target="#modalProduct">
-                                            Más información
-                                        </button>
-                                    </div>
+                            <div class="card h-100">
+                                <img src="../back/vistas/img/${element.Imagen}" class="card-img-top" alt="${element.Nombre}" />
+                                <div class="card-body">
+                                    <p class="text-success">Precio: $U${element.Precio}</p>
+                                    <h5 class="card-title">${element.Nombre}</h5>
+                                </div>
+                                <div class="card-footer">
+                                    <button class="btn btn-warning w-100 mb-1 agregar-carrito" data-isbn="${element.ISBN}">
+                                        Agregar al carrito
+                                    </button>
+                                    <button type="button" class="btn btn-secondary w-100" data-bs-toggle="modal" data-bs-target="#modalProduct">
+                                        Más información
+                                    </button>
                                 </div>
                             </div>
-                        `;
+                        </div>`;
                     });
+                    agregarEventosCarrito();
                 } else {
                     console.log("No se encontraron productos.");
                 }
