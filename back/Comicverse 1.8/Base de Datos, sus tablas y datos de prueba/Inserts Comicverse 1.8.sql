@@ -33,6 +33,28 @@ VALUES
 (2, 'Sofia Gonzalez', 'sofia.gonzalez@example.com', 'pass123', 'CLI', 987654324, 'Uruguaya', 1989),
 (2, 'Solo Registrado', 'solo.registrado@example.com', 'pass123', 'CLI', 123456799, 'Uruguaya', 1995);
 
+-- Insertar datos en la tabla CATEGORIA
+INSERT INTO CATEGORIA (NombreCategoria) 
+VALUES 
+('Acción'),
+('Superhéroes'),
+('Cómics'),
+('Terror'),
+('Aventura'),
+('Fantasía'),
+('Ciencia Ficción'),
+('Clásicos'),
+('Misterio'),
+('Alternativa'),
+('Romance'),
+('Drama'),
+('Tragedia'),
+('Futurista'),
+('Origen'),
+('Tensión'),
+('Psicológico'),
+('Deportes');
+
 -- Insertar datos en la tabla HISTORIETA
 INSERT INTO HISTORIETA (ISBN, NombreCategoriaCE, Nombre, Imagen, EditOrg, Autores, Paginas, Tamaño, Contenido, Formato, Edad, Interior, Precio)
 VALUES 
@@ -140,3 +162,14 @@ VALUES
 (7, 2, '2024-08-01', 'Me encantó el producto, volveré a comprar'),
 (8, 2, '2024-08-15', 'Buen servicio al cliente'),
 (9, 1, '2024-09-10', 'Recomiendo este sitio, buena experiencia');
+
+-- Insertar datos en la tabla APLICA
+INSERT INTO APLICA (NombreCategoriaCE, NombrePromocion, Procentaje, FechaInicio, FechaFin) VALUES
+('Acción', 'Descuento Verano', 15, '2024-01-01', '2024-03-31'),
+('Superhéroes', 'Black Friday', 25, '2024-11-01', '2024-11-30'),
+('Cómics', 'Promoción Especial', 10, '2024-05-01', '2024-06-30'),
+('Terror', 'Oferta de Halloween', 20, '2024-10-01', '2024-10-31'),
+('Aventura', 'Descuento Navidad', 30, '2024-12-01', '2024-12-25'),
+('Fantasía', 'Descuento Primavera', 10, '2024-03-01', '2024-05-31'),
+('Ciencia Ficción', 'Semana del Comic', 15, '2024-08-01', '2024-08-07'),
+('Clásicos', 'Rebaja de Fin de Año', 20, '2024-12-26', '2025-01-10');

@@ -6,8 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const actualizarProductos = document.getElementById('actualizarProductos');
     const gestionarAdministradores = document.getElementById('gestionarAdministradores');
     const gestionarCliente = document.getElementById('gestionarCliente');
-    const actualizarAdministradores = document.getElementById('ActualizarAdministradores');
-    const actualizarClientes = document.getElementById('ActualizarClientes');
+    const agregarPromocion = document.getElementById('agregarPromocion');
 
     function abrirVentana(ventana) {
         const ventanas = [
@@ -18,8 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
             actualizarProductos,
             gestionarAdministradores,
             gestionarCliente,
-            actualizarAdministradores,
-            actualizarClientes
+            agregarPromocion
         ];
 
         ventanas.forEach(v => {
@@ -50,10 +48,8 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('gestionarClienteBtn').addEventListener('click', function () {
         abrirVentana(gestionarCliente);
     });
-    document.getElementById('actualizarAdminBtn').addEventListener('click', function () {
-        abrirVentana(actualizarAdministradores);
+    document.getElementById('agregarPromotionBtn').addEventListener('click', function () {
+        abrirVentana(agregarPromocion); 
     });
-    document.getElementById('actualizarClientBtn').addEventListener('click', function () {
-        abrirVentana(actualizarClientes);
-    });
+
 });
