@@ -2,7 +2,7 @@
 include "conectar.php";
 
 try {
-    $sql = "SELECT NombreUser, Fecha, Contenido FROM RESEÑA";
+    $sql = "SELECT C.NombreUser, R.Fecha, R.Contenido FROM RESEÑA R LEFT JOIN CLIENTE C ON R.IdClienteCE = C.IdCliente;";
     $sentencia = $conexion->prepare($sql);
     $sentencia->execute();
 

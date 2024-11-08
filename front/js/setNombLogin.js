@@ -23,15 +23,14 @@ document.addEventListener("DOMContentLoaded", function() {
                 localStorage.setItem("nombreUsuario", data.usuario);
                 localStorage.setItem("tipoUsuario", data.tipo);
 
-                /* Mostrar para verificar que se guarda correctamente
+                //--
                 console.log("Usuario guardado:", localStorage.getItem("nombreUsuario"));
-                console.log("Tipo guardado:", localStorage.getItem("tipoUsuario"));*/
+                console.log("Tipo guardado:", localStorage.getItem("tipoUsuario"));
                 
-                // Redirigir a la página correspondiente
                 if (data.tipo === "ADM" || data.tipo === "VEN") {
-                    window.location.href = "index.html"; // Redirigir al index
+                    window.location.href = "index.html";
                 } else if (data.tipo === "CLI") {
-                    window.location.href = "index.html"; // Redirigir al index
+                    window.location.href = "index.html";
                 }
             } else {
                 alert("Credenciales incorrectas");

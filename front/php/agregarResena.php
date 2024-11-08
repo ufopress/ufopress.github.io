@@ -1,28 +1,24 @@
 <?php
-// Conexión a la base de datos
 include('conectar.php');
 
-// Obtener los datos enviados
-$data = json_decode(file_get_contents('php://input'), true);
-$nombreUser = $data['nombreUser'] ?? '';
-$email = $data['email'] ?? '';
+$data = json_decode(json: file_get_contents(filename: 'php://input'), associative: true);
+$idCliente = $data['idCliente'] ?? '';
 $contenido = $data['contenido'] ?? '';
 $fecha = $data['fecha'] ?? '';
 
 try {
-    // Insertar la reseña en la tabla
-    $sql = "INSERT INTO RESEÑA (Fecha, Contenido, NombreUser, Email) VALUES (:fecha, :contenido, :nombreUser, :email)";
-    $stmt = $conexion->prepare($sql);
-    $stmt->bindParam(':fecha', $fecha);
-    $stmt->bindParam(':contenido', $contenido);
-    $stmt->bindParam(':nombreUser', $nombreUser);
-    $stmt->bindParam(':email', $email);
+    $sql = "INSERT INTO RESEÑA (IdClienteCE, Fecha, Contenido) VALUES (:idCliente, :fecha, :contenido)";
+    $stmt = $conexion->prepare(query: $sql);
+    $stmt->bindParam(param: ':idCliente', var: $idCliente);
+    $stmt->bindParam(param: ':fecha', var: $fecha);
+    $stmt->bindParam(param: ':contenido', var: $contenido);
 
     if ($stmt->execute()) {
-        echo json_encode(['success' => true]);
+        echo json_encode(value: ['success' => true]);
     } else {
-        echo json_encode(['success' => false]);
+        echo json_encode(value: ['success' => false]);
     }
 } catch (PDOException $e) {
-    echo json_encode(['success' => false, 'error' => $e->getMessage()]);
+    echo json_encode(value: ['success' => false, 'error' => $e->getMessage()]);
 }
+?>

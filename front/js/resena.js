@@ -2,59 +2,53 @@ document.addEventListener('DOMContentLoaded', function () {
     const formResena = document.getElementById('formResena');
     const enviarResenaBtn = document.getElementById('enviarResena');
 
-    // Validación de campos no vacíos y envío de reseña
     enviarResenaBtn.addEventListener('click', function () {
-        let nombreUser = '';
-        let email = '';
-
-        try {
-            nombreUser = localStorage.getItem('nombreUsuario') || '';
-            email = localStorage.getItem('emailUser') || '';
-        } catch (error) {
-            console.error('Error al acceder a localStorage:', error);
-            nombreUser = ''; // Si hay un error, asigna una cadena vacía
-        }
-
-        console.log('Nombre de usuario:', nombreUser);
-        console.log('Email de usuario:', email);
+        let nombreUser = localStorage.getItem('nombreUsuario') || '';
+        let email = localStorage.getItem('emailUser') || '';
 
         const contenido = document.getElementById('contenido').value.trim();
 
-        if (nombreUser === '') {
-            alert('Por favor, inicia sesión para realizar una reseña');
-            return;
-        } else if (contenido === '') {
-            alert('Por favor, completa todos los campos.');
+        if (nombreUser === '' || contenido === '') {
+            alert('Por favor, completa todos los campos o inicia sesión.');
             return;
         }
 
         const fechaActual = new Date();
-        const fechaActual1 = fechaActual.toISOString().split('T')[0]; //YYYY-MM-DD
-        const hora = fechaActual.toTimeString().split(' ')[0]; // "HH:MM:SS"
+        const fecha = `${fechaActual.toISOString().split('T')[0]} ${fechaActual.toTimeString().split(' ')[0]}`;
 
-        // Enviar los datos al PHP usando fetch
-        fetch('./front/php/agregarResena.php', {
+        // Paso 1: Obtener el IdCliente
+        fetch('./front/php/obtenerIdCliente.php', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                email: email,
-                nombreUser: nombreUser,
-                contenido: contenido,
-                fecha: `${fechaActual1} ${hora}`
-            })
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ nombreUser, email })
         })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alert('Reseña agregada exitosamente.');
-                    formResena.reset(); // Limpiar formulario
-                    $('#modalResena').modal('hide'); // Cerrar modal
-                } else {
-                    alert('Error al agregar reseña.');
-                }
-            })
-            .catch(error => console.error('Error:', error));
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Paso 2: Insertar la reseña usando IdCliente
+                return fetch('./front/php/agregarResena.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        idCliente: data.idCliente,
+                        contenido,
+                        fecha
+                    })
+                });
+            } else {
+                throw new Error('Usuario no encontrado');
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Reseña agregada exitosamente.');
+                formResena.reset();
+                $('#modalResena').modal('hide');
+            } else {
+                alert('Error al agregar reseña.');
+            }
+        })
+        .catch(error => console.error('Error:', error));
     });
 });
