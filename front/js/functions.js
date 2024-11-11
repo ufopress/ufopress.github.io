@@ -94,7 +94,7 @@ function mostrarProductosPorPagina() {
                         <button class="btn btn-warning w-100 mb-1 agregar-carrito" data-isbn="${element.ISBN}">
                             Agregar al carrito
                         </button>
-                        <button type="button" class="btn btn-secondary w-100" data-bs-toggle="modal" data-bs-target="#modalProduct">
+                        <button type="button" class="btn btn-secondary w-100" data-bs-toggle="modal" data-bs-target="#modalProduct" data-isbn="${element.ISBN}">
                             Más información
                         </button>
                     </div>
@@ -292,7 +292,7 @@ function mostrarProductosPorPaginaCategoria() {
                         <button class="btn btn-warning w-100 mb-1 agregar-carrito" data-isbn="${element.ISBN}">
                             Agregar al carrito
                         </button>
-                        <button type="button" class="btn btn-secondary w-100" data-bs-toggle="modal" data-bs-target="#modalProduct">
+                        <button type="button" class="btn btn-secondary w-100" data-bs-toggle="modal" data-bs-target="#modalProduct" data-isbn="${element.ISBN}">
                             Más información
                         </button>
                     </div>
