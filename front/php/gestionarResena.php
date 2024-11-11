@@ -2,29 +2,25 @@
 include "conectar.php";
 
 $data = json_decode(file_get_contents('php://input'), true);
-$idResena = $data['idResena'];
 $email = $data['email'];
-$contenido = $data['contenido'];
-$fecha = date("Y-m-d H:i:s");
 
 try {
-    if (empty($idResena)) {
-        $sql = "INSERT INTO RESEÑA (Fecha, Contenido, Email) VALUES (:fecha, :contenido, :email)";
-    } else {
-        $sql = "UPDATE RESEÑA SET Contenido = :contenido WHERE IdResena = :idResena AND Email = :email";
-    }
+    // Consulta para obtener todas las reseñas de un cliente basadas en su email
+    $sql = "SELECT IdReseña, R.Fecha, R.Contenido, C.Email 
+            FROM RESEÑA R 
+            JOIN CLIENTE C ON R.IdClienteCE = C.IdCliente
+            WHERE C.Email = :email";
 
-    $stmt = $conexion->prepare($sql);
-    $stmt->bindParam(':fecha', $fecha);
-    $stmt->bindParam(':contenido', $contenido);
-    $stmt->bindParam(':email', $email);
+    $stmt = $conexion->prepare(query: $sql);
+    $stmt->bindParam(param: ':email', var: $email);
 
     if ($stmt->execute()) {
-        echo json_encode(['success' => true]);
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        echo json_encode(value: ['success' => true, 'data' => $result]);
     } else {
-        echo json_encode(['success' => false]);
+        echo json_encode(value: ['success' => false]);
     }
 } catch (PDOException $e) {
-    echo json_encode(['error' => 'Error en la operación']);
+    echo json_encode(value: ['error' => 'Error en la operación']);
 }
 ?>

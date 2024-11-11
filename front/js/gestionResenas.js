@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Función para cargar reseñas del cliente
     function cargarResenas() {
         const email = localStorage.getItem('emailUser');
-        fetch('./front/php/obtenerResenas.php', {
+        fetch('./front/php/gestionarResena.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -17,14 +17,15 @@ document.addEventListener('DOMContentLoaded', function () {
         })
             .then(response => response.json())
             .then(data => {
-                if (data.length > 0) {
+                // Verificamos si el response tiene `success` como `true`
+                if (data.success && data.data.length > 0) {
                     let html = '<ul class="list-group">';
-                    data.forEach(resena => {
+                    data.data.forEach(resena => {
                         html += `
                             <li class="list-group-item">
                                 <p><strong>${resena.Fecha}</strong>: ${resena.Contenido}</p>
-                                <button class="btn btn-sm btn-primary" onclick="editarResena(${resena.IdResena}, '${resena.Contenido}')">Editar</button>
-                                <button class="btn btn-sm btn-danger" onclick="eliminarResena(${resena.IdResena})">Eliminar</button>
+                                <button class="btn btn-sm btn-primary" onclick="editarResena(${resena.IdReseña}, '${resena.Contenido}')">Editar</button>
+                                <button class="btn btn-sm btn-danger" onclick="eliminarResena(${resena.IdReseña})">Eliminar</button>
                             </li>`;
                     });
                     html += '</ul>';
@@ -65,9 +66,30 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Función para editar una reseña
     window.editarResena = function (idResena, contenido) {
-        document.getElementById('idResena').value = idResena;
-        document.getElementById('contenidoResena').value = contenido;
+        // Pedir al usuario que confirme el nuevo contenido para la reseña
+        const nuevoContenido = prompt("Editar contenido de la reseña:", contenido);
+
+        if (nuevoContenido !== null) { // Si el usuario confirma la edición
+            fetch('./front/php/editarResena.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ idResena, contenido: nuevoContenido })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('Reseña actualizada correctamente.');
+                        cargarResenas(); // Recargar lista de reseñas después de actualizar
+                    } else {
+                        alert('Error al actualizar la reseña: ' + data.message);
+                    }
+                })
+                .catch(error => console.error('Error al actualizar la reseña:', error));
+        }
     };
+
 
     // Función para eliminar una reseña
     window.eliminarResena = function (idResena) {
