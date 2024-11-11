@@ -105,6 +105,7 @@ function mostrarProductosPorPagina() {
 
     // Añadir eventos a los botones de "Agregar al carrito"
     agregarEventosCarrito();
+    agregarEventosModal();
 }
 
 // Función para crear los controles de paginación
@@ -300,6 +301,8 @@ function mostrarProductosPorPaginaCategoria() {
             </div>
         `;
     });
+    agregarEventosCarrito();
+    agregarEventosModal();
 }
 
 // Función para crear los controles de paginación

@@ -73,6 +73,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 // Agregar eventos de click a los botones de "Agregar al carrito"
                 agregarEventosCarrito();
+                agregarEventosModal();
                 } else {
                     contenido.innerHTML = ` 
                 <div class="text-center mb-4 w-100 container mt-5"> <!-- Div que ocupa el total del ancho -->
