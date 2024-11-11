@@ -4,7 +4,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const carrouselContainer = document.getElementById('carrouselContainer');
     const productosDestacados = document.getElementById('productosDestacados');
     const reseñasContainer = document.getElementById('reseñasContainer');
-
+    const informacionSobreFamosos = document.getElementById('informacionSobreFamosos');
+    
     // Escuchar el evento de entrada en el campo de búsqueda
     searchInput.addEventListener('input', function () {
         let producto = searchInput.value;
@@ -17,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
             reseñasContainer.style.display = 'block';
             carrouselContainer.style.display = 'block';
             productosDestacados.style.display = 'block';
+            informacionSobreFamosos.style.display = 'block';
 
             return; // No continuar con el resto del código
         }
@@ -25,6 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
         carrouselContainer.style.display = 'none';
         productosDestacados.style.display = 'none';
         reseñasContainer.style.display = 'none';
+        informacionSobreFamosos.style.display = 'none';
 
         fetch('./front/php/getProducts.php', {
             method: 'POST',
