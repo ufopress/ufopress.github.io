@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Eliminar el nombre y tipo de usuario del localStorage
                 localStorage.removeItem('nombreUsuario');
                 localStorage.removeItem('tipoUsuario');
+                localStorage.removeItem('emailUser');
                 
                 // Verificar nuevamente el estado del usuario para actualizar la interfaz
                 verificarUsuario(); // Llamada a la función global

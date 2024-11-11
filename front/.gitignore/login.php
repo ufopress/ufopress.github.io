@@ -21,7 +21,7 @@ registrados
 else{
     $consulta = "SELECT TipoUsuario, NombreUser FROM cliente WHERE NombreUser='$user' and Contrasenia='$pass'";
 }*/
-$consulta = "SELECT TipoUsuario, NombreUser FROM cliente WHERE NombreUser='$user' and Contrasenia='$pass'";
+$consulta = "SELECT TipoUsuario, NombreUser FROM CLIENTE WHERE NombreUser='$user' and Contrasenia='$pass'";
 
 /*Se guardan los posibles resultados de la búsqueda en la variable $res*/
 $res = $conexion->query($consulta);

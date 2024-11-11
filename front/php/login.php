@@ -5,7 +5,7 @@ include "conectar.php";
 $email = $_POST['email'];
 $pass = $_POST['contrasenia'];
 
-$consultaC = "SELECT NombreUser, Email, TipoUsuario FROM cliente WHERE Email='$email' and Contrasenia='$pass'";
+$consultaC = "SELECT NombreUser, Email, TipoUsuario FROM CLIENTE WHERE Email='$email' and Contrasenia='$pass'";
 
 $resC = $conexion->query($consultaC);
 

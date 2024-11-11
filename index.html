@@ -41,13 +41,44 @@
             </a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item no-link" data-category="Acción" data-bs-toggle="modal"
-                  data-bs-target="#mostrarProductosModal">Acción</a></li>
-              <li><a class="dropdown-item no-link" data-category="Comedia" data-bs-toggle="modal"
-                  data-bs-target="#mostrarProductosModal">Comedia</a></li>
-              <li><a class="dropdown-item no-link" data-category="Ciencia ficción" data-bs-toggle="modal"
-                  data-bs-target="#mostrarProductosModal">Ciencia ficción</a></li>
+                  data-bs-target="#mostrarProductosCategoriaModal">Acción</a></li>
+              <li><a class="dropdown-item no-link" data-category="Alternativa" data-bs-toggle="modal"
+                  data-bs-target="#mostrarProductosCategoriaModal">Alternativa</a></li>
+              <li><a class="dropdown-item no-link" data-category="Aventura" data-bs-toggle="modal"
+                  data-bs-target="#mostrarProductosCategoriaModal">Aventura</a></li>
+              <li><a class="dropdown-item no-link" data-category="Ciencia Ficción" data-bs-toggle="modal"
+                  data-bs-target="#mostrarProductosCategoriaModal">Ciencia Ficción</a></li>
+              <li><a class="dropdown-item no-link" data-category="Clásicos" data-bs-toggle="modal"
+                  data-bs-target="#mostrarProductosCategoriaModal">Clásicos</a></li>
+              <li><a class="dropdown-item no-link" data-category="Cómics" data-bs-toggle="modal"
+                  data-bs-target="#mostrarProductosCategoriaModal">Cómics</a></li>
+              <li><a class="dropdown-item no-link" data-category="Deportes" data-bs-toggle="modal"
+                  data-bs-target="#mostrarProductosCategoriaModal">Deportes</a></li>
+              <li><a class="dropdown-item no-link" data-category="Drama" data-bs-toggle="modal"
+                  data-bs-target="#mostrarProductosCategoriaModal">Drama</a></li>
+              <li><a class="dropdown-item no-link" data-category="Fantasía" data-bs-toggle="modal"
+                  data-bs-target="#mostrarProductosCategoriaModal">Fantasía</a></li>
+              <li><a class="dropdown-item no-link" data-category="Futurista" data-bs-toggle="modal"
+                  data-bs-target="#mostrarProductosCategoriaModal">Futurista</a></li>
+              <li><a class="dropdown-item no-link" data-category="Misterio" data-bs-toggle="modal"
+                  data-bs-target="#mostrarProductosCategoriaModal">Misterio</a></li>
+              <li><a class="dropdown-item no-link" data-category="Origen" data-bs-toggle="modal"
+                  data-bs-target="#mostrarProductosCategoriaModal">Origen</a></li>
+              <li><a class="dropdown-item no-link" data-category="Psicológico" data-bs-toggle="modal"
+                  data-bs-target="#mostrarProductosCategoriaModal">Psicológico</a></li>
+              <li><a class="dropdown-item no-link" data-category="Romance" data-bs-toggle="modal"
+                  data-bs-target="#mostrarProductosCategoriaModal">Romance</a></li>
+              <li><a class="dropdown-item no-link" data-category="Superhéroes" data-bs-toggle="modal"
+                  data-bs-target="#mostrarProductosCategoriaModal">Superhéroes</a></li>
+              <li><a class="dropdown-item no-link" data-category="Tensión" data-bs-toggle="modal"
+                  data-bs-target="#mostrarProductosCategoriaModal">Tensión</a></li>
+              <li><a class="dropdown-item no-link" data-category="Terror" data-bs-toggle="modal"
+                  data-bs-target="#mostrarProductosCategoriaModal">Terror</a></li>
+              <li><a class="dropdown-item no-link" data-category="Tragedia" data-bs-toggle="modal"
+                  data-bs-target="#mostrarProductosCategoriaModal">Tragedia</a></li>
             </ul>
           </li>
+
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle no-link" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Reseñas
@@ -56,7 +87,7 @@
               <li><a class="dropdown-item no-link" data-category="Acción" data-bs-toggle="modal"
                   data-bs-target="#modalResena">Realizar reseña</a></li>
               <li><a class="dropdown-item no-link" data-category="Comedia" data-bs-toggle="modal"
-                  data-bs-target="#mostrarProductosModal">Gestionar mis reseñas</a></li>
+                  data-bs-target="#modalResenas">Gestionar mis reseñas</a></li>
             </ul>
           </li>
           <li class="nav-item"></li>
@@ -194,6 +225,36 @@
 
           <!-- Paginación -->
           <div id="paginacionContainer" class="mt-3">
+            <h6>Seleccionar página:</h6>
+            <!-- Aquí se crearán los radios dinámicamente -->
+          </div>
+        </div>
+        <div class="modal-footer d-flex justify-content-center w-100">
+          <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal para Mostrar Productos de Categoría -->
+  <div class="modal fade" id="mostrarProductosCategoriaModal" tabindex="-1"
+    aria-labelledby="mostrarProductosCategoriaModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header d-flex justify-content-center">
+          <h5 class="modal-title" id="mostrarProductosCategoriaModalLabel">Productos de la Categoría</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Contenedor para mostrar los productos de la categoría -->
+          <div class="container mb-5 mt-5">
+            <div class="row row-cols-1 row-cols-3 g-4 text-center" id="productosCategoriaContainer">
+              <!-- Aquí se cargarán los productos dinámicamente -->
+            </div>
+          </div>
+
+          <!-- Paginación -->
+          <div id="paginacionCategoriaContainer" class="mt-3">
             <h6>Seleccionar página:</h6>
             <!-- Aquí se crearán los radios dinámicamente -->
           </div>
@@ -411,6 +472,35 @@
     </div>
   </div>
 
+  <!-- Modal para gestionar reseñas -->
+  <div class="modal fade" id="modalResenas" tabindex="-1" aria-labelledby="modalResenasLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalResenasLabel">Gestionar Reseñas</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Formulario para agregar o modificar una reseña -->
+          <form id="formResenas">
+            <input type="hidden" id="idResena" value="">
+            <div class="mb-3">
+              <label for="contenidoResena" class="form-label">Contenido de la Reseña</label>
+              <textarea class="form-control" id="contenidoResena" rows="3" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-warning">Guardar Reseña</button>
+          </form>
+
+          <!-- Lista de reseñas existentes -->
+          <div id="resenasLista" class="mt-4"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Modal para mostrar el carrito -->
   <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -445,6 +535,8 @@
   <script src="./front/js/cart.js"></script>
   <script src="./front/js/getThreeProducts.js"></script>
   <script src="./front/js/resena.js"></script>
+  <script src="./front/js/gestionResenas.js"></script>
+  <script src="./front/js/categoryFunctions.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
@@ -458,7 +550,11 @@
       <!-- Información de la empresa -->
       <div class="col-md-4 text-center">
         <h5>Únete a la aventura</h5><br><br>
-        <p>En ComicVerse, cada producto es una puerta a nuevas experiencias, aventuras y emociones. Nos apasiona crear una comunidad para verdaderos amantes del cómic y el manga, donde puedes explorar, coleccionar y compartir tu pasión. Ya seas un coleccionista experimentado o un nuevo fanático, en ComicVerse encontrarás algo especial que conecte con tu espíritu aventurero. ¡Explora el universo ComicVerse y descubre tu próxima gran historia!</p>
+        <p>En ComicVerse, cada producto es una puerta a nuevas experiencias, aventuras y emociones. Nos apasiona crear
+          una comunidad para verdaderos amantes del cómic y el manga, donde puedes explorar, coleccionar y compartir tu
+          pasión. Ya seas un coleccionista experimentado o un nuevo fanático, en ComicVerse encontrarás algo especial
+          que conecte con tu espíritu aventurero. ¡Explora el universo ComicVerse y descubre tu próxima gran historia!
+        </p>
       </div>
 
       <!-- Formulario de contacto -->
@@ -492,7 +588,7 @@
           <li><strong>Dirección:</strong></li>
           <li>Dr. Luis Bonavita 1294, WTC Montevideo</li>
           <li><strong>Email:</strong></li>
-          <li>contacto@comicverse.com</li>
+          <li>contacto@comicverse.site</li>
         </ul>
       </div>
     </div>

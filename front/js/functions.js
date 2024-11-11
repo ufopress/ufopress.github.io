@@ -231,56 +231,101 @@ function obtenerProductoPorISBN(isbn) {
         .catch(error => console.error('Error en el fetch:', error));
 }
 
-function getProductsForCategory() {
-    document.querySelectorAll('.category-button').forEach(button => {
-        button.addEventListener('click', function () {
-            const categoriaSeleccionada = this.getAttribute('data-category'); // Obtener la categoría
+// Variables de paginación
+let productosPorPaginaCategoria = 3;
+let paginaActualCategoria = 1;
+let totalPaginasCategoria = 1;
+let productosCategoria = [];
 
-            // Enviar la categoría al PHP usando fetch y el método POST
-            fetch('./front/php/getProductsByCategory.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ categoria: categoriaSeleccionada }) // Enviar la categoría en el cuerpo de la solicitud
-            })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.resultado === false) {
-                        productosContainer.innerHTML = 'No se encontraron productos.';
-                        return;
-                    }
+// Función para cargar productos por categoría y aplicar paginación
+function cargarProductosPorCategoria(categoria) {
+    fetch('./front/php/getForCategory.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ categoria: categoria })
+    })
+    .then(response => response.json())
+    .then(data => {
+        const productosCategoriaContainer = document.getElementById('productosCategoriaContainer');
+        const paginacionCategoriaContainer = document.getElementById('paginacionCategoriaContainer');
+        
+        productosCategoriaContainer.innerHTML = ''; // Limpiar el contenido anterior
+        paginacionCategoriaContainer.innerHTML = ''; // Limpiar la paginación anterior
 
-                    productosContainer.innerHTML = ''; // Limpiar el contenedor de productos
+        if (data.length > 0) {
+            // Guardar productos y calcular el total de páginas
+            productosCategoria = data;
+            totalPaginasCategoria = Math.ceil(productosCategoria.length / productosPorPaginaCategoria);
+            paginaActualCategoria = 1;
+            
+            // Mostrar los productos de la primera página y crear paginación
+            mostrarProductosPorPaginaCategoria();
+            crearPaginacionCategoria();
+        } else {
+            productosCategoriaContainer.innerHTML = '<p>No se encontraron productos para esta categoría.</p>';
+        }
+    })
+    .catch(error => console.error('Error al cargar productos por categoría:', error));
+}
 
-                    data.forEach(element => {
-                        contenido.innerHTML += `
-                        <div class="col">
-                            <div class="card h-100">
-                                <img src="../back/vistas/img/${element.Imagen}" class="card-img-top" alt="${element.Nombre}" />
-                                <div class="card-body">
-                                    <p class="text-success">Precio: $U${element.Precio}</p>
-                                    <h5 class="card-title">${element.Nombre}</h5>
-                                </div>
-                                <div class="card-footer">
-                                    <button class="btn btn-warning w-100 mb-1 agregar-carrito" data-isbn="${element.ISBN}">
-                                        Agregar al carrito
-                                    </button>
-                                    <button type="button" class="btn btn-secondary w-100" data-bs-toggle="modal" data-bs-target="#modalProduct">
-                                        Más información
-                                    </button>
-                                </div>
-                            </div>
-                        </div>`;
-                    });
+// Función para mostrar los productos de la página actual en el modal
+function mostrarProductosPorPaginaCategoria() {
+    const productosCategoriaContainer = document.getElementById('productosCategoriaContainer');
+    productosCategoriaContainer.innerHTML = '';
 
-                    // Agregar eventos de click a los botones de "Agregar al carrito"
-                    agregarEventosCarrito();
-                })
-                .catch(error => {
-                    console.error('Error al cargar los productos:', error);
-                });
-        });
+    const inicio = (paginaActualCategoria - 1) * productosPorPaginaCategoria;
+    const fin = inicio + productosPorPaginaCategoria;
+    const productosPagina = productosCategoria.slice(inicio, fin);
+
+    productosPagina.forEach(element => {
+        productosCategoriaContainer.innerHTML += `
+            <div class="col">
+                <div class="card h-100">
+                    <img src="../back/vistas/img/${element.Imagen}" class="card-img-top" alt="${element.Nombre}" />
+                    <div class="card-body">
+                        <p class="text-success">Precio: $U${element.Precio}</p>
+                        <h5 class="card-title">${element.Nombre}</h5>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-warning w-100 mb-1 agregar-carrito" data-isbn="${element.ISBN}">
+                            Agregar al carrito
+                        </button>
+                        <button type="button" class="btn btn-secondary w-100" data-bs-toggle="modal" data-bs-target="#modalProduct">
+                            Más información
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
     });
 }
+
+// Función para crear los controles de paginación
+function crearPaginacionCategoria() {
+    const paginacionCategoriaContainer = document.getElementById('paginacionCategoriaContainer');
+    paginacionCategoriaContainer.innerHTML = '';
+
+    for (let i = 1; i <= totalPaginasCategoria; i++) {
+        const botonPagina = document.createElement('button');
+        botonPagina.classList.add('btn', 'btn-outline-secondary', 'm-1');
+        botonPagina.textContent = i;
+        
+        if (i === paginaActualCategoria) {
+            botonPagina.classList.add('active');
+        }
+
+        botonPagina.addEventListener('click', () => {
+            paginaActualCategoria = i;
+            mostrarProductosPorPaginaCategoria();
+            crearPaginacionCategoria();
+        });
+
+        paginacionCategoriaContainer.appendChild(botonPagina);
+    }
+}
+
+
+
 
