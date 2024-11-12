@@ -1,9 +1,12 @@
 * {
   scrollbar-width: thin;
   scrollbar-color: orange rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
 }
 
 body {
+  width: 100%;
+  overflow-x: hidden;
   background: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 166, 0, 0.2)), 
                 url('../../front/img/fondo.webp');
   background-size: cover; /* Ajusta la imagen al tamaño del contenedor */
@@ -208,7 +211,7 @@ header {
   overflow-y: auto; /* Añade scroll si el contenido es mayor */
 }
 .card-footer {
-  max-height: 10vh; /* Pie de la tarjeta */
+  max-height: 15vh; /* Pie de la tarjeta */
 }
 
 #btnNavSearch{
@@ -297,7 +300,6 @@ background-color: orange;
 }
 
 footer {
-  padding-top: 3rem;
   padding-bottom: 3rem;
 }
 
@@ -423,7 +425,7 @@ a.custom-card:hover {
   padding: 16px;
   margin: 16px;
   border-radius: 8px;
-  width: 300px;
+  width: 15rem;
   display: inline-block;
   vertical-align: top;
 }

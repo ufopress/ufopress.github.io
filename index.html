@@ -12,14 +12,14 @@
   <link rel="stylesheet" href="./front/css/styles.css" />
 </head>
 <header>
-  <nav class="navbar navbar-expand-lg p-3 sticky-top" id="navBarHeader">
+  <nav class="navbar navbar-expand-lg p-3 sticky-top text-center" id="navBarHeader">
     <div class="container-fluid">
       <a id="logoHeader" class="navbar-brand" href="#"></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <a class="nav-link" href="#" id="liLogout">
             Cerrar sesión
@@ -101,18 +101,20 @@
             aria-label="Search" />
         </form>
         <li class="nav-item d-none"></li>
-
-        <div class="cart-container d-flex align-items-center">
-          <a href="#" class="nav-link position-relative" data-bs-toggle="modal" data-bs-target="#cartModal">
-            <i class="fas fa-shopping-cart fa-lg"></i>
-            <span id="cart-count"
-              class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-              0
-            </span>
-          </a>
+        
+        <span style="display: inline-block; width: 20px;"></span>
+        
+        <div class="d-flex align-items-center justify-content-center">
+          <div class="cart-container d-flex align-items-center text-center">
+            <a href="#" class="nav-link position-relative" data-bs-toggle="modal" data-bs-target="#cartModal">
+              <i class="fas fa-shopping-cart fa-lg"></i>
+              <span id="cart-count"
+                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                0
+              </span>
+            </a>
+          </div>
         </div>
-
-        </li>
       </div>
     </div>
   </nav>
@@ -309,17 +311,6 @@
       <div class="carousel-inner" id="reseñasCarouselInner">
         <!-- Aquí se cargarán las reseñas dinámicamente -->
       </div>
-      <!-- Controles de carrusel -->
-      <button id="btnCarouselResenaPrev" class="carousel-control-prev" type="button" data-bs-target="#reseñasCarousel"
-        data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Anterior</span>
-      </button>
-      <button id="btnCarouselResenaNext" class="carousel-control-next" type="button" data-bs-target="#reseñasCarousel"
-        data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Siguiente</span>
-      </button>
     </div>
   </div>
 
@@ -659,11 +650,11 @@
 </body>
 
 <footer class="footer">
-  <div class="container py-4">
+  <div class="container">
     <div class="row">
       <!-- Información de la empresa -->
-      <div class="col-md-4 text-center">
-        <h5>Únete a la aventura</h5><br><br>
+      <div class="col-md-4 text-center pb-4 pt-5">
+        <h5>Únete a la aventura</h5><br>
         <p>En ComicVerse, cada producto es una puerta a nuevas experiencias, aventuras y emociones. Nos apasiona crear
           una comunidad para verdaderos amantes del cómic y el manga, donde puedes explorar, coleccionar y compartir tu
           pasión. Ya seas un coleccionista experimentado o un nuevo fanático, en ComicVerse encontrarás algo especial
@@ -672,7 +663,7 @@
       </div>
 
       <!-- Formulario de contacto -->
-      <div class="col-md-4">
+      <div class="col-md-4 pt-5 pb-4 text-center">
         <h5>Envíanos tu consulta</h5>
         <form action="https://formsubmit.co/contacto@comicverse.site" method="POST">
           <div class="mb-3">
@@ -693,8 +684,8 @@
       </div>
 
       <!-- Información de contacto adicional -->
-      <div class="col-md-4">
-        <h5>Contacto</h5><br><br>
+      <div class="col-md-4 text-center pt-5">
+        <h5>Contacto</h5><br>
         <ul class="list-unstyled">
           <li><strong>Teléfonos:</strong></li>
           <li>+598 097 157 789 (Oficina)</li>
