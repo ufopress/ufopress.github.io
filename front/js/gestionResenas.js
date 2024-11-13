@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     const formResena = document.getElementById('formResena');
     const resenasLista = document.getElementById('resenasLista');
+    const usuario = localStorage.getItem("nombreUsuario");
 
     // Cargar reseñas al abrir el modal
     document.getElementById('modalResenas').addEventListener('show.bs.modal', cargarResenas);
