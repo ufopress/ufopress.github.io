@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Redirigir después de unos segundos
                 setTimeout(() => {
                     window.location.href = 'index.html';
-                }, 3000); // 3000 milisegundos = 3 segundos
+                }, 1500); // 1500 milisegundos = 1.5 segundos
             } else {
                 mostrarAlerta('Error al agregar reseña', 'error');
             }

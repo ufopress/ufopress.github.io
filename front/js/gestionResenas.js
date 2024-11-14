@@ -55,8 +55,11 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(data => {
                 if (data.success) {
                     mostrarAlerta('Reseña guardada exitosamente!', 'success');
-                    formResena.reset(); // Limpiar formulario
-                    cargarResenas(); // Recargar lista de reseñas
+
+                    // Redirigir después de unos segundos
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 1500); // 1500 milisegundos = 1.5 segundos
                 } else {
                     mostrarAlerta('Error al guardar reseña: ', 'error');
                 }
@@ -81,7 +84,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 .then(data => {
                     if (data.success) {
                         mostrarAlerta('Reseña actualizada correctamente!', 'success');
-                        cargarResenas(); // Recargar lista de reseñas después de actualizar
+
+                        // Redirigir después de unos segundos
+                        setTimeout(() => {
+                            window.location.href = 'index.html';
+                        }, 1500); // 1500 milisegundos = 1.5 segundos
                     } else {
                         mostrarAlerta('Error al actualizar la reseña', 'error');
                     }
@@ -105,7 +112,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 .then(data => {
                     if (data.success) {
                         mostrarAlerta('Reseña eliminada correctamente!', 'success');
-                        cargarResenas(); // Recargar lista de reseñas
+
+                        // Redirigir después de unos segundos
+                        setTimeout(() => {
+                            window.location.href = 'index.html';
+                        }, 1500); // 1500 milisegundos = 1.5 segundos
                     } else {
                         mostrarAlerta('Error al eliminar reseña', 'error');
                     }
