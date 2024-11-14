@@ -161,7 +161,6 @@ function agregarEventosCarrito() {
     });
 }
 
-// Función para agregar productos al carrito
 function agregarProductoAlCarrito(isbn, nombre, precio) {
     let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
@@ -169,8 +168,8 @@ function agregarProductoAlCarrito(isbn, nombre, precio) {
     const productoExistente = carrito.find(producto => producto.isbn === isbn);
 
     if (productoExistente) {
-        // Incrementar la cantidad del producto si ya está en el carrito
-        productoExistente.cantidad += 1;
+        // Asegurarse de que la cantidad sea un número y sumarle 1
+        productoExistente.cantidad = Number(productoExistente.cantidad) + 1;
     } else {
         // Agregar el nuevo producto al carrito
         carrito.push({ isbn, nombre, precio, cantidad: 1 });
