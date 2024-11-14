@@ -143,9 +143,40 @@ function crearPaginacion() {
 }
 
 function actualizarContadorCarrito() {
-    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-    let totalItems = carrito.reduce((acc, item) => acc + item.cantidad, 0);
-    document.getElementById('cart-count').textContent = totalItems;
+    // Obtener el email del usuario (supongo que ya tienes esta información en algún lugar)
+    let email = localStorage.getItem('emailUser');  // Asumiendo que el email se guarda en el localStorage
+
+    if (!email) {
+        // Si no se encuentra el email, no hacer la solicitud
+        console.log("No se encontró el email del usuario.");
+        return;
+    }
+
+    // Realizar la solicitud fetch para obtener el total de historietas del carrito del usuario
+    fetch('../front/php/countCart.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email: email })
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data)
+        if (data.resultado) {
+            // Si la respuesta es exitosa, actualizar el contador con la cantidad total de historietas
+            document.getElementById('cart-count').textContent = data.total_historietas;
+        } else {
+            // Si hay algún error, puedes manejarlo de alguna forma
+            console.log(data.mensaje);
+            document.getElementById('cart-count').textContent = 0;
+        }
+    })
+    .catch(error => {
+        // Si ocurre un error en la solicitud, manejarlo aquí
+        console.error('Error al actualizar el contador del carrito:', error);
+        document.getElementById('cart-count').textContent = 0;
+    });
 }
 
 // Función para agregar eventos a los botones de "Agregar al carrito"
