@@ -57,14 +57,14 @@ document.addEventListener('DOMContentLoaded', function () {
         const productosPagina = productos.slice(inicio, fin);
 
         if (productosPagina.length > 0) {
-            contenido.innerHTML = ` 
-            <div class="text-center mb-4 w-100 container mt-5">
+            contenido.innerHTML =  
+            `<div class="text-center mb-4 w-100 container mt-5">
                 <h2 class="text-center mb-4 destacado">Resultados de la búsqueda:</h2>
             </div>`;
 
             productosPagina.forEach(element => {
-                contenido.innerHTML += `
-                    <div class="col-4 mb-4">
+                contenido.innerHTML += 
+                    `<div class="col-12 col-md-6 col-lg-4 mb-4">
                         <div class="card h-100">
                             <img src="../back/vistas/img/${element.Imagen}" class="card-img-top" alt="${element.Nombre}" />
                             <div class="card-body">
@@ -89,8 +89,8 @@ document.addEventListener('DOMContentLoaded', function () {
             agregarEventosCarrito();
             agregarEventosModal();
         } else {
-            contenido.innerHTML = ` 
-            <div class="text-center mb-4 w-100 container mt-5">
+            contenido.innerHTML =  
+            `<div class="text-center mb-4 w-100 container mt-5">
                 <h2 class="text-center mb-4 destacado">No hay historietas con ese nombre</h2>
             </div>`;
         }

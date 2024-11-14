@@ -90,7 +90,7 @@ function mostrarProductosPorPagina() {
     const productosPagina = productos.slice(inicio, fin);
     productosPagina.forEach(element => {
         productosContainer.innerHTML += `
-            <div class="col">
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
                 <div class="card h-100">
                     <img src="../back/vistas/img/${element.Imagen}" class="card-img-top" alt="${element.Nombre}" />
                     <div class="card-body">
@@ -115,38 +115,68 @@ function mostrarProductosPorPagina() {
     agregarEventosModal();
 }
 
-// Función para crear los controles de paginación
+// Función para crear los controles de paginación general con un rango dinámico
 function crearPaginacion() {
     const paginacionContainer = document.getElementById('paginacionContainer');
     paginacionContainer.innerHTML = ''; // Limpiar la paginación existente
 
-    // Crear los botones de paginación
-    for (let i = 1; i <= totalPaginas; i++) {
-        const boton = document.createElement('input');
-        boton.type = 'radio';
-        boton.name = 'page';
-        boton.value = i;
-        boton.id = `page-${i}`;
-        boton.classList.add('btn-check');
+    // Crear el contenedor de paginación
+    const paginacionRow = document.createElement('div');
+    paginacionRow.classList.add('d-flex', 'justify-content-center', 'flex-wrap');
 
-        const label = document.createElement('label');
-        label.htmlFor = `page-${i}`;
-        label.classList.add('btn', 'btn-outline-warning', 'mx-1');
-        label.textContent = i;
+    // Límite de páginas visibles
+    const rangoPagina = 2; // Cuántas páginas mostrar a la izquierda y a la derecha de la actual
+    let start = Math.max(1, paginaActual - rangoPagina);
+    let end = Math.min(totalPaginas, paginaActual + rangoPagina);
 
+    // Si estamos cerca del principio, mostrar la primera página
+    if (paginaActual > rangoPagina + 1) {
+        const botonPrimera = document.createElement('button');
+        botonPrimera.classList.add('btn', 'btn-outline-warning', 'm-1');
+        botonPrimera.textContent = '<<';
+        botonPrimera.addEventListener('click', () => {
+            paginaActual = 1;
+            mostrarProductosPorPagina();
+            crearPaginacion();
+        });
+        paginacionRow.appendChild(botonPrimera);
+    }
+
+    // Crear los botones de las páginas dentro del rango
+    for (let i = start; i <= end; i++) {
+        const botonPagina = document.createElement('button');
+        botonPagina.classList.add('btn', 'btn-outline-warning', 'm-1');
+        botonPagina.textContent = i;
+
+        // Marcar la página actual
         if (i === paginaActual) {
-            boton.checked = true;
+            botonPagina.classList.add('active');
         }
 
-        // Agregar evento para cambiar de página
-        boton.addEventListener('change', () => {
+        botonPagina.addEventListener('click', () => {
             paginaActual = i;
             mostrarProductosPorPagina();
+            crearPaginacion();
         });
 
-        paginacionContainer.appendChild(boton);
-        paginacionContainer.appendChild(label);
+        paginacionRow.appendChild(botonPagina);
     }
+
+    // Si estamos cerca del final, mostrar la última página
+    if (paginaActual < totalPaginas - rangoPagina) {
+        const botonUltima = document.createElement('button');
+        botonUltima.classList.add('btn', 'btn-outline-warning', 'm-1');
+        botonUltima.textContent = '>>';
+        botonUltima.addEventListener('click', () => {
+            paginaActual = totalPaginas;
+            mostrarProductosPorPagina();
+            crearPaginacion();
+        });
+        paginacionRow.appendChild(botonUltima);
+    }
+
+    // Agregar los controles de paginación al contenedor
+    paginacionContainer.appendChild(paginacionRow);
 }
 
 // Función para agregar eventos a los botones de "Agregar al carrito"
@@ -256,7 +286,7 @@ function mostrarProductosPorPaginaCategoria() {
 
     productosPagina.forEach(element => {
         productosCategoriaContainer.innerHTML += `
-            <div class="col">
+            <div class="col-sm-12 col-md-6 col-lg-4">
                 <div class="card h-100">
                     <img src="../back/vistas/img/${element.Imagen}" class="card-img-top" alt="${element.Nombre}" />
                     <div class="card-body">
@@ -279,16 +309,40 @@ function mostrarProductosPorPaginaCategoria() {
     agregarEventosModal();
 }
 
-// Función para crear los controles de paginación
+// Función para crear los controles de paginación por categoría con un rango dinámico
 function crearPaginacionCategoria() {
     const paginacionCategoriaContainer = document.getElementById('paginacionCategoriaContainer');
-    paginacionCategoriaContainer.innerHTML = '';
+    paginacionCategoriaContainer.innerHTML = ''; // Limpiar la paginación anterior
 
-    for (let i = 1; i <= totalPaginasCategoria; i++) {
+    // Crear el contenedor de paginación
+    const paginacionRow = document.createElement('div');
+    paginacionRow.classList.add('d-flex', 'justify-content-center', 'flex-wrap');
+
+    // Límite de páginas visibles
+    const rangoPagina = 2; // Cuántas páginas mostrar a la izquierda y a la derecha de la actual
+    let start = Math.max(1, paginaActualCategoria - rangoPagina);
+    let end = Math.min(totalPaginasCategoria, paginaActualCategoria + rangoPagina);
+
+    // Si estamos cerca del principio, mostrar la primera página
+    if (paginaActualCategoria > rangoPagina + 1) {
+        const botonPrimera = document.createElement('button');
+        botonPrimera.classList.add('btn', 'btn-outline-warning', 'm-1');
+        botonPrimera.textContent = '<<';
+        botonPrimera.addEventListener('click', () => {
+            paginaActualCategoria = 1;
+            mostrarProductosPorPaginaCategoria();
+            crearPaginacionCategoria();
+        });
+        paginacionRow.appendChild(botonPrimera);
+    }
+
+    // Crear los botones de las páginas dentro del rango
+    for (let i = start; i <= end; i++) {
         const botonPagina = document.createElement('button');
         botonPagina.classList.add('btn', 'btn-outline-warning', 'm-1');
         botonPagina.textContent = i;
 
+        // Marcar la página actual
         if (i === paginaActualCategoria) {
             botonPagina.classList.add('active');
         }
@@ -299,8 +353,24 @@ function crearPaginacionCategoria() {
             crearPaginacionCategoria();
         });
 
-        paginacionCategoriaContainer.appendChild(botonPagina);
+        paginacionRow.appendChild(botonPagina);
     }
+
+    // Si estamos cerca del final, mostrar la última página
+    if (paginaActualCategoria < totalPaginasCategoria - rangoPagina) {
+        const botonUltima = document.createElement('button');
+        botonUltima.classList.add('btn', 'btn-outline-warning', 'm-1');
+        botonUltima.textContent = '>>';
+        botonUltima.addEventListener('click', () => {
+            paginaActualCategoria = totalPaginasCategoria;
+            mostrarProductosPorPaginaCategoria();
+            crearPaginacionCategoria();
+        });
+        paginacionRow.appendChild(botonUltima);
+    }
+
+    // Agregar los controles de paginación al contenedor
+    paginacionCategoriaContainer.appendChild(paginacionRow);
 }
 
 function mostrarAlerta(mensaje, tipo = 'success') {
