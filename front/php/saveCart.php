@@ -57,10 +57,11 @@ try {
 
     // Insertar los productos actualizados en la tabla AGREGA
     foreach ($carrito as $producto) {
-        $queryAgregarProducto = "INSERT INTO AGREGA (IdCarritoCE, ISBNCE, Fecha, Hora) VALUES (:carritoId, :isbn, CURDATE(), CURTIME())";
+        $queryAgregarProducto = "INSERT INTO AGREGA (IdCarritoCE, ISBNCE, cantidad, Fecha, Hora) VALUES (:carritoId, :isbn, :cantidad, CURDATE(), CURTIME())";
         $stmtAgregarProducto = $conexion->prepare($queryAgregarProducto);
         $stmtAgregarProducto->bindParam(':carritoId', $carritoId);
         $stmtAgregarProducto->bindParam(':isbn', $producto['isbn']);
+        $stmtAgregarProducto->bindParam(':cantidad', $producto['cantidad']);
         $stmtAgregarProducto->execute();
     }
 

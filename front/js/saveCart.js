@@ -23,7 +23,8 @@ document.addEventListener('DOMContentLoaded', function () {
         // Configurar los datos a enviar
         const datosAEnviar = {
             email: datos.emailUser,
-            carrito: datos.carrito
+            carrito: datos.carrito,
+            cantidad: datos.cantidad
         };
 
         // Enviar los datos al PHP usando fetch

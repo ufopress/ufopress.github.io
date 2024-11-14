@@ -10,9 +10,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 localStorage.removeItem('nombreUsuario');
                 localStorage.removeItem('tipoUsuario');
                 localStorage.removeItem('emailUser');
+                localStorage.removeItem('carrito');
                 
                 // Verificar nuevamente el estado del usuario para actualizar la interfaz
                 verificarUsuario(); // Llamada a la función global
+                actualizarContadorCarrito();
             }
         });
     }
