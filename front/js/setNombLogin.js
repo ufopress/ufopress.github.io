@@ -28,6 +28,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 console.log("Tipo guardado:", localStorage.getItem("tipoUsuario"));
                 
                 actualizarContadorCarrito();
+                window.location.href = "index.html";
+                
             } else {
                 mostrarAlerta('Credenciales incorrectas: ', 'error');
             }

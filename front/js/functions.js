@@ -286,7 +286,7 @@ function crearPaginacionCategoria() {
 
     for (let i = 1; i <= totalPaginasCategoria; i++) {
         const botonPagina = document.createElement('button');
-        botonPagina.classList.add('btn', 'btn-outline-secondary', 'm-1');
+        botonPagina.classList.add('btn', 'btn-outline-warning', 'm-1');
         botonPagina.textContent = i;
 
         if (i === paginaActualCategoria) {

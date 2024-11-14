@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Crear botones de paginación
         for (let i = 1; i <= totalPaginas; i++) {
             const botonPagina = document.createElement('button');
-            botonPagina.classList.add('btn', 'btn-sm', 'btn-outline-warning', 'me-1');
+            botonPagina.classList.add('btn', 'btn-outline-warning', 'm-1');
             botonPagina.textContent = i;
 
             // Agregar clase activa a la página actual

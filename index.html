@@ -52,8 +52,6 @@
                   data-bs-target="#mostrarProductosCategoriaModal">Ciencia Ficción</a></li>
               <li><a class="dropdown-item no-link" data-category="Clásicos" data-bs-toggle="modal"
                   data-bs-target="#mostrarProductosCategoriaModal">Clásicos</a></li>
-              <li><a class="dropdown-item no-link" data-category="Cómics" data-bs-toggle="modal"
-                  data-bs-target="#mostrarProductosCategoriaModal">Cómics</a></li>
               <li><a class="dropdown-item no-link" data-category="Deportes" data-bs-toggle="modal"
                   data-bs-target="#mostrarProductosCategoriaModal">Deportes</a></li>
               <li><a class="dropdown-item no-link" data-category="Drama" data-bs-toggle="modal"
@@ -157,13 +155,6 @@
         </button>
       </div>
     </div>
-  </div>
-
-  <div class="container mb-5 mt-5">
-    <div class="row row-cols-1 row-cols-3 g-4 text-center" id="productList">
-      <!-- Aquí se cargarán los productos dinámicamente -->
-    </div>
-    <div id="paginationContainer" class="d-flex justify-content-center mt-3"></div>
   </div>
 
   <!-- Modal -->
@@ -637,11 +628,18 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" id="vaciarCarrito">Vaciar Carrito</button>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
           <button type="button" class="btn btn-warning" id="irConfirmarPago">Confirmar y Pagar</button>
         </div>
       </div>
     </div>
+  </div>
+
+  <div class="container mb-5 mt-5">
+    <div class="row row-cols-1 row-cols-3 g-4 text-center" id="productList">
+      <!-- Aquí se cargarán los productos dinámicamente -->
+    </div>
+    <div id="paginationContainer" class="d-flex justify-content-center mt-3"></div>
   </div>
 
   <script src="./front/js/register.js"></script>

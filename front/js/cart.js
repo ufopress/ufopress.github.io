@@ -73,8 +73,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     <td>$U${productoInfo.precio}</td>
                     <td>
                         <button class="btn btn-danger btn-sm" onclick="eliminarProductoDelCarrito(${productoInfo.index})">Eliminar</button>
-                        <button class="btn btn-secondary btn-sm" onclick="disminuirCantidad(${productoInfo.index})">-</button>
-                        <button class="btn btn-secondary btn-sm" onclick="aumentarCantidad(${productoInfo.index})">+</button>
+                        <button class="btn btn-warning btn-sm" onclick="disminuirCantidad(${productoInfo.index})">-</button>
+                        <button class="btn btn-warning btn-sm" onclick="aumentarCantidad(${productoInfo.index})">+</button>
                     </td>
                 </tr>
                 `;
