@@ -100,24 +100,55 @@ document.addEventListener('DOMContentLoaded', function () {
         paginationContainer.innerHTML = ''; // Limpia la paginación anterior
         const totalPaginas = Math.ceil(productos.length / itemsPorPagina);
 
-        // Crear botones de paginación
-        for (let i = 1; i <= totalPaginas; i++) {
+        // Límite de páginas visibles
+        const rangoPagina = 2; // Cuántas páginas mostrar a la izquierda y a la derecha de la actual
+        let start = Math.max(1, paginaActual - rangoPagina);
+        let end = Math.min(totalPaginas, paginaActual + rangoPagina);
+
+        // Si estamos cerca del principio, mostrar la primera página
+        if (paginaActual > rangoPagina + 1) {
+            const botonPrimera = document.createElement('button');
+            botonPrimera.classList.add('btn', 'btn-outline-secondary', 'm-1', 'bg-light');
+            botonPrimera.textContent = '<<';
+            botonPrimera.addEventListener('click', () => {
+                paginaActual = 1;
+                actualizarVista();
+                actualizarPaginacion();
+            });
+            paginationContainer.appendChild(botonPrimera);
+        }
+
+        // Crear los botones de las páginas dentro del rango
+        for (let i = start; i <= end; i++) {
             const botonPagina = document.createElement('button');
-            botonPagina.classList.add('btn', 'btn-outline-warning', 'm-1');
+            botonPagina.classList.add('btn', 'btn-outline-warning', 'm-1', 'bg-light');
             botonPagina.textContent = i;
 
-            // Agregar clase activa a la página actual
+            // Marcar la página actual
             if (i === paginaActual) {
                 botonPagina.classList.add('active');
             }
 
-            botonPagina.addEventListener('click', function () {
+            botonPagina.addEventListener('click', () => {
                 paginaActual = i;
                 actualizarVista();
                 actualizarPaginacion();
             });
 
             paginationContainer.appendChild(botonPagina);
+        }
+
+        // Si estamos cerca del final, mostrar la última página
+        if (paginaActual < totalPaginas - rangoPagina) {
+            const botonUltima = document.createElement('button');
+            botonUltima.classList.add('btn', 'btn-outline-warning', 'm-1', 'bg-light');
+            botonUltima.textContent = '>>';
+            botonUltima.addEventListener('click', () => {
+                paginaActual = totalPaginas;
+                actualizarVista();
+                actualizarPaginacion();
+            });
+            paginationContainer.appendChild(botonUltima);
         }
     }
 });

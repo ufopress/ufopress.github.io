@@ -286,7 +286,7 @@ function mostrarProductosPorPaginaCategoria() {
 
     productosPagina.forEach(element => {
         productosCategoriaContainer.innerHTML += `
-            <div class="col-sm-12 col-md-6 col-lg-4">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-4">
                 <div class="card h-100">
                     <img src="../back/vistas/img/${element.Imagen}" class="card-img-top" alt="${element.Nombre}" />
                     <div class="card-body">
@@ -305,6 +305,7 @@ function mostrarProductosPorPaginaCategoria() {
             </div>
         `;
     });
+
     agregarEventosCarrito();
     agregarEventosModal();
 }
