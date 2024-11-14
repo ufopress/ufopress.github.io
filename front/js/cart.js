@@ -1,4 +1,12 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // Función para obtener el total de ítems en el carrito
+    function actualizarContadorCarrito() {
+        let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+        // Sumar todas las cantidades, convirtiendo cada una a número
+        let totalItems = carrito.reduce((acc, item) => acc + Number(item.cantidad), 0);
+        document.getElementById('cart-count').textContent = totalItems;
+    }
+
     // Llama a la función para mostrar el total de ítems en el carrito cuando la página cargue
     actualizarContadorCarrito();
 
@@ -101,6 +109,30 @@ document.addEventListener('DOMContentLoaded', function () {
     // Mostrar el carrito cuando se abre el modal
     document.getElementById('cartModal').addEventListener('show.bs.modal', mostrarCarrito);
 
+    // Función para agregar productos al carrito
+    function agregarProductoAlCarrito(isbn, nombre, precio) {
+        let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+        // Verificar si el producto ya está en el carrito
+        const productoExistente = carrito.find(producto => producto.isbn === isbn);
+
+        if (productoExistente) {
+            // Incrementar la cantidad del producto si ya está en el carrito
+            productoExistente.cantidad += 1;
+        } else {
+            // Agregar el nuevo producto al carrito
+            carrito.push({ isbn, nombre, precio, cantidad: 1 });
+        }
+
+        // Guardar el carrito actualizado en localStorage
+        localStorage.setItem('carrito', JSON.stringify(carrito));
+
+        // Actualizar el contador del carrito
+        actualizarContadorCarrito();
+
+        alert('Producto agregado al carrito!');
+    }
+
     // Función para vaciar el carrito
     document.getElementById('vaciarCarrito').addEventListener('click', function () {
         localStorage.removeItem('carrito');
@@ -121,9 +153,8 @@ document.addEventListener('DOMContentLoaded', function () {
     // Función para disminuir la cantidad de un producto
     window.disminuirCantidad = function (index) {
         let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-        // Convertir a número antes de restar
-        if (parseInt(carrito[index].cantidad) > 1) {
-            carrito[index].cantidad = parseInt(carrito[index].cantidad) - 1;
+        if (carrito[index].cantidad > 1) {
+            carrito[index].cantidad -= 1;
         } else {
             carrito.splice(index, 1); // Eliminar el producto si la cantidad es 1
         }
@@ -135,11 +166,10 @@ document.addEventListener('DOMContentLoaded', function () {
     // Función para aumentar la cantidad de un producto
     window.aumentarCantidad = function (index) {
         let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-        // Convertir a número antes de sumar
-        carrito[index].cantidad = parseInt(carrito[index].cantidad) + 1;
+        // Asegurarse de que la cantidad sea un número antes de sumarle 1
+        carrito[index].cantidad = Number(carrito[index].cantidad) + 1;
         localStorage.setItem('carrito', JSON.stringify(carrito));
         mostrarCarrito();
         actualizarContadorCarrito();
     };
-
 });

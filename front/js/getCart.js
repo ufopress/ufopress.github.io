@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const nombreUsuario = localStorage.getItem('nombreUsuario')
+    const nombreUsuario = localStorage.getItem('nombreUsuario');
     if (nombreUsuario) {
         // Obtener el email del localStorage
         const emailUser = localStorage.getItem('emailUser');
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             } else {
                 let carritoArray = [];
-    
+
                 // Recorrer el array de productos en el carrito
                 data.carrito.forEach(item => {
                     // Crear el objeto historieta para cada producto
@@ -26,24 +26,23 @@ document.addEventListener('DOMContentLoaded', function() {
                         isbn: item.isbn,      // Obtener ISBN
                         cantidad: item.cantidad  // Obtener cantidad
                     };
-    
+
                     // Añadir el objeto historieta al array
                     carritoArray.push(historieta);
                 });
-    
+
                 // Guardar el array completo en localStorage como una cadena JSON
                 localStorage.setItem('carrito', JSON.stringify(carritoArray));
-    
+
                 // Verificar si los datos fueron guardados correctamente
                 console.log('Carrito guardado:', carritoArray);
-    
+
+                // Llamar a la función para actualizar el contador después de guardar en el localStorage
                 actualizarContadorCarrito();
             }
-            console.log(data);
         })
         .catch(error => {
             console.error('Error al cargar el carrito:', error);
         });
     }
-    
 });
