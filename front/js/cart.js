@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function () {
         localStorage.removeItem('carrito');
         mostrarCarrito();
         actualizarContadorCarrito();
-        alert('Carrito vaciado.');
+        mostrarAlerta('Carrito vaciado.');
     });
 
     // Función para eliminar un producto del carrito

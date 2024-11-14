@@ -35,10 +35,10 @@ function enviarDatosAlPHP() {
     .then(response => response.json()) // Aseguramos que la respuesta sea un JSON
     .then(data => {
         if (data.resultado) {
-            console.log('Carrito enviado con éxito:', data.mensaje);
+            mostrarAlerta('Carrito actualizado con éxito!', 'success');
         } else {
-            console.error('Error al enviar el carrito:', data.mensaje);
-        }
+            mostrarAlerta('Error al enviar el carrito: ' + data.mensaje, 'error');
+        }        
     })
     .catch(error => {
         console.error('Error en la solicitud fetch:', error);

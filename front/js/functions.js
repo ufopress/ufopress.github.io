@@ -182,7 +182,7 @@ function agregarProductoAlCarrito(isbn, nombre, precio) {
     enviarDatosAlPHP();
     actualizarContadorCarrito();
 
-    alert('Producto agregado al carrito!');
+    mostrarAlerta('Carrito actualizado con éxito!', 'success');
 }
 
 function obtenerProductoPorISBN(isbn) {
@@ -303,6 +303,14 @@ function crearPaginacionCategoria() {
     }
 }
 
-
-
-
+function mostrarAlerta(mensaje, tipo = 'success') {
+    Swal.fire({
+        icon: tipo, // 'success' para éxito, 'error' para errores, etc.
+        title: mensaje,
+        showConfirmButton: false,
+        timer: 1500, // Tiempo en milisegundos antes de que desaparezca
+        timerProgressBar: true,
+        position: 'center', // Opcional: 'center', 'top-end', 'bottom-end', etc.
+        toast: false, // Si quieres una alerta en formato de toast, coloca esto en true
+    });
+}

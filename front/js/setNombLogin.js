@@ -28,14 +28,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 console.log("Tipo guardado:", localStorage.getItem("tipoUsuario"));
                 
                 actualizarContadorCarrito();
-
-                if (data.tipo === "ADM" || data.tipo === "VEN") {
-                    window.location.href = "index.html";
-                } else if (data.tipo === "CLI") {
-                    window.location.href = "index.html";
-                }
             } else {
-                alert("Credenciales incorrectas");
+                mostrarAlerta('Credenciales incorrectas: ', 'error');
             }
         })
         .catch(error => {

@@ -54,11 +54,11 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    alert('Reseña guardada exitosamente.');
+                    mostrarAlerta('Reseña guardada exitosamente!', 'success');
                     formResena.reset(); // Limpiar formulario
                     cargarResenas(); // Recargar lista de reseñas
                 } else {
-                    alert('Error al guardar reseña.');
+                    mostrarAlerta('Error al guardar reseña: ', 'error');
                 }
             })
             .catch(error => console.error('Error:', error));
@@ -80,10 +80,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
-                        alert('Reseña actualizada correctamente.');
+                        mostrarAlerta('Reseña actualizada correctamente!', 'success');
                         cargarResenas(); // Recargar lista de reseñas después de actualizar
                     } else {
-                        alert('Error al actualizar la reseña: ' + data.message);
+                        mostrarAlerta('Error al actualizar la reseña', 'error');
                     }
                 })
                 .catch(error => console.error('Error al actualizar la reseña:', error));
@@ -104,10 +104,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
-                        alert('Reseña eliminada.');
+                        mostrarAlerta('Reseña eliminada correctamente!', 'success');
                         cargarResenas(); // Recargar lista de reseñas
                     } else {
-                        alert('Error al eliminar reseña.');
+                        mostrarAlerta('Error al eliminar reseña', 'error');
                     }
                 })
                 .catch(error => console.error('Error:', error));

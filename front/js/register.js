@@ -11,21 +11,21 @@ document.getElementById('formRegister').addEventListener('submit', function (eve
 
     // Validación de campos
     if (!nombreUser || !email || !contrasenia || !nroTelefono || !nacionalidad || !anioNacimiento) {
-        alert('Todos los campos son obligatorios. Por favor, rellene todos los campos.');
+        mostrarAlerta('Todos los campos son obligatorios. Por favor, rellene todos los campos', 'error');
         return;
     }
 
     // Validación de formato de email
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailPattern.test(email)) {
-        alert('Por favor, ingrese un email válido.');
+        mostrarAlerta('Por favor, ingrese un email válido', 'error');
         return;
     }
 
     // Validación de número de teléfono (solo números)
     const phonePattern = /^[0-9]+$/;
     if (!phonePattern.test(nroTelefono)) {
-        alert('El número de teléfono debe contener solo números.');
+        mostrarAlerta('El número de teléfono debe contener solo números', 'error');
         return;
     }
 
@@ -36,17 +36,22 @@ document.getElementById('formRegister').addEventListener('submit', function (eve
         method: 'POST',
         body: formData
     })
-        .then(response => response.json())
-        .then(data => {
-            if (data.resultado) {
-                alert('¡Registro exitoso!');
-                window.location.href = 'index.html'; // Redirigir a index.html
-            } else {
-                alert(data.mensaje); // Mostrar mensaje de error desde el servidor
-            }
-        })
-        .catch(error => {
-            console.error('Error en la solicitud:', error);
-            alert('Hubo un problema al procesar el registro.');
-        });
+    .then(response => response.json())
+    .then(data => {
+        if (data.resultado) {
+            // Mostrar alerta de éxito antes de redirigir
+            mostrarAlerta('¡Registro exitoso!', 'success');
+            
+            // Redirigir después de unos segundos
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 3000); // 3000 milisegundos = 3 segundos
+        } else {
+            mostrarAlerta('Error al enviar el carrito: ' + data.mensaje, 'error');
+        }  
+    })
+    .catch(error => {
+        console.error('Error en la solicitud:', error);
+        mostrarAlerta('Hubo un problema al procesar el registro.', 'error');
+    });
 });

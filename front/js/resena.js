@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const contenido = document.getElementById('contenido').value.trim();
 
         if (nombreUser === '' || contenido === '') {
-            alert('Por favor, completa todos los campos o inicia sesión.');
+            mostrarAlerta('Por favor, completa todos los campos o inicia sesión.', 'error');
             return;
         }
 
@@ -42,11 +42,11 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                alert('Reseña agregada exitosamente.');
+                mostrarAlerta('Reseña agregada exitosamente', 'success');
                 formResena.reset();
                 $('#modalResena').modal('hide');
             } else {
-                alert('Error al agregar reseña.');
+                mostrarAlerta('Error al agregar reseña', 'error');
             }
         })
         .catch(error => console.error('Error:', error));
