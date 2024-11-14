@@ -2,8 +2,9 @@
 include "conectar.php";
 header('Content-Type: application/json');
 
-// Obtener el email del usuario desde la solicitud POST
-$email = isset($_POST['email']) ? $_POST['email'] : null; // Usar POST para recibir el email
+// Obtener el contenido JSON del cuerpo de la solicitud
+$data = json_decode(file_get_contents("php://input"), true);
+$email = isset($data['email']) ? $data['email'] : null; // Extraer el email del JSON recibido
 
 // Validar si se ha recibido el email
 if (!$email) {

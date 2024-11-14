@@ -148,7 +148,6 @@ function actualizarContadorCarrito() {
 
     if (!email) {
         // Si no se encuentra el email, no hacer la solicitud
-        console.log("No se encontró el email del usuario.");
         return;
     }
 
