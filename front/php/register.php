@@ -29,9 +29,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bindParam(':anioNacimiento', $anioNacimiento);
 
         if ($stmt->execute()) {
-            echo "Registro exitoso!";
+            echo json_encode(['resultado' => true, 'mensaje' => 'Registro exitoso!']);
         } else {
-            echo "Error al registrar el usuario.";
+            echo json_encode(['resultado' => false, 'mensaje' => 'Error al registrar el usuario.']);
         }
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();

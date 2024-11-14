@@ -17,8 +17,6 @@ function enviarDatosAlPHP() {
     
     if (datos === null) return;
 
-    else console.log(datos);
-
     // Configurar los datos a enviar
     const datosAEnviar = {
         email: datos.emailUser,
