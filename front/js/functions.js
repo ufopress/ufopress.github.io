@@ -161,56 +161,29 @@ function agregarEventosCarrito() {
     });
 }
 
-function agregarProductoAlCarrito(isbn) {
+// Función para agregar productos al carrito
+function agregarProductoAlCarrito(isbn, nombre, precio) {
     let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
-    // Hacer una consulta al servidor para obtener nombre y precio por ISBN
-    fetch(`./front/php/getProductByISBN.php`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ isbn: isbn })
-    })
-        .then(response => {
-            // Verificar si la respuesta es JSON válida
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            if (data.resultado === false) {
-                alert(data.mensaje || 'Producto no encontrado.');
-                return;
-            }
+    // Verificar si el producto ya está en el carrito
+    const productoExistente = carrito.find(producto => producto.isbn === isbn);
 
-            const { Nombre, Precio } = data;
+    if (productoExistente) {
+        // Incrementar la cantidad del producto si ya está en el carrito
+        productoExistente.cantidad += 1;
+    } else {
+        // Agregar el nuevo producto al carrito
+        carrito.push({ isbn, nombre, precio, cantidad: 1 });
+    }
 
-            // Verificar si el producto ya está en el carrito
-            const productoExistente = carrito.find(producto => producto.isbn === isbn);
+    // Guardar el carrito actualizado en localStorage
+    localStorage.setItem('carrito', JSON.stringify(carrito));
 
-            if (productoExistente) {
-                // Incrementar la cantidad del producto si ya está en el carrito
-                productoExistente.cantidad += 1;
-            } else {
-                // Agregar el nuevo producto al carrito
-                carrito.push({ isbn, Nombre, precio: Precio, cantidad: 1 });
-            }
+    // Actualizar el contador del carrito
+    enviarDatosAlPHP();
+    actualizarContadorCarrito();
 
-            // Guardar el carrito actualizado en localStorage
-            localStorage.setItem('carrito', JSON.stringify(carrito));
-
-            // Actualizar el contador del carrito
-            obtenerDatosCarritoYCliente();
-            actualizarContadorCarrito();
-
-            alert('Producto agregado al carrito!');
-        })
-        .catch(error => {
-            console.error('Error al agregar el producto al carrito:', error);
-            alert('Error al agregar el producto al carrito.');
-        });
+    alert('Producto agregado al carrito!');
 }
 
 function obtenerProductoPorISBN(isbn) {

@@ -101,30 +101,6 @@ document.addEventListener('DOMContentLoaded', function () {
     // Mostrar el carrito cuando se abre el modal
     document.getElementById('cartModal').addEventListener('show.bs.modal', mostrarCarrito);
 
-    // Función para agregar productos al carrito
-    function agregarProductoAlCarrito(isbn, nombre, precio) {
-        let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-
-        // Verificar si el producto ya está en el carrito
-        const productoExistente = carrito.find(producto => producto.isbn === isbn);
-
-        if (productoExistente) {
-            // Incrementar la cantidad del producto si ya está en el carrito
-            productoExistente.cantidad += 1;
-        } else {
-            // Agregar el nuevo producto al carrito
-            carrito.push({ isbn, nombre, precio, cantidad: 1 });
-        }
-
-        // Guardar el carrito actualizado en localStorage
-        localStorage.setItem('carrito', JSON.stringify(carrito));
-
-        // Actualizar el contador del carrito
-        actualizarContadorCarrito();
-
-        alert('Producto agregado al carrito!');
-    }
-
     // Función para vaciar el carrito
     document.getElementById('vaciarCarrito').addEventListener('click', function () {
         localStorage.removeItem('carrito');
@@ -139,6 +115,7 @@ document.addEventListener('DOMContentLoaded', function () {
         carrito.splice(index, 1); // Eliminar producto
         localStorage.setItem('carrito', JSON.stringify(carrito));
         mostrarCarrito();
+        enviarDatosAlPHP();
         actualizarContadorCarrito();
     };
 
@@ -152,6 +129,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         localStorage.setItem('carrito', JSON.stringify(carrito));
         mostrarCarrito();
+        enviarDatosAlPHP();
         actualizarContadorCarrito();
     };
 
@@ -162,6 +140,7 @@ document.addEventListener('DOMContentLoaded', function () {
         carrito[index].cantidad = Number(carrito[index].cantidad) + 1;
         localStorage.setItem('carrito', JSON.stringify(carrito));
         mostrarCarrito();
+        enviarDatosAlPHP();
         actualizarContadorCarrito();
     };
 });
