@@ -121,8 +121,9 @@ document.addEventListener('DOMContentLoaded', function () {
     // Función para disminuir la cantidad de un producto
     window.disminuirCantidad = function (index) {
         let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-        if (carrito[index].cantidad > 1) {
-            carrito[index].cantidad -= 1;
+        // Convertir a número antes de restar
+        if (parseInt(carrito[index].cantidad) > 1) {
+            carrito[index].cantidad = parseInt(carrito[index].cantidad) - 1;
         } else {
             carrito.splice(index, 1); // Eliminar el producto si la cantidad es 1
         }
@@ -134,9 +135,11 @@ document.addEventListener('DOMContentLoaded', function () {
     // Función para aumentar la cantidad de un producto
     window.aumentarCantidad = function (index) {
         let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-        carrito[index].cantidad += 1;
+        // Convertir a número antes de sumar
+        carrito[index].cantidad = parseInt(carrito[index].cantidad) + 1;
         localStorage.setItem('carrito', JSON.stringify(carrito));
         mostrarCarrito();
         actualizarContadorCarrito();
     };
+
 });

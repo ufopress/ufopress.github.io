@@ -4,7 +4,7 @@ header('Content-Type: application/json');
 
 // Obtener los datos JSON enviados por el cliente
 $input = json_decode(file_get_contents('php://input'), true);
-$email = "briandanielm@outlook.es";
+$email = $input['email'] ?? '';
 
 // Validar si se ha recibido el email
 if (!$email) {

@@ -3,7 +3,7 @@ include "conectar.php";
 header('Content-Type: application/json');
 
 // Obtener el email del usuario desde la solicitud POST
-$email = "briandanielm@outlook.es";
+$email = isset($_POST['email']) ? $_POST['email'] : null; // Usar POST para recibir el email
 
 // Validar si se ha recibido el email
 if (!$email) {
