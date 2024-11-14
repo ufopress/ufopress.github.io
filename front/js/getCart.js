@@ -33,12 +33,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 // Guardar el array completo en localStorage como una cadena JSON
                 localStorage.setItem('carrito', JSON.stringify(carritoArray));
+                actualizarContadorCarrito();
 
                 // Verificar si los datos fueron guardados correctamente
                 console.log('Carrito guardado:', carritoArray);
-
-                // Llamar a la función para actualizar el contador después de guardar en el localStorage
-                actualizarContadorCarrito();
             }
         })
         .catch(error => {

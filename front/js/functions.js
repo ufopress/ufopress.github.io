@@ -36,6 +36,13 @@ function verificarUsuario() {
     }
 }
 
+function actualizarContadorCarrito() {// Función para obtener el total de ítems en el carrito
+    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    // Sumar todas las cantidades, convirtiendo cada una a número
+    let totalItems = carrito.reduce((acc, item) => acc + Number(item.cantidad), 0);
+    document.getElementById('cart-count').textContent = totalItems;
+}
+
 // Variables globales para la paginación
 let productosPorPagina = 3;
 let paginaActual = 1;
@@ -142,12 +149,6 @@ function crearPaginacion() {
     }
 }
 
-function actualizarContadorCarrito() {
-    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-    let totalItems = carrito.reduce((acc, item) => acc + item.cantidad, 0);
-    document.getElementById('cart-count').textContent = totalItems;
-}
-
 // Función para agregar eventos a los botones de "Agregar al carrito"
 function agregarEventosCarrito() {
     const botonesAgregarCarrito = document.querySelectorAll('.agregar-carrito');
@@ -248,28 +249,28 @@ function cargarProductosPorCategoria(categoria) {
         },
         body: JSON.stringify({ categoria: categoria })
     })
-    .then(response => response.json())
-    .then(data => {
-        const productosCategoriaContainer = document.getElementById('productosCategoriaContainer');
-        const paginacionCategoriaContainer = document.getElementById('paginacionCategoriaContainer');
-        
-        productosCategoriaContainer.innerHTML = ''; // Limpiar el contenido anterior
-        paginacionCategoriaContainer.innerHTML = ''; // Limpiar la paginación anterior
+        .then(response => response.json())
+        .then(data => {
+            const productosCategoriaContainer = document.getElementById('productosCategoriaContainer');
+            const paginacionCategoriaContainer = document.getElementById('paginacionCategoriaContainer');
 
-        if (data.length > 0) {
-            // Guardar productos y calcular el total de páginas
-            productosCategoria = data;
-            totalPaginasCategoria = Math.ceil(productosCategoria.length / productosPorPaginaCategoria);
-            paginaActualCategoria = 1;
-            
-            // Mostrar los productos de la primera página y crear paginación
-            mostrarProductosPorPaginaCategoria();
-            crearPaginacionCategoria();
-        } else {
-            productosCategoriaContainer.innerHTML = '<p>No se encontraron productos para esta categoría.</p>';
-        }
-    })
-    .catch(error => console.error('Error al cargar productos por categoría:', error));
+            productosCategoriaContainer.innerHTML = ''; // Limpiar el contenido anterior
+            paginacionCategoriaContainer.innerHTML = ''; // Limpiar la paginación anterior
+
+            if (data.length > 0) {
+                // Guardar productos y calcular el total de páginas
+                productosCategoria = data;
+                totalPaginasCategoria = Math.ceil(productosCategoria.length / productosPorPaginaCategoria);
+                paginaActualCategoria = 1;
+
+                // Mostrar los productos de la primera página y crear paginación
+                mostrarProductosPorPaginaCategoria();
+                crearPaginacionCategoria();
+            } else {
+                productosCategoriaContainer.innerHTML = '<p>No se encontraron productos para esta categoría.</p>';
+            }
+        })
+        .catch(error => console.error('Error al cargar productos por categoría:', error));
 }
 
 // Función para mostrar los productos de la página actual en el modal
@@ -315,7 +316,7 @@ function crearPaginacionCategoria() {
         const botonPagina = document.createElement('button');
         botonPagina.classList.add('btn', 'btn-outline-secondary', 'm-1');
         botonPagina.textContent = i;
-        
+
         if (i === paginaActualCategoria) {
             botonPagina.classList.add('active');
         }

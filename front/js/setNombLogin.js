@@ -27,6 +27,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 console.log("Usuario guardado:", localStorage.getItem("nombreUsuario"));
                 console.log("Tipo guardado:", localStorage.getItem("tipoUsuario"));
                 
+                mostrarCarrito();
+                actualizarContadorCarrito();
+
                 if (data.tipo === "ADM" || data.tipo === "VEN") {
                     window.location.href = "index.html";
                 } else if (data.tipo === "CLI") {

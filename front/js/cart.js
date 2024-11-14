@@ -1,12 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Función para obtener el total de ítems en el carrito
-    function actualizarContadorCarrito() {
-        let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-        // Sumar todas las cantidades, convirtiendo cada una a número
-        let totalItems = carrito.reduce((acc, item) => acc + Number(item.cantidad), 0);
-        document.getElementById('cart-count').textContent = totalItems;
-    }
-
     // Llama a la función para mostrar el total de ítems en el carrito cuando la página cargue
     actualizarContadorCarrito();
 
