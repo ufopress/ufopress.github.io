@@ -42,9 +42,12 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                mostrarAlerta('Reseña agregada exitosamente', 'success');
-                formResena.reset();
-                $('#modalResena').modal('hide');
+                mostrarAlerta('Reseña agregada exitosamente!', 'success');
+            
+                // Redirigir después de unos segundos
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 3000); // 3000 milisegundos = 3 segundos
             } else {
                 mostrarAlerta('Error al agregar reseña', 'error');
             }
