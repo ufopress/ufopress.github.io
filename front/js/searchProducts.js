@@ -5,7 +5,12 @@ document.addEventListener('DOMContentLoaded', function () {
     const productosDestacados = document.getElementById('productosDestacados');
     const reseñasContainer = document.getElementById('reseñasContainer');
     const informacionSobreFamosos = document.getElementById('informacionSobreFamosos');
-    
+    const paginationContainer = document.getElementById('paginationContainer'); // Contenedor para los botones de paginación
+
+    const itemsPorPagina = 3;
+    let paginaActual = 1;
+    let productos = [];
+
     // Escuchar el evento de entrada en el campo de búsqueda
     searchInput.addEventListener('input', function () {
         let producto = searchInput.value;
@@ -13,14 +18,12 @@ document.addEventListener('DOMContentLoaded', function () {
         // Limpiar el contenido si el campo de búsqueda está vacío
         if (producto.trim() === '') {
             contenido.innerHTML = '';
-
-            // Mostrar el carrusel y los productos destacados nuevamente
             reseñasContainer.style.display = 'block';
             carrouselContainer.style.display = 'block';
             productosDestacados.style.display = 'block';
             informacionSobreFamosos.style.display = 'block';
-
-            return; // No continuar con el resto del código
+            paginationContainer.innerHTML = ''; // Limpia los botones de paginación
+            return;
         }
 
         // Ocultar el carrusel y los productos destacados cuando se realiza una búsqueda
@@ -38,19 +41,30 @@ document.addEventListener('DOMContentLoaded', function () {
         })
             .then(response => response.json())
             .then(data => {
-                // Limpiar el contenido anterior
-                contenido.innerHTML = ''; // Limpia el contenido anterior
+                productos = data;
+                paginaActual = 1; // Reinicia a la primera página en cada nueva búsqueda
+                actualizarVista();
+                actualizarPaginacion();
+            })
+            .catch(error => console.error('Error:', error));
+    });
 
-                // Verificar si hay productos en los resultados
-                if (data.length > 0) {
-                    contenido.innerHTML = ` 
-                <div class="text-center mb-4 w-100 container mt-5"> <!-- Div que ocupa el total del ancho -->
-                    <h2 class="text-center mb-4 destacado">Resultados de la búsqueda:</h2> <!-- Título centrado -->
-                </div>`;
+    function actualizarVista() {
+        contenido.innerHTML = ''; // Limpia el contenido anterior
 
-                data.forEach(element => {
-                    contenido.innerHTML += `
-                    <div class="col">
+        const inicio = (paginaActual - 1) * itemsPorPagina;
+        const fin = inicio + itemsPorPagina;
+        const productosPagina = productos.slice(inicio, fin);
+
+        if (productosPagina.length > 0) {
+            contenido.innerHTML = ` 
+            <div class="text-center mb-4 w-100 container mt-5">
+                <h2 class="text-center mb-4 destacado">Resultados de la búsqueda:</h2>
+            </div>`;
+
+            productosPagina.forEach(element => {
+                contenido.innerHTML += `
+                    <div class="col-4 mb-4">
                         <div class="card h-100">
                             <img src="../back/vistas/img/${element.Imagen}" class="card-img-top" alt="${element.Nombre}" />
                             <div class="card-body">
@@ -67,23 +81,43 @@ document.addEventListener('DOMContentLoaded', function () {
                             </div>
                         </div>
                     </div>`;
-                });
+            });
 
-                contenido.innerHTML += `
-                </div> <!-- row -->
-                </div> <!-- container -->
-                <br><br>`;
+            contenido.innerHTML += `</div><br><br>`;
 
-                // Agregar eventos de click a los botones de "Agregar al carrito"
-                agregarEventosCarrito();
-                agregarEventosModal();
-                } else {
-                    contenido.innerHTML = ` 
-                <div class="text-center mb-4 w-100 container mt-5"> <!-- Div que ocupa el total del ancho -->
-                    <h2 class="text-center mb-4 destacado">No hay historietas con ese nombre</h2> <!-- Título centrado -->
-                </div>`;
-                }
-            })
-            .catch(error => console.error('Error:', error));
-    });
+            // Agregar eventos de click a los botones de "Agregar al carrito"
+            agregarEventosCarrito();
+            agregarEventosModal();
+        } else {
+            contenido.innerHTML = ` 
+            <div class="text-center mb-4 w-100 container mt-5">
+                <h2 class="text-center mb-4 destacado">No hay historietas con ese nombre</h2>
+            </div>`;
+        }
+    }
+
+    function actualizarPaginacion() {
+        paginationContainer.innerHTML = ''; // Limpia la paginación anterior
+        const totalPaginas = Math.ceil(productos.length / itemsPorPagina);
+
+        // Crear botones de paginación
+        for (let i = 1; i <= totalPaginas; i++) {
+            const botonPagina = document.createElement('button');
+            botonPagina.classList.add('btn', 'btn-sm', 'btn-outline-warning', 'me-1');
+            botonPagina.textContent = i;
+
+            // Agregar clase activa a la página actual
+            if (i === paginaActual) {
+                botonPagina.classList.add('active');
+            }
+
+            botonPagina.addEventListener('click', function () {
+                paginaActual = i;
+                actualizarVista();
+                actualizarPaginacion();
+            });
+
+            paginationContainer.appendChild(botonPagina);
+        }
+    }
 });
