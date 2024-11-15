@@ -104,6 +104,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Función para vaciar el carrito
     document.getElementById('vaciarCarrito').addEventListener('click', function () {
         localStorage.removeItem('carrito');
+        obtenerIdCliente();
         mostrarCarrito();
         actualizarContadorCarrito();
         mostrarAlerta('Carrito vaciado.');

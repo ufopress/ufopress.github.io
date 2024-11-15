@@ -260,19 +260,19 @@ function obtenerIdCliente() {
         },
         body: JSON.stringify(datos)
     })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            console.log('ID del Cliente obtenido:', data.idCliente);
-            // Llamar a la función que obtiene el idCarrito con el idCliente
-            obtenerIdCarrito(data.idCliente);
-        } else {
-            console.error('Error al obtener el ID del cliente:', data.message);
-        }
-    })
-    .catch(error => {
-        console.error('Error en la solicitud:', error);
-    });
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Llamar a la función que obtiene el idCarrito con el idCliente
+                obtenerIdCarrito(data.idCliente);
+
+            } else {
+                console.error('Error al obtener el ID del cliente:', data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error en la solicitud:', error);
+        });
 }
 
 // Función para obtener idCarrito usando el idCliente
@@ -284,15 +284,34 @@ function obtenerIdCarrito(idCliente) {
         },
         body: JSON.stringify({ idCliente })
     })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            console.log("ID del Carrito obtenido:", data.idCarrito);
-        } else {
-            console.error("Error al obtener el idCarrito:", data.message);
-        }
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                vaciarCarrito(data.idCarrito);
+            } else {
+                console.error("Error al obtener el idCarrito:", data.message);
+            }
+        })
+        .catch(error => console.error("Error en la solicitud:", error));
+}
+
+// Función para vaciar el carrito usando el idCarrito
+function vaciarCarrito(idCarrito) {
+    fetch('./front/php/vaciarCarrito.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ idCarrito })
     })
-    .catch(error => console.error("Error en la solicitud:", error));
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+            } else {
+                console.error("Error al vaciar el carrito:", data.message);
+            }
+        })
+        .catch(error => console.error("Error en la solicitud:", error));
 }
 
 // Variables de paginación
