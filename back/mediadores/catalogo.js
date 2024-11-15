@@ -1,5 +1,9 @@
 const gestionarProductos = document.getElementById('gestionarProductos');
+const gestionarBtn = document.getElementById('gestionarBtn');
 
+gestionarBtn.addEventListener('click', function() {
+    loadProducts(); 
+});
 
 function setupPagination(totalPages, currentPage) {
     paginationContainer.innerHTML = '';
@@ -79,7 +83,6 @@ function eliminar(ISBN) {   //const elim = document.querySelectorAll(".eliminar"
                 showConfirmButton: false,
                 timer: 1500
         });
-            //document.location.reload();
             setTimeout(loadProducts, 500);
         }
     });
@@ -194,8 +197,10 @@ function loadProducts(page = 1) {
         <img src="../vistas/img/${product.Imagen}?t=${Date.now()}" alt="${product.Nombre}">
         <div class="text-container">
             <h3>${product.Nombre}</h3>
+            <p>${product.Autores}</p>
             <p>${product.Contenido}</p>
-            <p>Precio: $${product.Precio}</p>
+            <p>${product.EditOrg}</p>
+            <p>Precio: U$ ${product.Precio}</p>
             <div>
                 <button onclick="eliminar(${product.ISBN})">Eliminar</button>
                 <button onclick="actualizar(${product.ISBN})">Actualizar</button>

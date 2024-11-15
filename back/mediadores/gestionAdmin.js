@@ -2,6 +2,11 @@ const gestionarAdministradores = document.getElementById('gestionarAdministrador
 const actualizarAdministradores = document.getElementById('ActualizarAdministradores');
 const actualizarUserForm = document.getElementById('actualizarUserForm');
 const userUpdateBtn = document.getElementById('userUpdateBtn'); 
+const gestionarAdminBtn = document.getElementById('gestionarAdminBtn');
+
+gestionarAdminBtn.addEventListener('click', function() {
+    loadAdmins(); 
+});
 
 function setupPagination2(totalPages, currentPage) {
     const paginationContainer2 = document.getElementById('paginationContainer2');
@@ -81,7 +86,6 @@ function eliminar2(IdUsuario) {   //const elim = document.querySelectorAll(".eli
                 showConfirmButton: false,
                 timer: 1500
             });
-            //document.location.reload();
             setTimeout(loadAdmins, 500);
         }
     });
@@ -154,10 +158,19 @@ userUpdateBtn.addEventListener('click', function () {
 
 loadAdmins();
 
-
-
 function loadAdmins(page = 1) {
-    fetch(`./../servicios_admin/gestionAdmin.php?page=${page}`)
+    // Verificar que globalEmail esté disponible
+    if (!window.globalEmail) {
+        console.error("globalEmail no está definido o está vacío.");
+        return;  // Terminar la función si globalEmail no está disponible
+    }
+
+    const globalEmail = window.globalEmail; // Usar window.globalEmail
+
+    console.log("Correo electrónico global al cargar administradores:", globalEmail);
+
+    // Realizamos la solicitud con globalEmail como parte de la URL
+    fetch(`./../servicios_admin/gestionAdmin.php?page=${page}&globalEmail=${encodeURIComponent(globalEmail)}`)
         .then(response => response.json())
         .then(data => {
             if (data.error) {
@@ -167,13 +180,16 @@ function loadAdmins(page = 1) {
 
             const productContainer2 = document.getElementById('productContainer2');
             productContainer2.innerHTML = ''; // Limpiar el contenedor de administradores
+
             data.administradores.forEach(administrador => {
                 const administradorElement = document.createElement('div');
                 administradorElement.classList.add('administrador');
                 administradorElement.innerHTML = `
                     <div class="text-container">
-                        <h3>${administrador.Nombre}</h3>
-                        <p>${administrador.Apellido}</p>
+                        <h3>${administrador.Email}</h3>
+                        <p>Nombre: ${administrador.Nombre}</p>
+                        <p>Apellido: ${administrador.Apellido}</p>
+                        <p>Teléfono: ${administrador.NroTelefono}</p>
                         <div>
                             <button onclick="eliminar2(${administrador.IdUsuario})">Eliminar</button>
                             <button onclick="actualizar2(${administrador.IdUsuario})">Actualizar</button>
@@ -186,7 +202,7 @@ function loadAdmins(page = 1) {
             setupPagination2(data.totalPages, data.currentPage); // Configurar la paginación
         })
         .catch(error => {
-            console.error('Error:', error);
+            console.error('Error al cargar administradores:', error);
             resultDiv2.textContent = 'Error al cargar administradores';
         });
 }

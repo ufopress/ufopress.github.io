@@ -80,7 +80,6 @@ function eliminar3(IdCliente) {   //const elim = document.querySelectorAll(".eli
                 showConfirmButton: false,
                 timer: 1500
             });
-            //document.location.reload();
             setTimeout(loadClients, 500);
         }
     });

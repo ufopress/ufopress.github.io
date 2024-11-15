@@ -1,4 +1,4 @@
-.administrador, .product, .cliente {
+.administrador, .product, .cliente, .promos, .ticket {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -10,37 +10,37 @@
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.administrador:hover, .product:hover, .cliente:hover {
+.administrador:hover, .product:hover, .cliente:hover, .promos:hover, .ticket:hover {
     transform: translateY(-5px);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
-.administrador img, .product img, .cliente img {
-    width: 180px;
-    height: 270px;
-    object-fit: cover;
+.administrador img, .product img, .cliente img, .promos img, .ticket img {
+    width: 180px; /* Tamaño fijo */
+    height: 270px; /* Tamaño fijo */
+    object-fit: cover; /* Mantener la proporción de la imagen sin estirarse */
     border-radius: 5px;
     margin-right: 15px;
 }
 
-.administrador .text-container, .product .text-container, .cliente .text-container {
+.administrador .text-container, .product .text-container, .cliente .text-container, .promos .text-container, .ticket .text-container {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     flex-grow: 1;
 }
 
-.administrador h3, .product h3, .cliente h3 {
+.administrador h3, .product h3, .cliente h3, .promos h3, .ticket h3 {
     margin: 0;
     color: #0D0D0D;
 }
 
-.administrador p, .product p, .cliente p {
+.administrador p, .product p, .cliente p, .promos p, .ticket p {
     margin: 5px 0;
     color: #0D0D0D;
 }
 
-.administrador button, .product button, .cliente button {
+.administrador button, .product button, .cliente button, .promos button, .ticket button {
     background-color: #F29F05;
     color: white;
     border: 2px solid #F29F05;
@@ -53,7 +53,7 @@
     width: 120px;
 }
 
-.administrador button:hover, .product button:hover, .cliente button:hover {
+.administrador button:hover, .product button:hover, .cliente button:hover, .promos button:hover, .ticket button:hover {
     background-color: #F28705;
     border-color: #F28705;
 }
@@ -82,35 +82,35 @@
 
 /* Media Queries para Responsividad */
 @media (max-width: 768px) {
-    .administrador, .product, .cliente {
+    .administrador, .product, .cliente, .promos, .ticket {
         flex-direction: column; /* Cambiar a columna en pantallas más pequeñas */
         align-items: center; /* Centrar contenido */
         margin: 10px; /* Reducir márgenes */
     }
 
-    .administrador img, .product img, .cliente img {
-        width: 100%; /* Hacer la imagen responsiva */
-        height: auto; /* Mantener proporciones */
+    .administrador img, .product img, .cliente img, .promos img, .ticket img {
+        width: 180px; /* Mantener tamaño fijo en pantallas más pequeñas */
+        height: 270px; /* Mantener tamaño fijo en pantallas más pequeñas */
         margin-right: 0; /* Eliminar margen derecho */
         margin-bottom: 10px; /* Espaciado debajo de la imagen */
     }
 
-    .administrador button, .product button, .cliente button {
+    .administrador button, .product button, .cliente button, .promos button, .ticket button {
         width: 100%; /* Botón ocupa el ancho completo */
         margin-top: 10px; /* Espacio entre botones en pantallas pequeñas */
     }
 }
 
 @media (max-width: 480px) {
-    .administrador, .product, .cliente {
+    .administrador, .product, .cliente, .promos, .ticket {
         padding: 10px; /* Reducir el espaciado interno */
     }
 
-    .administrador h3, .product h3, .cliente h3 {
+    .administrador h3, .product h3, .cliente h3, .promos h3, .ticket h3 {
         font-size: 1.2em; /* Ajustar tamaño de fuente */
     }
 
-    .administrador p, .product p, .cliente p {
+    .administrador p, .product p, .cliente p, .promos p, .ticket p {
         font-size: 0.9em; /* Ajustar tamaño de fuente */
     }
 

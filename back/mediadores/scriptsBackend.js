@@ -7,6 +7,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const gestionarAdministradores = document.getElementById('gestionarAdministradores');
     const gestionarCliente = document.getElementById('gestionarCliente');
     const agregarPromocion = document.getElementById('agregarPromocion');
+    const gestionarPromo = document.getElementById('gestionarPromo');
+    const ActualizarAdministradores = document.getElementById('ActualizarAdministradores');
+    const ActualizarClientes = document.getElementById('ActualizarClientes');
+    const actualizarPromocion = document.getElementById('actualizarPromocion');
+    const gestionarVentas = document.getElementById('gestionarVentas');
 
     function abrirVentana(ventana) {
         const ventanas = [
@@ -17,7 +22,13 @@ document.addEventListener('DOMContentLoaded', function () {
             actualizarProductos,
             gestionarAdministradores,
             gestionarCliente,
-            agregarPromocion
+            agregarPromocion,
+            gestionarPromo,
+            ActualizarAdministradores,
+            ActualizarClientes,
+            actualizarPromocion,
+            gestionarVentas
+
         ];
 
         ventanas.forEach(v => {
@@ -50,6 +61,12 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     document.getElementById('agregarPromotionBtn').addEventListener('click', function () {
         abrirVentana(agregarPromocion); 
+    });
+    document.getElementById('gestionarPromotionBtn').addEventListener('click', function () {
+        abrirVentana(gestionarPromo);
+    });
+    document.getElementById('gestionarSalesBtn').addEventListener('click', function () {
+        abrirVentana(gestionarVentas);
     });
 
 });

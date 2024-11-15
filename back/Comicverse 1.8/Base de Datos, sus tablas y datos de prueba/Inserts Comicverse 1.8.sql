@@ -12,11 +12,11 @@ INSERT INTO DATOS_EMPRESA_DIRECCION (NombreEmpresa, Email, Calle, Numero) VALUES
 
 -- Insertar datos en la tabla ADMINISTRADOR
 INSERT INTO ADMINISTRADOR (NombreEmpresaCE, Email, Nombre, Apellido, FechaNacimiento, TipoUsuario, NroTelefono, Contraseña) VALUES
-('ComicVerse', 'admin1@example.com', 'Juan', 'Pérez', '1985-01-15', 'ADM', '1234567890', 'password1'),
-('ComicVerse', 'admin2@example.com', 'María', 'González', '1990-03-22', 'ADM', '9876543210', 'password2'),
-('ComicVerse', 'jose.artigas@example.com', 'Jose Gervasio', 'Artigas', '1980-01-01', 'ADM', '1234567891', 'password12'),
-('ComicVerse', 'ana.lopez@example.com', 'Ana', 'Lopez', '1985-05-15', 'ADM', '1234567892', 'password34'),
-('ComicVerse', 'solo.admin@example.com', 'Solo', 'Admin', '1990-07-20', 'ADM', '1234567893', 'password56');
+('ComicVerse', 'admin1@example.com', 'Juan', 'Pérez', '1985-01-15', 'ADM', '1234567890', '$2y$10$nCNU9ESv9ZFreiaUPeQwxeFi5WmiSt4TizLgLxlZIPY/PZB5kNXsS'), /*password1*/
+('ComicVerse', 'admin2@example.com', 'María', 'González', '1990-03-22', 'ADM', '9876543210', '$2y$10$.bb40Em5dyIjlS7b7Y8wzuGUGQBy02cnbYHt1yDPdAcjDHU7ZagzW'), /*password2*/
+('ComicVerse', 'jose.artigas@example.com', 'Jose Gervasio', 'Artigas', '1980-01-01', 'ADM', '1234567891', '$2y$10$BEXsJJiMR7WK3AgnquHEWetj1nYmGrbk1Ynt9RzlDe4bzm25F460S'), /*password12*/
+('ComicVerse', 'ana.lopez@example.com', 'Ana', 'Lopez', '1985-05-15', 'ADM', '1234567892', '$2y$10$ObGG5tlfykf0EciB6hWtr.QhMw/nK5ZZnn9FykbC795HwK6LCzUw6'), /*password34*/
+('ComicVerse', 'solo.admin@example.com', 'Solo', 'Admin', '1990-07-20', 'ADM', '1234567893', '$2y$10$Uhrzit79wUY/76L4nOHjqeWP13I/CjkRQTzkefPsdAr4dsV7R8uTO'); /*password56*/
 
 -- Insertar datos en la tabla CLIENTE
 INSERT INTO CLIENTE (IdUsuarioCE, NombreUser, Email, Contrasenia, TipoUsuario, NroTelefono, Nacionalidad, AñoNacimiento)

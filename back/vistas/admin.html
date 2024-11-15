@@ -11,10 +11,33 @@
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="stylesBackend.css" rel="stylesheet" />
     <link href="styleCatalogo.css" rel="stylesheet" />
+    <link href="styleLoginBack.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>
 
 <body class="sb-nav-fixed">
+    <div id="loginOverlay" class="login-overlay">
+        <div class="login-container">
+            <h2 class="login-title">Iniciar Sesión</h2>
+
+            <form id="loginForm">
+                <div class="form-group-2">
+                    <label for="usermail" class="label-2">Email:</label>
+                    <input name="usermail" type="email" id="usermail" class="form-control-2"
+                        placeholder="Ingresa tu Email" required>
+                </div>
+
+                <div class="form-group-2">
+                    <label for="password" class="label-2">Contraseña:</label>
+                    <input name="password" type="password" id="password" class="form-control-2"
+                        placeholder="Ingresa tu Contraseña" required>
+                </div>
+
+                <input type="button" id="loginBtn" class="btn-login" value="Iniciar sesión">
+            </form>
+        </div>
+    </div>
+
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Sidebar Toggle-->
         <button class="btn btn-link btn-sm ms-3 me-2" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
@@ -35,12 +58,12 @@
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
                     aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="#!">Settings</a></li>
-                    <li><a class="dropdown-item" href="#!">Activity Log</a></li>
+                    <!-- Este será el nuevo elemento que muestra el correo del usuario -->
+                    <li><span id="userEmail" class="dropdown-item">Cargando...</span></li>
                     <li>
                         <hr class="dropdown-divider" />
                     </li>
-                    <li><a class="dropdown-item" href="#!">Logout</a></li>
+                    <li><a class="dropdown-item" href="admin.html">Logout</a></li>
                 </ul>
             </li>
         </ul>
@@ -100,9 +123,20 @@
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
                                 <a class="nav-link" id="agregarPromotionBtn">Agregar Promociones</a>
+                                <a class="nav-link" id="gestionarPromotionBtn">Gestionar Promociones</a>
                             </nav>
                         </div>
-
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseSales"
+                            aria-expanded="false" aria-controls="collapseSales">
+                            Modulo Ventas
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseSales" aria-labelledby="headingFive"
+                            data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                                <a class="nav-link" id="gestionarSalesBtn">Gestion Ventas</a>
+                            </nav>
+                        </div>
                         <!-- <div class="sb-sidenav-footer">
                             <div class="small">Logged in as:</div>
                             Start Bootstrap
@@ -112,7 +146,7 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">Bienvenido</h1>
+                    <!-- <h1 class="mt-4">Bienvenido</h1> -->
                     <div id="result" style="margin-top: 20px; color: green;" display="none"></div>
                     <div class="row">
 
@@ -160,12 +194,16 @@
                                                             <div class="row mb-3">
                                                                 <div class="col-md-6">
                                                                     <div class="form-floating mb-3 mb-md-0">
-                                                                        <input class="form-control"
-                                                                            name="nombrecategoria" type="text" required
-                                                                            placeholder="Nombre Categoria"
-                                                                            id="nombrecategoria" />
+                                                                        <!-- Cambié el campo input por un select -->
+                                                                        <select class="form-control"
+                                                                            name="nombrecategoria" required
+                                                                            id="nombrecategoria">
+                                                                            <option value="">Seleccione una categoría
+                                                                            </option>
+                                                                            <!-- Aquí se insertarán las categorías con PHP -->
+                                                                        </select>
                                                                         <label for="nombrecategoria">Nombre
-                                                                            Categoria</label>
+                                                                            Categoría</label>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6">
@@ -305,12 +343,16 @@
                                                             <div class="row mb-3">
                                                                 <div class="col-md-6">
                                                                     <div class="form-floating mb-3 mb-md-0">
-                                                                        <input class="form-control"
-                                                                            name="nombrecategoria2" type="text" required
-                                                                            placeholder="Nombre Categoria"
-                                                                            id="nombrecategoria2" />
+                                                                        <!-- Cambié el campo input por un select -->
+                                                                        <select class="form-control"
+                                                                            name="nombrecategoria2" required
+                                                                            id="nombrecategoria2">
+                                                                            <option value="">Seleccione una categoría
+                                                                            </option>
+                                                                            <!-- Aquí se insertarán las categorías con PHP -->
+                                                                        </select>
                                                                         <label for="nombrecategoria2">Nombre
-                                                                            Categoria</label>
+                                                                            Categoría</label>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6">
@@ -407,6 +449,7 @@
                             </form>
                         </div>
                         <div id="gestionarProductos" style="display: none;">
+                            <h2>Catálogo de Historietas</h2>
                             <div id="resultDiv"></div>
                             <div id="productContainer"></div>
                             <div id="paginationContainer"></div>
@@ -636,11 +679,13 @@
                             </form>
                         </div>
                         <div id="gestionarAdministradores" style="display: none;">
+                            <h2>Gestión de Administradores</h2>
                             <div id="resultDiv2"></div>
                             <div id="productContainer2"></div>
                             <div id="paginationContainer2"></div>
                         </div>
                         <div id="gestionarCliente" style="display: none;">
+                            <h2>Gestión de Clientes</h2>
                             <div id="resultDiv3"></div>
                             <div id="productContainer3"></div>
                             <div id="paginationContainer3"></div>
@@ -814,15 +859,20 @@
                                                         <div class="row mb-3">
                                                             <div class="col-md-12">
                                                                 <div class="form-floating">
-                                                                    <input class="form-control" name="nombrecategoriaCE"
-                                                                        type="text" required
-                                                                        placeholder="Nombre Categoría"
-                                                                        id="nombrecategoriaCE" />
+                                                                    <!-- Cambié el campo input por un select -->
+                                                                    <select class="form-control"
+                                                                        name="nombrecategoriaCE" required
+                                                                        id="nombrecategoriaCE">
+                                                                        <option value="">Seleccione una categoría
+                                                                        </option>
+                                                                        <!-- Aquí se insertarán las categorías con PHP -->
+                                                                    </select>
                                                                     <label for="nombrecategoriaCE">Nombre
                                                                         Categoría</label>
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        <!-- El resto del formulario sigue igual -->
                                                         <div class="row mb-3">
                                                             <div class="col-md-12">
                                                                 <div class="form-floating">
@@ -878,13 +928,108 @@
                             </div>
                         </form>
                     </div>
+                    <div id="gestionarPromo" style="display: none;">
+                        <h2>Gestión de Promociones</h2>
+                        <div id="resultDiv4"></div>
+                        <div id="productContainer4"></div>
+                        <div id="paginationContainer4"></div>
+                    </div>
+                    <div id="actualizarPromocion" style="display: none;">
+                        <form id="actualizarPromocionForm" enctype="multipart/form-data" method="POST">
+                            <div id="layoutAuthentication_content">
+                                <main>
+                                    <div class="container">
+                                        <div class="row justify-content-center">
+                                            <div class="col-lg-7">
+                                                <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                                    <div class="card-header">
+                                                        <h3 class="text-center font-weight-light my-4">Agregar Promoción
+                                                        </h3>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <div class="row mb-3">
+                                                            <div class="col-md-12">
+                                                                <div class="form-floating">
+                                                                    <!-- Campo de texto que muestra la categoría directamente -->
+                                                                    <input class="form-control"
+                                                                        name="nombrecategoriaCE2" required
+                                                                        id="nombrecategoriaCE2" type="text"
+                                                                        placeholder="Nombre Categoría"
+                                                                        value="Nombre de la categoría" readonly />
+                                                                    <label for="nombrecategoriaCE2">Nombre
+                                                                        Categoría</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- El resto del formulario sigue igual -->
+                                                        <div class="row mb-3">
+                                                            <div class="col-md-12">
+                                                                <div class="form-floating">
+                                                                    <input class="form-control" name="nombrepromocion2"
+                                                                        type="text" required
+                                                                        placeholder="Nombre Promoción"
+                                                                        id="nombrepromocion2" />
+                                                                    <label for="nombrepromocion2">Nombre
+                                                                        Promoción</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-3">
+                                                            <div class="col-md-12">
+                                                                <div class="form-floating">
+                                                                    <input class="form-control" name="porcentaje2"
+                                                                        type="number" required
+                                                                        placeholder="Porcentaje (%)" id="porcentaje2" />
+                                                                    <label for="porcentaje2">Porcentaje de
+                                                                        Descuento</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-3">
+                                                            <div class="col-md-6">
+                                                                <div class="form-floating">
+                                                                    <input class="form-control" name="fechainicio2"
+                                                                        type="date" required
+                                                                        placeholder="Fecha de Inicio"
+                                                                        id="fechainicio2" />
+                                                                    <label for="fechainicio2">Fecha de Inicio</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-floating">
+                                                                    <input class="form-control" name="fechafin2"
+                                                                        type="date" required placeholder="Fecha de Fin"
+                                                                        id="fechafin2" />
+                                                                    <label for="fechafin2">Fecha de Fin</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-footer text-left">
+                                                        <input class="btn btn-primary btn-block" type="button"
+                                                            value="Actualizar Promoción" id="actualizarPromocionBtn">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </main>
+                            </div>
+                        </form>
+                    </div>
+                    <div id="gestionarVentas" style="display: none;">
+                        <h2>Gestión de Ventas</h2>
+                        <div id="resultDiv5"></div>
+                        <div id="productContainer5"></div>
+                        <div id="paginationContainer5"></div>
+                    </div>
                 </div>
             </main>
         </div>
     </div>
     </main>
     <footer class="py-4 bg-light mt-auto">
-        <div class="container-fluid px-4">
+        <!-- <div class="container-fluid px-4">
             <div class="d-flex align-items-center justify-content-between small">
                 <div class="text-muted">Copyright &copy; Your Website 2023</div>
                 <div>
@@ -893,7 +1038,7 @@
                     <a href="#">Terms &amp; Conditions</a>
                 </div>
             </div>
-        </div>
+        </div> -->
     </footer>
     </div>
     </div>
@@ -904,9 +1049,13 @@
     <script src="../mediadores/scriptsBackend.js"></script>
     <script src="../mediadores/agregarProductoscript.js"></script>
     <script src="../mediadores/agregarUsuarioscript.js"></script>
+    <script src="../mediadores/agregarPromoscript.js"></script>
     <script src="../mediadores/scriptDatosEmpresa.js"></script>
     <script src="../mediadores/gestionAdmin.js"></script>
     <script src="../mediadores/gestionCliente.js"></script>
+    <script src="../mediadores/gestionPromo.js"></script>
+    <script src="../mediadores/loginBack.js"></script>
+    <script src="../mediadores/gestionVenta.js"></script>
     <script src="https://kit.fontawesome.com/6f8b5d1a66.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
