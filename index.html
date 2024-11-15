@@ -324,24 +324,31 @@
     </div>
   </div>
 
+  <!-- Modal para Mostrar Productos Promocionados -->
   <div class="modal fade" id="mostrarPromocionadosModal" tabindex="-1" aria-labelledby="mostrarPromocionadosModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
       <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header d-flex justify-content-center">
           <h5 class="modal-title" id="mostrarPromocionadosModalLabel">Productos Promocionados</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
+          <!-- Contenedor para mostrar los productos promocionados -->
           <div class="container">
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4" id="productList">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 text-center" id="productList">
               <!-- Aquí se cargarán los productos dinámicamente -->
             </div>
           </div>
+
+          <!-- Paginación -->
+          <div id="paginacionContainer" class="mt-3">
+            <h6>Seleccionar página:</h6>
+            <!-- Aquí se crearán los radios dinámicamente -->
+          </div>
         </div>
-        <div id="paginacionContainer"></div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <div class="modal-footer d-flex justify-content-center w-100">
+          <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Cerrar</button>
         </div>
       </div>
     </div>
@@ -641,7 +648,8 @@
   <!-- Modal para Confirmar Pago -->
   <div class="modal fade" id="modalConfirmarPago" tabindex="-1" aria-labelledby="modalConfirmarPagoLabel"
     aria-hidden="true">
-    <div class="d-flex text-center justify-content-center align-items-center modal-dialog modal-lg modal-dialog-centered">
+    <div
+      class="d-flex text-center justify-content-center align-items-center modal-dialog modal-lg modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="modalConfirmarPagoLabel">Confirmar y Pagar</h5>

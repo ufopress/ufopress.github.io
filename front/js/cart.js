@@ -72,8 +72,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     <td>${productoInfo.cantidad}</td>
                     <td>$U${productoInfo.precio}</td>
                     <td class="d-flex flex-column flex-sm-row justify-content-between align-items-center">
-                        <button class="btn btn-danger btn-sm mb-2 mb-sm-0" onclick="eliminarProductoDelCarrito(${productoInfo.index})">Eliminar</button>
                         <button class="btn btn-outline-secondary btn-sm mb-2 mb-sm-0" onclick="disminuirCantidad(${productoInfo.index})">-</button>
+                        <button class="btn btn-danger btn-sm mb-2 mb-sm-0" onclick="eliminarProductoDelCarrito(${productoInfo.index})">Eliminar</button>
                         <button class="btn btn-outline-secondary btn-sm" onclick="aumentarCantidad(${productoInfo.index})">+</button>
                     </td>
                 </tr>
