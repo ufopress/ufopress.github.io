@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Función para mostrar los productos de la página actual
     function mostrarProductosPorPagina() {
-        const productosContainer = document.getElementById('productosContainer'); // Aquí modificamos el ID para no repetir el ID del modal
+        const productosContainer = document.getElementById('productList');
         productosContainer.innerHTML = ''; // Limpiar el contenedor de productos
 
         // Calcular el índice de inicio y fin de los productos a mostrar

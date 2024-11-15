@@ -242,7 +242,6 @@ function obtenerIdCliente() {
     const email = localStorage.getItem('emailUser');
 
     if (!nombreUser || !email) {
-        console.error("Error: Datos de usuario o email no encontrados en el localStorage.");
         return;
     }
 

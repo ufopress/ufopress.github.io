@@ -43,6 +43,3 @@ function enviarDatosAlPHP() {
         console.error('Error en la solicitud fetch:', error);
     });
 }
-
-// Llamamos a la función para enviar los datos (por ejemplo, al hacer clic en un botón)
-document.getElementById('inicio').addEventListener('click', enviarDatosAlPHP);
