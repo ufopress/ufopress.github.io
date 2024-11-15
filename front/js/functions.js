@@ -211,7 +211,11 @@ function agregarProductoAlCarrito(isbn, nombre, precio) {
     // Actualizar el contador del carrito
     enviarDatosAlPHP();
     actualizarContadorCarrito();
+    mostrarAlerta('Producto añadido correctamente!', 'success');
 
+    // Redirigir después de unos segundos
+    setTimeout(() => {
+    }, 1500); // 1500 milisegundos = 1.5 segundos
 }
 
 function obtenerProductoPorISBN(isbn) {

@@ -1,4 +1,17 @@
-document.getElementById('irConfirmarPago').addEventListener('click', function() {
+document.getElementById('irConfirmarPago').addEventListener('click', function () {
+    const lengthCarrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+    if (lengthCarrito.length === 0) {
+        mostrarAlerta('Añade productos para poder finalizar la compra', 'error')
+        return; // No hace nada si el carrito está vacío
+    }
+
+    const modalCarrito = document.getElementById('cartModal');
+
+    if (!modalCarrito.hidden) {
+        modalCarrito.hidden = true; // Esto oculta el modal
+    }
+
     // Obtener el carrito de compras desde localStorage
     var carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
@@ -8,7 +21,7 @@ document.getElementById('irConfirmarPago').addEventListener('click', function() 
         var valorFinal = 0;    // Variable para almacenar el valor final de la compra (con impuestos/descuentos)
 
         // Realizar la solicitud para cada producto del carrito
-        carrito.forEach(function(producto) {
+        carrito.forEach(function (producto) {
             // Realizar una solicitud a PHP para obtener los detalles de la historieta con el ISBN
             fetch('./front/php/getProductByISBN.php', {
                 method: 'POST',
@@ -17,30 +30,30 @@ document.getElementById('irConfirmarPago').addEventListener('click', function() 
                 },
                 body: JSON.stringify({ isbn: producto.isbn })
             })
-            .then(response => response.json())
-            .then(data => {
-                if (data.resultado !== false) {
-                    // Calcular el precio total de este producto (precio * cantidad)
-                    var precioTotalProducto = parseFloat(data[0].Precio) * parseInt(producto.cantidad);
-                    totalCompra += precioTotalProducto;  // Sumar el precio al total
-                    productosDetalles.push({
-                        Nombre: data[0].Nombre,
-                        Precio: data[0].Precio,
-                        Cantidad: producto.cantidad,
-                        PrecioTotal: precioTotalProducto
-                    });
-                } else {
-                    alert(data.mensaje);  // Mostrar mensaje si no se encuentran productos
-                }
+                .then(response => response.json())
+                .then(data => {
+                    if (data.resultado !== false) {
+                        // Calcular el precio total de este producto (precio * cantidad)
+                        var precioTotalProducto = parseFloat(data[0].Precio) * parseInt(producto.cantidad);
+                        totalCompra += precioTotalProducto;  // Sumar el precio al total
+                        productosDetalles.push({
+                            Nombre: data[0].Nombre,
+                            Precio: data[0].Precio,
+                            Cantidad: producto.cantidad,
+                            PrecioTotal: precioTotalProducto
+                        });
+                    } else {
+                        alert(data.mensaje);  // Mostrar mensaje si no se encuentran productos
+                    }
 
-                // Una vez que hemos obtenido todos los detalles, mostrar el modal
-                if (productosDetalles.length === carrito.length) {
-                    var productosLista = document.getElementById('productosLista');
-                    productosLista.innerHTML = ''; // Limpiar el contenido previo
+                    // Una vez que hemos obtenido todos los detalles, mostrar el modal
+                    if (productosDetalles.length === carrito.length) {
+                        var productosLista = document.getElementById('productosLista');
+                        productosLista.innerHTML = ''; // Limpiar el contenido previo
 
-                    // Mostrar los productos con nombre, cantidad y precio
-                    productosDetalles.forEach(producto => {
-                        productosLista.innerHTML += `
+                        // Mostrar los productos con nombre, cantidad y precio
+                        productosDetalles.forEach(producto => {
+                            productosLista.innerHTML += `
                             <div>
                                 <h5>${producto.Nombre}</h5>
                                 <p>Cantidad: ${producto.Cantidad}</p>
@@ -48,21 +61,21 @@ document.getElementById('irConfirmarPago').addEventListener('click', function() 
                                 <p>Total: $${producto.PrecioTotal}</p>
                             </div>
                         `;
-                    });
+                        });
 
-                    // Mostrar el total de la compra
-                    document.getElementById('totalCompra').value = totalCompra.toFixed(2);  // Mostrar el total en el modal
+                        // Mostrar el total de la compra
+                        document.getElementById('totalCompra').value = totalCompra.toFixed(2);  // Mostrar el total en el modal
 
-                    document.getElementById('valorFinal').value = totalCompra.toFixed(2);  // Mostrar el valor final en el modal
+                        document.getElementById('valorFinal').value = totalCompra.toFixed(2);  // Mostrar el valor final en el modal
 
-                    // Mostrar el modal de confirmación
-                    var confirmModal = new bootstrap.Modal(document.getElementById('modalConfirmarPago'));
-                    confirmModal.show();
-                }
-            })
-            .catch(error => {
-                console.error('Error al obtener los productos:', error);
-            });
+                        // Mostrar el modal de confirmación
+                        var confirmModal = new bootstrap.Modal(document.getElementById('modalConfirmarPago'));
+                        confirmModal.show();
+                    }
+                })
+                .catch(error => {
+                    console.error('Error al obtener los productos:', error);
+                });
         });
     } else {
         alert('El carrito está vacío');
@@ -70,7 +83,7 @@ document.getElementById('irConfirmarPago').addEventListener('click', function() 
 });
 
 // Cuando el usuario confirma el pago
-document.getElementById('confirmarPago').addEventListener('click', function() {
+document.getElementById('confirmarPago').addEventListener('click', function () {
 
     obtenerIdCliente();
 
@@ -79,7 +92,7 @@ document.getElementById('confirmarPago').addEventListener('click', function() {
     var carrito = JSON.parse(localStorage.getItem('carrito')) || [];
     var totalCompra = parseFloat(document.getElementById('totalCompra').value);
     var valorFinal = parseFloat(document.getElementById('valorFinal').value);
-    
+
     if (!direccionEnvio) {
         alert('Por favor, ingresa una dirección de envío');
         return;
@@ -97,25 +110,23 @@ document.getElementById('confirmarPago').addEventListener('click', function() {
             total: valorFinal
         })
     })
-    .then(response => response.json())
-    .then(data => {
-        if (data.resultado === true) {
-            mostrarAlerta('Pago confirmado. Tu número de ticket es: ' + data.nroTicket, 'success');
-            // Redirigir después de unos segundos
-            setTimeout(() => {
-            }, 3000); // 3000 milisegundos = 3 segundos
-            // Opcional: Limpiar el carrito después de la compra
-            localStorage.removeItem('carrito');
-            actualizarContadorCarrito();
-            // Cerrar el modal
-            var confirmModal = bootstrap.Modal.getInstance(document.getElementById('modalConfirmarPago'));
-            confirmModal.hide();
-        } else {
-            mostrarAlerta('Hubo un problema al procesar tu pago. Intenta nuevamente.', 'error');
-        }
-    })
-    .catch(error => {
-        console.error('Error al crear el ticket:', error);
-        alert('Hubo un error. Intenta nuevamente.');
-    });
+        .then(response => response.json())
+        .then(data => {
+            if (data.resultado === true) {
+                mostrarAlerta('Pago confirmado. Tu número de ticket es: ' + data.nroTicket, 'success');
+                // Redirigir después de unos segundos
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 3000); // 3000 milisegundos = 3 segundos
+                // Opcional: Limpiar el carrito después de la compra
+                localStorage.removeItem('carrito');
+                actualizarContadorCarrito();
+            } else {
+                mostrarAlerta('Hubo un problema al procesar tu pago. Intenta nuevamente.', 'error');
+            }
+        })
+        .catch(error => {
+            console.error('Error al crear el ticket:', error);
+            alert('Hubo un error. Intenta nuevamente.');
+        });
 });
