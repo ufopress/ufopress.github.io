@@ -641,6 +641,34 @@
     </div>
   </div>
 
+  <!-- Modal para Confirmar Pago -->
+  <div class="modal fade" id="modalConfirmarPago" tabindex="-1" aria-labelledby="modalConfirmarPagoLabel"
+    aria-hidden="true">
+    <div class="d-flex text-center justify-content-center align-items-center modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalConfirmarPagoLabel">Confirmar y Pagar</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="contenidoPago">
+          <!-- Aquí se mostrarán los productos del carrito con detalles -->
+          <div id="productosLista"></div>
+          <!-- Aquí agregamos el campo para el valor final -->
+          <div>
+            <h5>Total Final</h5>
+            <input type="text" class="text-center form-control" id="valorFinal" readonly>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <input type="text" class="form-control" id="direccionEnvio" placeholder="Ingresa tu dirección de envío">
+          <input type="hidden" id="totalCompra">
+          <button type="button" class="btn btn-danger" id="cancelarPago" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-success" id="confirmarPago">Confirmar Pago</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Modal para mostrar el carrito -->
   <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -689,6 +717,7 @@
   <script src="./front/js/saveCart.js"></script>
   <script src="./front/js/liResenas.js"></script>
   <script src="./front/js/promocionados.js"></script>
+  <script src="./front/js/confirmarPago.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

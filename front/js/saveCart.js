@@ -4,7 +4,6 @@ function obtenerDatosCarritoYCliente() {
     const emailUser = localStorage.getItem('emailUser');
     
     if (!emailUser) {
-        console.error('No se encontró el email del usuario en el localStorage');
         return null;
     }
 
