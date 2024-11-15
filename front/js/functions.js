@@ -212,7 +212,6 @@ function agregarProductoAlCarrito(isbn, nombre, precio) {
     enviarDatosAlPHP();
     actualizarContadorCarrito();
 
-    mostrarAlerta('Carrito actualizado con éxito!', 'success');
 }
 
 function obtenerProductoPorISBN(isbn) {

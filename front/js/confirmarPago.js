@@ -100,7 +100,10 @@ document.getElementById('confirmarPago').addEventListener('click', function() {
     .then(response => response.json())
     .then(data => {
         if (data.resultado === true) {
-            alert('Pago confirmado. Tu número de ticket es: ' + data.nroTicket);
+            mostrarAlerta('Pago confirmado. Tu número de ticket es: ' + data.nroTicket, 'success');
+            // Redirigir después de unos segundos
+            setTimeout(() => {
+            }, 3000); // 3000 milisegundos = 3 segundos
             // Opcional: Limpiar el carrito después de la compra
             localStorage.removeItem('carrito');
             actualizarContadorCarrito();
@@ -108,7 +111,7 @@ document.getElementById('confirmarPago').addEventListener('click', function() {
             var confirmModal = bootstrap.Modal.getInstance(document.getElementById('modalConfirmarPago'));
             confirmModal.hide();
         } else {
-            alert('Hubo un problema al procesar tu pago. Intenta nuevamente.');
+            mostrarAlerta('Hubo un problema al procesar tu pago. Intenta nuevamente.', 'error');
         }
     })
     .catch(error => {
