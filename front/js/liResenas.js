@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!usuario) {
             // Si no hay usuario, previene la acción predeterminada y muestra la alerta
             event.preventDefault(); // Evita cualquier acción de redirección
-            mostrarAlerta('Logueate para poder ingresar aquí', 'error');
+            mostrarAlerta('Inicia sesión para poder ingresar aquí', 'error');
         }
         // Si hay usuario, no hace nada y permite la acción
     });
