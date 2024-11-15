@@ -236,6 +236,65 @@ function obtenerProductoPorISBN(isbn) {
         .catch(error => console.error('Error en el fetch:', error));
 }
 
+// Función para obtener el idCliente usando los datos del localStorage
+function obtenerIdCliente() {
+    const nombreUser = localStorage.getItem('nombreUsuario');
+    const email = localStorage.getItem('emailUser');
+
+    if (!nombreUser || !email) {
+        console.error("Error: Datos de usuario o email no encontrados en el localStorage.");
+        return;
+    }
+
+    // Datos para enviar al PHP
+    const datos = {
+        nombreUser: nombreUser,
+        email: email
+    };
+
+    // Fetch para obtener el idCliente
+    fetch('./front/php/obtenerIdCliente.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(datos)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            console.log('ID del Cliente obtenido:', data.idCliente);
+            // Llamar a la función que obtiene el idCarrito con el idCliente
+            obtenerIdCarrito(data.idCliente);
+        } else {
+            console.error('Error al obtener el ID del cliente:', data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error en la solicitud:', error);
+    });
+}
+
+// Función para obtener idCarrito usando el idCliente
+function obtenerIdCarrito(idCliente) {
+    fetch('./front/php/obtenerIdCarrito.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ idCliente })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            console.log("ID del Carrito obtenido:", data.idCarrito);
+        } else {
+            console.error("Error al obtener el idCarrito:", data.message);
+        }
+    })
+    .catch(error => console.error("Error en la solicitud:", error));
+}
+
 // Variables de paginación
 let productosPorPaginaCategoria = 3;
 let paginaActualCategoria = 1;

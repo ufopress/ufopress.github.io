@@ -71,6 +71,9 @@ document.getElementById('irConfirmarPago').addEventListener('click', function() 
 
 // Cuando el usuario confirma el pago
 document.getElementById('confirmarPago').addEventListener('click', function() {
+
+    obtenerIdCliente();
+
     // Obtener los datos del formulario
     var direccionEnvio = document.getElementById('direccionEnvio').value;
     var carrito = JSON.parse(localStorage.getItem('carrito')) || [];
