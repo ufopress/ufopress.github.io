@@ -1,3 +1,4 @@
+const agregarPromocion = document.getElementById('agregarPromocion'); 
 const agregarPromocionBtn = document.getElementById('agregarPromocionBtn');
 
 agregarPromocionBtn.addEventListener('click', function() { 
@@ -16,6 +17,7 @@ agregarPromocionBtn.addEventListener('click', function() {
     }) 
     .then(data => { 
         if (data.success) { 
+            agregarPromocion.style.display='none';
             Swal.fire({
                 icon: 'success',
                 title: 'Éxito',
