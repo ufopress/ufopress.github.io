@@ -59,7 +59,7 @@ function loadTickets(page = 1) {
                         <p>Dirección de Envío: ${ticket.dirEnvio}</p>
                         <p>Fecha: ${ticket.Fecha}</p>
                         <p>Hora: ${ticket.Hora}</p>
-                        <p>Total: U$${ticket.Total}</p>
+                        <p>Total: U$ ${ticket.Total}</p>
                     </div>
                 `;
                 productContainer5.appendChild(ticketElement);
