@@ -11,7 +11,7 @@ $stmt = $conexion->prepare("SELECT COUNT(*) as total FROM TICKET");
 $stmt->execute();
 $totalItems = $stmt->fetch(PDO::FETCH_ASSOC)['total'];
 
-$stmt = $conexion->prepare("SELECT * FROM TICKET LIMIT :offset, :itemsPerPage");
+$stmt = $conexion->prepare("SELECT * FROM TICKET T JOIN AGREGA A ON T.IdCarritoCE=A.IdCarritoCE JOIN CARRITO C ON A.IdCarritoCE=C.IdCarrito JOIN CLIENTE CL ON C.IdClienteCE=CL.IdCliente JOIN HISTORIETA H ON H.ISBN=A.ISBNCE LIMIT :offset, :itemsPerPage");
 $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
 $stmt->bindParam(':itemsPerPage', $itemsPerPage, PDO::PARAM_INT);
 $stmt->execute();
