@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const ActualizarClientes = document.getElementById('ActualizarClientes');
     const actualizarPromocion = document.getElementById('actualizarPromocion');
     const gestionarVentas = document.getElementById('gestionarVentas');
+    const Bienvenida = document.getElementById('Bienvenida');
 
     function abrirVentana(ventana) {
         const ventanas = [
@@ -27,7 +28,8 @@ document.addEventListener('DOMContentLoaded', function () {
             ActualizarAdministradores,
             ActualizarClientes,
             actualizarPromocion,
-            gestionarVentas
+            gestionarVentas,
+            Bienvenida
 
         ];
 
@@ -68,5 +70,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('gestionarSalesBtn').addEventListener('click', function () {
         abrirVentana(gestionarVentas);
     });
-
+    document.getElementById('inicioBtn').addEventListener('click', function () {
+    abrirVentana(Bienvenida);
+    });
 });

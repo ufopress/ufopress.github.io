@@ -38,54 +38,57 @@ loginBtn.addEventListener('click', function () {
             } else {
                 // Si la contraseña es incorrecta, mostrar el error en el campo de contraseña
                 const passwordField = document.getElementById('password');
-            
+
                 // Vaciar el valor del campo de contraseña
                 passwordField.value = '';  // Esto setea el valor del campo de contraseña a vacío
-            
+
                 // Mostrar "Contraseña incorrecta" en el campo de contraseña
                 if (data.error === 'Contraseña incorrecta') {
                     passwordField.setCustomValidity('Contraseña incorrecta');
                     passwordField.reportValidity(); // Muestra el mensaje de validación en el campo
                 }
             }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            
-                // En caso de error en la solicitud, mostrar un error genérico en el campo de contraseña
-                const passwordField = document.getElementById('password');
-            
-                // Vaciar el valor del campo de contraseña
-                passwordField.value = '';  // Esto setea el valor del campo de contraseña a vacío
-            
-                passwordField.setCustomValidity('Error al procesar la solicitud'); // Mensaje genérico de error
-                passwordField.reportValidity(); // Muestra el mensaje de validación en el campo
-            });
-            
-            // Limpiar el mensaje de error al empezar a escribir en el campo de contraseña
+        })
+        .catch(error => {
+            console.error('Error:', error);
+
+            // En caso de error en la solicitud, mostrar un error genérico en el campo de contraseña
             const passwordField = document.getElementById('password');
-            passwordField.addEventListener('input', function() {
-                passwordField.setCustomValidity(''); // Elimina el mensaje de error
-            });
-            
+
+            // Vaciar el valor del campo de contraseña
+            passwordField.value = '';  // Esto setea el valor del campo de contraseña a vacío
+
+            passwordField.setCustomValidity('Error al procesar la solicitud'); // Mensaje genérico de error
+            passwordField.reportValidity(); // Muestra el mensaje de validación en el campo
+        });
+
+    // Limpiar el mensaje de error al empezar a escribir en el campo de contraseña
+    const passwordField = document.getElementById('password');
+    passwordField.addEventListener('input', function () {
+        passwordField.setCustomValidity(''); // Elimina el mensaje de error
+    });
+
 });
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     fetch('./../servicios_admin/checksesion.php')
-    .then(response => response.json()) // Procesar la respuesta como JSON
-    .then(data => {
-        if (data.success) {
-        console.log(data);
-        loginOverlay.style.display = 'none';
-        window.globalEmail = data.email;
-        document.getElementById('userEmail').textContent = window.globalEmail;
-        }
-    })
+        .then(response => response.json()) // Procesar la respuesta como JSON
+        .then(data => {
+            if (data.success) {
+                console.log(data);
+                loginOverlay.style.display = 'none';
+                window.globalEmail = data.email;
+                document.getElementById('userEmail').textContent = window.globalEmail;
+            }
+            else {
+                loginOverlay.style.display = 'block';
+            }
+        })
 });
 
 const logoutBtn = document.getElementById('logoutBtn');
 
-logoutBtn.addEventListener('click', function() {
+logoutBtn.addEventListener('click', function () {
     fetch('./../servicios_admin/sesiondestroy.php')
-    document.location.href='./../vistas/admin.html';
+    document.location.href = './../vistas/admin.html';
 });

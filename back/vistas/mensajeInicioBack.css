@@ -1,0 +1,84 @@
+/* Estilos para el contenedor principal */
+.welcome-container6 {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    border-left: 5px solid #F28705; /* Borde lateral en naranja cálido */
+}
+
+/* Estilos para el encabezado */
+.welcome-header6 {
+    margin-bottom: 20px;
+}
+
+.welcome-title6 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #F2490C; /* Título en rojo anaranjado */
+    margin: 0;
+}
+
+/* Introducción */
+.welcome-intro6 {
+    font-size: 16px;
+    color: #495057;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+/* Estilos del contenedor de los módulos */
+.module-container6 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+/* Estilos para cada módulo */
+.module-card6 {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-left: 5px solid #F2B705; /* Borde izquierdo en amarillo dorado */
+}
+
+.module-card6:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Título del módulo */
+.module-title6 {
+    font-size: 22px;
+    font-weight: bold;
+    color: #F29F05; /* Título de los módulos en naranja brillante */
+    margin-bottom: 10px;
+}
+
+/* Descripción del módulo */
+.module-description6 {
+    font-size: 16px;
+    color: #495057;
+    line-height: 1.6;
+}
+
+/* Estilos del pie de la bienvenida */
+.welcome-footer6 {
+    font-size: 16px;
+    color: #0D0D0D; /* Texto en el pie con color negro */
+    margin-top: 30px;
+    line-height: 1.6;
+}
+
+/* Media queries para adaptabilidad en dispositivos móviles */
+@media (max-width: 768px) {
+    .module-container6 {
+        grid-template-columns: 1fr;
+    }
+}
