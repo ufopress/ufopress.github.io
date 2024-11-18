@@ -1,4 +1,5 @@
 <?php
+session_start();
 include "../controladores/conectar.php";
 
 header('Content-Type: application/json');
@@ -19,13 +20,17 @@ try {
         $psw = $admin['Contraseña']; // La contraseña guardada en la base de datos
         if (password_verify($password, $psw)) {
             // Si la contraseña es correcta
+            $_SESSION['sesion']=true;
+            $_SESSION['email']=$usermail;
             echo json_encode(['success' => true]); // Respuesta exitosa
         } else {
             // Si la contraseña es incorrecta
+            $_SESSION['sesion']=false;
             echo json_encode(['success' => false, 'error' => 'Contraseña incorrecta']); // Mensaje de error específico
         }
     } else {
         // Si no se encuentra el usuario
+        $_SESSION['sesion']=false;
         echo json_encode(['success' => false, 'error' => 'Usuario no encontrado']); // Mensaje de error cuando no se encuentra el usuario
     }    
 

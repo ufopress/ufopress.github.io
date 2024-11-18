@@ -12,11 +12,12 @@
     <link href="stylesBackend.css" rel="stylesheet" />
     <link href="styleCatalogo.css" rel="stylesheet" />
     <link href="styleLoginBack.css" rel="stylesheet" />
+    <link href="mensajeInicioBack.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>
 
 <body class="sb-nav-fixed">
-    <div id="loginOverlay" class="login-overlay">
+    <div id="loginOverlay" class="login-overlay" style="display: none;">
         <div class="login-container">
             <h2 class="login-title">Iniciar Sesión</h2>
 
@@ -63,7 +64,7 @@
                     <li>
                         <hr class="dropdown-divider" />
                     </li>
-                    <li><a class="dropdown-item" href="admin.html">Logout</a></li>
+                    <li><a class="dropdown-item" id="logoutBtn">Logout</a></li>
                 </ul>
             </li>
         </ul>
@@ -74,6 +75,7 @@
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading">Administrador</div>
+                        <a class="nav-link" id="inicioBtn">Inicio</a>
                         <div class="sb-sidenav-menu-heading">Interfaz</div>
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                             data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
@@ -148,7 +150,77 @@
                     <!-- <h1 class="mt-4">Bienvenido</h1> -->
                     <div id="result" style="margin-top: 20px; color: green;" display="none"></div>
                     <div class="row">
+                        <div id="Bienvenida" class="welcome-container6">
+                            <div class="welcome-header6">
+                                <h2 class="welcome-title6">¡Bienvenido al Panel de Administración!</h2>
+                            </div>
+                            <div class="welcome-body6">
+                                <p class="welcome-intro6">
+                                    Estás dentro del panel de administración. Como administrador, tienes control total
+                                    sobre los diferentes módulos de la plataforma.
+                                    Desde aquí, podrás gestionar productos, usuarios, promociones, ventas y la
+                                    configuración de datos de la empresa. Aquí te explicamos brevemente qué puedes hacer
+                                    en cada
+                                    sección:
+                                </p>
+                                <div class="module-container6">
+                                    <div class="module-card6">
+                                        <h3 class="module-title6">Módulo Productos</h3>
+                                        <p class="module-description6">
+                                            En este módulo podrás <strong>agregar nuevos productos</strong>,
+                                            <strong>editar</strong> los existentes, o <strong>eliminar</strong> aquellos
+                                            que ya no sean necesarios.
+                                            Gestiona las características de cada producto, como precios, autores y
+                                            categorías.
+                                        </p>
+                                    </div>
 
+                                    <div class="module-card6">
+                                        <h3 class="module-title6">Módulo Empresa</h3>
+                                        <p class="module-description6">
+                                            Aquí podrás <strong>modificar los datos de la empresa</strong>, como la
+                                            dirección, el número de contacto, el correo electrónico y otra información
+                                            clave relacionada con la gestión de tu negocio, asegurando que los datos
+                                            siempre estén actualizados y correctos.
+                                        </p>
+                                    </div>
+
+                                    <div class="module-card6">
+                                        <h3 class="module-title6">Módulo Usuarios</h3>
+                                        <p class="module-description6">
+                                            Gestiona todos los usuarios registrados en el sistema. Desde aquí puedes
+                                            <strong>agregar nuevos administradores</strong>, así como <strong>gestionar
+                                                clientes</strong>,
+                                            asegurando que la plataforma funcione de manera eficiente y segura.
+                                        </p>
+                                    </div>
+
+                                    <div class="module-card6">
+                                        <h3 class="module-title6">Módulo Promociones</h3>
+                                        <p class="module-description6">
+                                            Añade y <strong>gestiona promociones</strong> para incentivar las ventas y
+                                            atraer más clientes. Puedes crear descuentos.
+                                            Todo desde este panel de administración.
+                                        </p>
+                                    </div>
+
+                                    <div class="module-card6">
+                                        <h3 class="module-title6">Módulo Ventas</h3>
+                                        <p class="module-description6">
+                                            Mantén el control sobre las <strong>ventas realizadas</strong>, viendo el
+                                            registro de los tickets generados, que incluye detalles como el número de
+                                            ticket, la dirección de envío, la fecha y hora de la compra, y el total de
+                                            la transacción.
+                                        </p>
+                                    </div>
+                                </div>
+                                <p class="welcome-footer6">
+                                    Para comenzar, utiliza el menú lateral para navegar entre los módulos y administrar
+                                    cada área de forma eficiente. Si tienes alguna pregunta, el soporte está a tu
+                                    disposición.
+                                </p>
+                            </div>
+                        </div>
                         <div id="agregarProductos" style="display: none;">
                             <form id="registrarProdForm" enctype="multipart/form-data" method="POST">
                                 <div id="layoutAuthentication_content">

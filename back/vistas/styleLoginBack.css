@@ -16,15 +16,18 @@
 
 /* Estilos para el contenedor del formulario */
 .login-container {
+    position: absolute;
     background-color: #0D0D0D;
     padding: 40px 50px;
     border-radius: 15px;
+    top: 50%;
+    left: 50%;
     width: 100%;
     max-width: 450px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     text-align: center;
     transition: transform 0.3s ease-in-out;
-    transform: scale(1);
+    transform: translate(-50%,-50%);
 }
 
 /* Estilos para el título */

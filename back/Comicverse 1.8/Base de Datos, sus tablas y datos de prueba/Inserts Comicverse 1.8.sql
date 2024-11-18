@@ -38,7 +38,6 @@ INSERT INTO CATEGORIA (NombreCategoria)
 VALUES 
 ('Acción'),
 ('Superhéroes'),
-('Cómics'),
 ('Terror'),
 ('Aventura'),
 ('Fantasía'),
@@ -60,8 +59,6 @@ INSERT INTO HISTORIETA (ISBN, NombreCategoriaCE, Nombre, Imagen, EditOrg, Autore
 VALUES 
 ('9784065137003', 'Acción', 'VINLAND SAGA VOL. 10', '9784065137003.png', 'Kodansha', 'Makoto Yukimura', 250, '13x18', 'Capítulos 55-60', 'Rústica', 12, 'Blanco y Negro', 600.00),
 ('9780785192964', 'Superhéroes', 'Hulk: Gris', '9780785192964.png', 'Marvel Comics', 'Jeph Loeb, Tim Sale', 160, '20x30', 'Hulk: Gray 1-6', 'Rústica', 16, 'Color', 800.00),
-('9783161484100', 'Cómics', 'Comic A', '9783161484100.png', 'Editorial A', 'Autor A', 100, '15x22', 'Contenido del Comic A', 'Rústica', 12, 'Color', 500.00),
-('9783161484101', 'Cómics', 'Comic B', '9783161484101.png', 'Editorial B', 'Autor B', 120, '15x22', 'Contenido del Comic B', 'Rústica', 12, 'Color', 550.00),
 ('9780785192954', 'Acción', 'Venom: Protector Letal', '9780785192954.png', 'Marvel Comics', 'David Michelinie, Todd McFarlane', 120, '20x30', 'Venom: Lethal Protector 1-6', 'Rústica', 16, 'Color', 700.00),
 ('9780785192955', 'Terror', 'Venom (2018)', '9780785192955.png', 'Marvel Comics', 'Donny Cates', 160, '20x30', 'Venom 1-6', 'Rústica', 16, 'Color', 800.00),
 ('9780785192956', 'Aventura', 'El Asombroso Hombre Araña', '9780785192956.png', 'Marvel Comics', 'Stan Lee, Steve Ditko', 150, '20x30', 'Amazing Spider-Man 1-6', 'Rústica', 12, 'Color', 750.00),
@@ -111,26 +108,25 @@ VALUES
 (8);
 
 -- Insertar datos en la tabla TICKET
-INSERT INTO TICKET (IdCarritoCE, dirEnvio, Fecha, Hora, Total)
+INSERT INTO TICKET (IdCarritoCE, dirEnvio, Fecha, Hora, Total, Contenido)
 VALUES 
-(1, '123 Comic St', '2024-09-01', '10:00', '12.00'),
-(2, '456 Comic St', '2024-09-01', '11:00', '15.00'),
-(3, '789 Comic St', '2024-09-10', '12:00', '17.00'),
-(4, '101 Comic St', '2024-09-10', '13:00', '18.00'),
-(5, '202 Comic St', '2024-08-15', '14:00', '20.00'),
-(6, '303 Comic St', '2024-11-15', '15:00', '22.00'),
-(7, '404 Comic St', '2024-12-25', '16:00', '25.00'),
-(8, '505 Comic St', '2024-01-10', '17:00', '27.00');
+(1, '123 Comic St', '2024-09-01', '10:00', '800.00', 'Venom (2018)'),
+(2, '456 Comic St', '2024-09-01', '11:00', '800.00', 'Venom (2018)'),
+(3, '789 Comic St', '2024-09-10', '12:00', '900.00', 'Ultimate Hombre Araña'),
+(4, '101 Comic St', '2024-09-10', '13:00', '900.00', 'Ultimate Hombre Araña'),
+(5, '202 Comic St', '2024-08-15', '14:00', '800.00', 'Venom (2018)'),
+(6, '303 Comic St', '2024-11-15', '15:00', '800.00', 'Venom (2018)');
+
 
 -- Insertar datos en la tabla AGREGA
 INSERT INTO AGREGA (IdCarritoCE, ISBNCE, Fecha, Hora)
 VALUES 
-(1, '9783161484100', '2024-08-15', '10:00'),
-(2, '9783161484100', '2024-09-01', '11:00'),
-(3, '9783161484101', '2024-09-10', '12:00'),
-(4, '9783161484101', '2024-08-20', '13:00'),
-(5, '9783161484100', '2024-08-25', '14:00'),
-(6, '9783161484100', '2024-09-05', '15:00');
+(1, '9780785192955', '2024-08-15', '10:00'),
+(2, '9780785192955', '2024-09-01', '11:00'),
+(3, '9780785192957', '2024-09-10', '12:00'),
+(4, '9780785192957', '2024-08-20', '13:00'),
+(5, '9780785192955', '2024-08-25', '14:00'),
+(6, '9780785192955', '2024-09-05', '15:00');
 
 -- Insertar datos en la tabla CREA
 INSERT INTO CREA (IdUsuarioCE)
@@ -167,7 +163,6 @@ VALUES
 INSERT INTO APLICA (NombreCategoriaCE, NombrePromocion, Procentaje, FechaInicio, FechaFin) VALUES
 ('Acción', 'Descuento Verano', 15, '2024-01-01', '2024-03-31'),
 ('Superhéroes', 'Black Friday', 25, '2024-11-01', '2024-11-30'),
-('Cómics', 'Promoción Especial', 10, '2024-05-01', '2024-06-30'),
 ('Terror', 'Oferta de Halloween', 20, '2024-10-01', '2024-10-31'),
 ('Aventura', 'Descuento Navidad', 30, '2024-12-01', '2024-12-25'),
 ('Fantasía', 'Descuento Primavera', 10, '2024-03-01', '2024-05-31'),

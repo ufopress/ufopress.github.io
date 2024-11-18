@@ -41,6 +41,7 @@ function loadTickets(page = 1) {
     fetch(`./../servicios_admin/gestionVenta.php?page=${page}`)
         .then(response => response.json())
         .then(data => {
+            console.log(data);
             if (data.error) {
                 resultDiv5.textContent = 'Error al cargar los tickets';
                 return;
@@ -53,10 +54,12 @@ function loadTickets(page = 1) {
                 ticketElement.innerHTML = `
                     <div class="text-container">
                         <h3>Ticket #${ticket.NroTicket}</h3>
+                        <h4>Nombre: ${ticket.NombreUser}</h4>
                         <p>Dirección de Envío: ${ticket.dirEnvio}</p>
                         <p>Fecha: ${ticket.Fecha}</p>
                         <p>Hora: ${ticket.Hora}</p>
-                        <p>Total: $${ticket.Total}</p>
+                        <p>Producto(s): ${ticket.Contenido}</p>
+                        <p>Total: U$ ${ticket.Total}</p>
                     </div>
                 `;
                 productContainer5.appendChild(ticketElement);
