@@ -69,3 +69,23 @@ loginBtn.addEventListener('click', function () {
             });
             
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    fetch('./../servicios_admin/checksesion.php')
+    .then(response => response.json()) // Procesar la respuesta como JSON
+    .then(data => {
+        if (data.success) {
+        console.log(data);
+        loginOverlay.style.display = 'none';
+        window.globalEmail = data.email;
+        document.getElementById('userEmail').textContent = window.globalEmail;
+        }
+    })
+});
+
+const logoutBtn = document.getElementById('logoutBtn');
+
+logoutBtn.addEventListener('click', function() {
+    fetch('./../servicios_admin/sesiondestroy.php')
+    document.location.href='./../vistas/admin.html';
+});
