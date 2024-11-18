@@ -1,0 +1,472 @@
+* {
+  scrollbar-width: thin;
+  scrollbar-color: orange rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  overflow-x: hidden;
+  background: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 166, 0, 0.2)), 
+                url('../../front/img/fondo.webp');
+  background-size: cover; /* Ajusta la imagen al tamaño del contenedor */
+  background-position: center; /* Centra la imagen */
+  background-attachment: fixed; /* Para que el fondo permanezca fijo al hacer scroll */
+}
+
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1030; /* Asegura que esté por encima de otros elementos */
+}
+
+#carrouselContainer, #modalProduct{
+  padding-top: 72px;
+}
+
+#carrouselContainer{
+  background: linear-gradient(to top, rgba(255, 255, 255), rgb(245, 160, 2));
+}
+
+#navBarHeader{
+  background: rgba(255, 255, 255, 0.8); /* Fondo transparente/blanco */
+  background: linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(245, 160, 2));
+}
+
+#navBarAdmin {
+  background: linear-gradient(to bottom, rgba(255, 145, 0), rgba(240, 178, 63));
+  color: white;
+}
+
+#sidenavAccordion {
+  background: linear-gradient(to bottom, rgba(240, 178, 63), rgba(255, 145, 0));
+}
+
+#modalContent img {
+  max-width: 100%; /* La imagen no excederá el tamaño del contenedor */
+  height: 12rem;    /* Mantiene la proporción de la imagen */
+  max-height: 400px; /* Ajusta el tamaño máximo de la imagen */
+  margin-bottom: 10px; /* Añadir un margen inferior para separar la imagen del texto */
+}
+
+#sidebar-wrapper {
+  width: 260px; 
+  font-size: 1.2rem;
+}
+
+#sidebar-wrapper .list-group-item {
+  padding: 15px 20px; /* Aumenta el espacio en los ítems del sidebar */
+}
+
+#sidebar-wrapper .list-group-item i {
+  font-size: 1.5rem; /* Aumenta el tamaño de los iconos */
+}
+
+/* Aumentar el tamaño del contenido principal */
+#page-content-wrapper h1 {
+  font-size: 2.5rem; /* Aumenta el tamaño de los títulos */
+}
+
+#page-content-wrapper p {
+  font-size: 1.2rem; /* Aumenta el tamaño de los párrafos */
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  background-color: rgba(0, 0, 0, 0.1); /* Color de fondo */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: orange; /* Color de la barra */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* Color de la barra cuando se desplaza */
+}
+
+#reseñasCarousel .card {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+}
+
+#btnCarouselResenaNext{
+  transform: translateX(8rem);
+  background-color: orange;
+  border-radius: 50%;
+}
+
+#btnCarouselResenaPrev{
+  transform: translateX(-8rem);
+  background-color: orange;
+  border-radius: 50%;
+}
+
+.footer {
+  background-color: #F5A002; /* Fondo anaranjado */
+  color: black; /* Texto en color negro */
+}
+
+.footer h5 {
+  color: black; /* Cambia el color de los títulos a negro */
+}
+
+.footer a {
+  color: black; /* Links en negro */
+}
+
+.footer a:hover {
+  color: darkorange; /* Links en naranja oscuro al pasar el cursor */
+}
+
+.footer .form-control {
+  background-color: #ffe6cc; /* Color claro en los inputs */
+  color: black; /* Texto negro en los inputs */
+  border-color: black; /* Bordes negros */
+}
+
+.footer .form-control:focus {
+  background-color: #ffcc99; /* Color más oscuro al hacer focus */
+  color: black;
+}
+
+.footer button {
+  background-color: orange; /* Fondo naranja */
+  border-color: black; /* Borde negro */
+  color: black; /* Texto negro */
+}
+
+.footer button:hover {
+  background-color: darkorange; /* Fondo naranja oscuro al pasar el cursor */
+  border-color: black; /* Mantiene el borde negro */
+}
+
+.footer .container p, 
+.footer .container ul li {
+  color: black; /* Texto general en negro */
+}
+
+.destacado {
+  background-color: #f29f05; /* Color de fondo naranja */
+  color: white; /* Color del texto en blanco */
+  padding: 10px; /* Espaciado interior */
+  border-radius: 15px; /* Bordes redondeados */
+  text-align: center; /* Centrar el texto */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Sombra para darle profundidad */
+}
+
+.logo-img {
+  width: 150px; /* Ajusta el ancho */
+  height: 50px; /* Ajusta la altura */
+  object-fit: contain; /* Asegura que la imagen mantenga su proporción dentro de las dimensiones */
+}
+
+/* Aumentar tamaño del botón */
+.navbar .btn {
+  font-size: 1.2rem; /* Aumenta el tamaño del botón de menú */
+  padding: 10px 20px; /* Ajusta el padding del botón */
+}
+
+.text-center {
+  text-align: center;
+}
+
+.dropdown-item.active,
+.dropdown-item:active,
+.dropdown-item:hover{
+  background-color: #ffc107;
+  color: #000;
+}
+
+.no-link {
+  cursor: pointer;
+}
+
+.text-danger {
+  color: red; /* Cambia el color del texto a rojo para destacarlo */
+}
+
+.mb-4 {
+  margin-bottom: 1.5rem; /* Espaciado inferior para el encabezado */
+}
+
+.h4 {
+  font-size: 1.5rem; /* Ajusta el tamaño del texto para el mensaje */
+  font-weight: bold; /* Haz el texto más destacado */
+}
+
+.card {
+  max-height: 50vh; /* Máximo 50% de la altura de la ventana */
+  overflow: hidden; /* Oculta cualquier contenido que exceda la altura */
+}
+.card img {
+  margin: 1vh;
+  max-height: 20vh; /* La imagen ocupará hasta un 20% de la altura de la ventana */
+  object-fit: contain; /* Ajuste de la imagen dentro del contenedor */
+}
+.card-body {
+  max-height: 55vh; /* Cuerpo del contenido, incluyendo título y descripción */
+  overflow-y: auto; /* Añade scroll si el contenido es mayor */
+}
+.card-footer {
+  max-height: 15vh; /* Pie de la tarjeta */
+}
+
+#btnNavSearch{
+  color: orange; /* Color del texto */
+  background-color: #fff; /* Cambia el fondo a blanco */
+  border-color: orange; /* Cambia el borde a naranja */
+}
+
+#btnNavSearch:hover{
+  color: #fff; /* Color del texto cuando haces hover */
+  background-color: orange; /* Cambia el fondo a naranja */
+  border-color: orange; /* Cambia el borde a naranja */
+}
+
+.jumbotron,
+.card-body,
+.container,
+.site-header {
+  font-family: 'Verdana', serif !important;
+}
+
+.jumbotron .display-4 {
+  font-weight: bold;
+}
+
+nav a {
+  text-decoration: none;
+}
+
+#navBarHeader{
+background-color: orange;
+}
+
+.bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+  }
+}
+
+.jumbotron {
+  height: 50vh;
+  padding: 5em inherit;
+  margin-bottom: 0;
+  background-color: #53c0fb;
+  background: url('../img/cover_back.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: black;
+  font-weight: bold;
+}
+
+@media (min-width: 768px) {
+  .jumbotron {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+}
+
+.jumbotron p:last-child {
+  margin-bottom: 0;
+}
+
+.jumbotron-heading {
+  font-weight: 300;
+}
+
+.jumbotron .container {
+  max-width: 40rem;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  text-shadow: 1px 1px 2px grey;
+}
+
+.jumbotron .lead {
+  font-size: 38px;
+}
+
+footer {
+  padding-bottom: 3rem;
+}
+
+footer p {
+  margin-bottom: 0.25rem;
+}
+
+.site-header a {
+  color: white;
+  transition: ease-in-out color 0.15s;
+}
+
+.site-header .dropdown-menu a {
+  color: black;
+}
+
+.dropzone {
+  border: 2px dashed #0087f7;
+  border-radius: 5px;
+  background: white;
+}
+
+.img-fit {
+  max-height: 100%;
+}
+
+.alert {
+  position: fixed;
+  top: 80px;
+  width: 50%;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.lds-ring {
+  display: inline-block;
+  position: relative;
+  width: 64px;
+  height: 64px;
+  top: 50%;
+  left: 50%;
+}
+
+.cursor-active {
+  cursor: pointer;
+}
+
+.left {
+  float: left;
+  padding: 4px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 51px;
+  height: 51px;
+  margin: 6px;
+  border: 6px solid #fff;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #fff transparent transparent transparent;
+}
+
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+}
+
+#spinner-wrapper {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1021;
+  display: none;
+}
+
+main {
+  min-height: calc(100vh - 210px);
+}
+
+a.custom-card,
+a.custom-card:hover {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+.checked {
+  color: orange;
+}
+
+.product {
+  border: 1px solid #ccc;
+  padding: 16px;
+  margin: 16px;
+  border-radius: 8px;
+  width: 15rem;
+  display: inline-block;
+  vertical-align: top;
+}
+
+/* Estilos personalizados para los botones de navegación */
+.custom-carousel-control {
+  background-color: rgba(255, 165, 0, 0.3); /* Color naranja casi transparente */
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 35%;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  filter: invert(1); /* Cambia el color del icono a blanco */
+  opacity: 0.8;
+}
+
+/* Hover para aumentar la opacidad */
+.custom-carousel-control:hover {
+  background-color: rgba(255, 165, 0, 0.6); /* Aumenta la opacidad al pasar el ratón */
+}
+
+.product img {
+  max-width: 100%;
+  height: auto;
+  border-bottom: 1px solid #ddd;
+}
+.precio {
+  font-weight: bold;
+  color: green;
+}
+
+@media (width > 700px) {
+  .img-thumbnail {
+    width: 100%;
+  }
+}
+

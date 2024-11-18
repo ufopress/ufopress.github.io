@@ -1,0 +1,116 @@
+/* Estilos para el overlay */
+.login-overlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(13, 13, 13, 0.9);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Estilos para el contenedor del formulario */
+.login-container {
+    background-color: #0D0D0D;
+    padding: 40px 50px;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 450px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+    transform: scale(1);
+}
+
+/* Estilos para el título */
+.login-title {
+    color: white;
+    font-family: 'Arial', sans-serif;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+/* Estilos para los grupos de formulario */
+.form-group-2 {
+    margin-bottom: 20px;
+}
+
+/* Estilos para las etiquetas */
+.label-2 {
+    color: white;
+    font-weight: 500;
+    display: block;
+    margin-bottom: 8px;
+}
+
+/* Estilos para los campos de entrada */
+.form-control-2 {
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid #F29F05;
+    background-color: #000000; /* Aseguramos que el fondo sea negro */
+    color: white;
+    font-size: 1rem;
+    width: 100%; /* Asegura que los campos se adapten al contenedor */
+    margin: 0;
+}
+
+/* Estilos para el botón de inicio de sesión */
+.btn-login {
+    width: 100%;
+    padding: 12px;
+    background-color: #F2490C;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Estilos para el botón al pasar el mouse */
+.btn-login:hover {
+    background-color: #D8390C; /* Cambio de color en hover */
+}
+
+/* Estilos para pantallas más pequeñas (móviles y tablets) */
+@media (max-width: 768px) {
+    .login-container {
+        padding: 30px 20px;
+        max-width: 90%; /* Reduce el tamaño máximo en pantallas pequeñas */
+    }
+    
+    .login-title {
+        font-size: 1.5rem; /* Ajusta el tamaño del título en dispositivos pequeños */
+    }
+    
+    .form-control-2 {
+        font-size: 0.9rem; /* Reduce el tamaño de fuente en pantallas pequeñas */
+    }
+    
+    .btn-login {
+        font-size: 1rem; /* Ajuste en el tamaño del botón */
+    }
+}
+
+/* Estilos para pantallas muy pequeñas (móviles muy pequeños) */
+@media (max-width: 480px) {
+    .login-title {
+        font-size: 1.3rem; /* Acomoda el tamaño del título */
+    }
+    
+    .form-control-2 {
+        font-size: 0.85rem; /* Ajuste aún más fino de la fuente */
+    }
+    
+    .btn-login {
+        font-size: 0.9rem; /* Ajuste en el tamaño del botón */
+    }
+}
