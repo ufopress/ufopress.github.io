@@ -1,3 +1,4 @@
+const agregarUsuarios2 = document.getElementById('agregarUsuarios');
 const regUserBtn = document.getElementById('regUserBtn');
 
 regUserBtn.addEventListener('click', function() {              
@@ -17,6 +18,7 @@ regUserBtn.addEventListener('click', function() {
                     showConfirmButton: false,
                     timer: 1500
                 }).then(() => {
+                    agregarUsuarios2.style.display = 'none';
                 });
             } else {
                 Swal.fire({
