@@ -2,7 +2,7 @@
 include "conectar.php";
 
 $data = json_decode(file_get_contents('php://input'), true);
-$email = "briandanielm@outlook.es";
+$email = $data['email'];
 
 try {
     // Consulta para obtener los tickets relacionados con un cliente basado en su email
