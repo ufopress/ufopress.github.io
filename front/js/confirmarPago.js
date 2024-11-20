@@ -25,7 +25,7 @@ document.getElementById('irConfirmarPago').addEventListener('click', function ()
         const email = localStorage.getItem('emailUser');
         obtenerIdCarrito(nombreUser, email);
 
-        if(nombreUser === '' || email === ''){
+        if (nombreUser === '' || email === '') {
             mostrarAlerta('Inicie sesion para completar la compra.', 'error');
             return;
         }
@@ -108,14 +108,13 @@ document.getElementById('confirmarPago').addEventListener('click', function () {
     var totalCompra = parseFloat(document.getElementById('totalCompra').value);
     var valorFinal = parseFloat(document.getElementById('valorFinal').value);
 
-    // Enviar los datos al servidor para crear el ticket
     fetch('./front/php/ticket.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            carrito: carrito,
+            carrito: carrito, // Carrito con los productos
             direccionEnvio: direccionEnvio,
             total: valorFinal,
             idCarrito: idCarrito
