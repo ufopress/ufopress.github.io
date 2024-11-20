@@ -20,6 +20,10 @@ document.getElementById('irConfirmarPago').addEventListener('click', function ()
         var totalCompra = 0;  // Variable para almacenar el total de la compra
         var valorFinal = 0;    // Variable para almacenar el valor final de la compra (con impuestos/descuentos)
 
+        const nombreUser = localStorage.getItem('nombreUsuario');
+        const email = localStorage.getItem('emailUser');
+        obtenerIdCarrito(nombreUser, email);
+
         // Realizar la solicitud para cada producto del carrito
         carrito.forEach(function (producto) {
             // Realizar una solicitud a PHP para obtener los detalles de la historieta con el ISBN
@@ -84,11 +88,7 @@ document.getElementById('irConfirmarPago').addEventListener('click', function ()
 
 // Cuando el usuario confirma el pago
 document.getElementById('confirmarPago').addEventListener('click', function () {
-
     var direccionEnvio = document.getElementById('direccionEnvio').value;
-    const nombreUser = localStorage.getItem('nombreUsuario');
-    const email = localStorage.getItem('emailUser');
-    obtenerIdCarrito(nombreUser, email);
 
     if (!direccionEnvio) {
         localStorage.removeItem('idCarrito');
