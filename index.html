@@ -92,8 +92,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link no-link" data-bs-toggle="modal" data-bs-target="#mostrarPromocionadosModal">Productos
-              Mis compras</a>
+            <a class="nav-link no-link" data-bs-toggle="modal" data-bs-target="#modalTickets">Mis compras</a>
           </li>
           <li class="nav-item"></li>
           <a id="generatePDF" class="nav-link active" aria-current="page" href="#">Descargar catálogo</a>
@@ -643,26 +642,30 @@
         <div class="modal-body">
           <!-- Lista de tickets existentes -->
           <div class="table-responsive">
-            <table class="table table-bordered">
+            <!-- Tabla para mostrar los tickets -->
+            <table class="table">
               <thead>
                 <tr>
-                  <th scope="col">Nro Ticket</th>
-                  <th scope="col">Fecha</th>
-                  <th scope="col">Hora</th>
-                  <th scope="col">Total</th>
-                  <th scope="col">Contenido</th>
-                  <th scope="col">Dirección de Envío</th>
-                  <th scope="col">Acciones</th>
+                  <th># Ticket</th>
+                  <th>Fecha</th>
+                  <th>Hora</th>
+                  <th>Total</th>
+                  <th>Contenido</th>
+                  <th>Dirección</th>
+                  <th>Acciones</th>
                 </tr>
               </thead>
               <tbody id="ticketsLista">
-                <!-- Aquí se cargarán dinámicamente los tickets -->
+                <!-- Los tickets se cargarán dinámicamente aquí -->
               </tbody>
             </table>
+
+            <!-- Contenedor para la paginación -->
+            <div id="paginacionContainerTickets" class="d-flex justify-content-center mt-3"></div>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
         </div>
       </div>
     </div>
@@ -757,6 +760,7 @@
   <script src="./front/js/liResenas.js"></script>
   <script src="./front/js/confirmarPago.js"></script>
   <script src="./front/js/modales.js"></script>
+  <script src="./front/js/getTickets.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

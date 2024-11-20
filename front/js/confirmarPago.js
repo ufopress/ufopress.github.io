@@ -25,6 +25,11 @@ document.getElementById('irConfirmarPago').addEventListener('click', function ()
         const email = localStorage.getItem('emailUser');
         obtenerIdCarrito(nombreUser, email);
 
+        if(nombreUser === '' || email === ''){
+            mostrarAlerta('Inicie sesion para completar la compra.', 'error');
+            return;
+        }
+
         // Realizar la solicitud para cada producto del carrito
         carrito.forEach(function (producto) {
             // Realizar una solicitud a PHP para obtener los detalles de la historieta con el ISBN

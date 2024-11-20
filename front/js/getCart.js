@@ -14,7 +14,6 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(response => response.json())
         .then(data => {
             if (data.resultado === false || !data.carrito) {
-                console.log('No se encontraron productos en el carrito.');
                 return;
             } else {
                 let carritoArray = [];
