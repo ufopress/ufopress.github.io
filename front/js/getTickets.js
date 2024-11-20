@@ -47,18 +47,18 @@ function mostrarTicketsPorPagina() {
     // Renderizar los tickets
     ticketsPagina.forEach((ticket) => {
         ticketsLista.innerHTML += `
-            <tr>
-                <td>${ticket.NroTicket}</td>
-                <td>${ticket.Fecha}</td>
-                <td>${ticket.Hora}</td>
-                <td>$U${ticket.Total}</td>
-                <td>${ticket.Contenido}</td>
-                <td>${ticket.dirEnvio}</td>
-                <td>
-                    <button class="btn btn-outline-warning btn-sm" onclick="verDetallesTicket(${ticket.NroTicket})">Detalles</button>
-                </td>
-            </tr>
-        `;
+                                    <tr>
+                                        <td>${ticket.NroTicket}</td>
+                                        <td>${ticket.Fecha}</td>
+                                        <td>${ticket.Hora}</td>
+                                        <td>$U${ticket.Total}</td>
+                                        <td>${ticket.Contenido}</td>
+                                        <td>${ticket.dirEnvio}</td>
+                                        <td>
+                                            <button class="btn btn-outline-warning btn-sm" onclick="verDetallesTicket('${ticket.NroTicket}')">Detalles</button>
+                                        </td>
+                                    </tr>
+                                `;
     });
 }
 
@@ -124,6 +124,36 @@ function crearPaginacionTickets() {
 
     // Agregar los controles de paginación al contenedor
     paginacionContainerTickets.appendChild(paginacionRow);
+}
+
+// Función para mostrar los detalles del ticket
+function verDetallesTicket(nroTicket) {
+    fetch('./front/php/getTicketDetails.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ nroTicket: nroTicket }) // Enviar el número del ticket al servidor
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Mostrar los detalles del ticket en el modal
+                const modalDetalles = new bootstrap.Modal(document.getElementById('modalDetallesTicket'));
+                document.getElementById('ticketDetallesNro').textContent = data.ticket.NroTicket;
+                document.getElementById('ticketDetallesFecha').textContent = data.ticket.Fecha;
+                document.getElementById('ticketDetallesHora').textContent = data.ticket.Hora;
+                document.getElementById('ticketDetallesTotal').textContent = `$U${data.ticket.Total}`;
+                document.getElementById('ticketDetallesContenido').textContent = data.ticket.Contenido;
+                document.getElementById('ticketDetallesDireccion').textContent = data.ticket.dirEnvio;
+
+                // Mostrar el modal
+                modalDetalles.show();
+            } else {
+                alert('No se pudieron obtener los detalles del ticket');
+            }
+        })
+        .catch(error => console.error('Error al obtener los detalles del ticket:', error));
 }
 
 // Llamar a la función cuando se abra el modal
