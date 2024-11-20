@@ -276,24 +276,43 @@ function obtenerIdCliente() {
         });
 }
 
-// Función para obtener idCarrito usando el idCliente
-function obtenerIdCarrito(idCliente) {
-    fetch('./front/php/obtenerIdCarrito.php', {
+function obtenerIdCarrito(nombreUser, email) {
+    // Paso 1: Obtener IdCliente
+    fetch('./front/php/obtenerIdCliente.php', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ idCliente })
+        body: JSON.stringify({ nombreUser: nombreUser, email: email }),
     })
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                vaciarCarrito(data.idCarrito);
+                const idCliente = data.idCliente;
+
+                // Paso 2: Obtener IdCarrito con el IdCliente obtenido
+                fetch('./front/php/obtenerIdCarrito.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ idCliente: idCliente }),
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // Guardar en localStorage
+                            localStorage.setItem('idCarrito', data.idCarrito);
+                        } else {
+                            console.error('Error al obtener el IdCarrito:', data.message);
+                        }
+                    })
+                    .catch(error => console.error('Error en la consulta del carrito:', error));
             } else {
-                console.error("Error al obtener el idCarrito:", data.message);
+                console.error('Error al obtener el IdCliente:', data.message);
             }
         })
-        .catch(error => console.error("Error en la solicitud:", error));
+        .catch(error => console.error('Error en la consulta del cliente:', error));
 }
 
 // Función para vaciar el carrito usando el idCarrito

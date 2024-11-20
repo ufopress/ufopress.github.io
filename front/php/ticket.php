@@ -5,6 +5,7 @@ include('conectar.php');
 // Obtener los datos del POST
 $input = json_decode(file_get_contents('php://input'), true);
 $carrito = $input['carrito']; // Carrito con los productos
+$idCarritoCE = $input['idCarrito'];
 $direccionEnvio = $input['direccionEnvio']; // Dirección de envío
 $total = $input['total']; // Total de la compra
 $fecha = date('Y-m-d'); // Fecha actual
@@ -16,9 +17,6 @@ if (!empty($carrito) && !empty($direccionEnvio) && !empty($total)) {
         // Insertar el ticket en la base de datos
         $query = "INSERT INTO TICKET (IdCarritoCE, dirEnvio, Fecha, Hora, Total) VALUES (:idCarritoCE, :dirEnvio, :fecha, :hora, :total)";
         $sentencia = $conexion->prepare($query);
-
-        // Aquí debes obtener el IdCarritoCE (esto depende de cómo manejas el carrito, puede ser un valor guardado en session o localStorage)
-        $idCarritoCE = 1; // Ejemplo, cambia esto con el valor adecuado
 
         // Ejecutar la consulta
         $sentencia->bindParam(':idCarritoCE', $idCarritoCE, PDO::PARAM_INT);

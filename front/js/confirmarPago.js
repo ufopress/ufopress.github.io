@@ -85,18 +85,22 @@ document.getElementById('irConfirmarPago').addEventListener('click', function ()
 // Cuando el usuario confirma el pago
 document.getElementById('confirmarPago').addEventListener('click', function () {
 
-    obtenerIdCliente();
-
-    // Obtener los datos del formulario
     var direccionEnvio = document.getElementById('direccionEnvio').value;
-    var carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-    var totalCompra = parseFloat(document.getElementById('totalCompra').value);
-    var valorFinal = parseFloat(document.getElementById('valorFinal').value);
+    const nombreUser = localStorage.getItem('nombreUsuario');
+    const email = localStorage.getItem('emailUser');
+    obtenerIdCarrito(nombreUser, email);
 
     if (!direccionEnvio) {
+        localStorage.removeItem('idCarrito');
         alert('Por favor, ingresa una dirección de envío');
         return;
     }
+
+    // Obtener los datos del formulario
+    const idCarrito = localStorage.getItem('idCarrito');
+    var carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    var totalCompra = parseFloat(document.getElementById('totalCompra').value);
+    var valorFinal = parseFloat(document.getElementById('valorFinal').value);
 
     // Enviar los datos al servidor para crear el ticket
     fetch('./front/php/ticket.php', {
@@ -107,25 +111,31 @@ document.getElementById('confirmarPago').addEventListener('click', function () {
         body: JSON.stringify({
             carrito: carrito,
             direccionEnvio: direccionEnvio,
-            total: valorFinal
+            total: valorFinal,
+            idCarrito: idCarrito
         })
     })
         .then(response => response.json())
         .then(data => {
             if (data.resultado === true) {
                 mostrarAlerta('Pago confirmado. Tu número de ticket es: ' + data.nroTicket, 'success');
-                // Redirigir después de unos segundos
-                setTimeout(() => {
-                    window.location.href = 'index.html';
-                }, 3000); // 3000 milisegundos = 3 segundos
                 // Opcional: Limpiar el carrito después de la compra
                 localStorage.removeItem('carrito');
+                vaciarCarrito(localStorage.getItem('idCarrito'));
                 actualizarContadorCarrito();
+
+                // Redirigir después de unos segundos
+                setTimeout(() => {
+                    localStorage.removeItem('idCarrito');
+                    window.location.href = 'index.html';
+                }, 3000); // 3000 milisegundos = 3 segundos
             } else {
+                localStorage.removeItem('idCarrito');
                 mostrarAlerta('Hubo un problema al procesar tu pago. Intenta nuevamente.', 'error');
             }
         })
         .catch(error => {
+            localStorage.removeItem('idCarrito');
             console.error('Error al crear el ticket:', error);
             alert('Hubo un error. Intenta nuevamente.');
         });
