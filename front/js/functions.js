@@ -211,7 +211,6 @@ function agregarProductoAlCarrito(isbn, nombre, precio) {
     // Actualizar el contador del carrito
     enviarDatosAlPHP();
     actualizarContadorCarrito();
-    mostrarAlerta('Producto añadido correctamente!', 'success');
 
     // Redirigir después de unos segundos
     setTimeout(() => {

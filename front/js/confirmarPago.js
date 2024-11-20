@@ -8,8 +8,9 @@ document.getElementById('irConfirmarPago').addEventListener('click', function ()
 
     const modalCarrito = document.getElementById('cartModal');
 
-    if (!modalCarrito.hidden) {
-        modalCarrito.hidden = true; // Esto oculta el modal
+    const modalCarritoInstance = bootstrap.Modal.getInstance(modalCarrito);
+    if (modalCarritoInstance) {
+        modalCarritoInstance.hide(); // Esto cierra el modal correctamente
     }
 
     // Obtener el carrito de compras desde localStorage
