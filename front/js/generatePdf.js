@@ -1,4 +1,7 @@
 document.getElementById('generatePDF').addEventListener('click', async () => {
+
+    mostrarAlerta('Su descarga comenzara en unos segundos!');
+
     // Crear el PDF
     const { jsPDF } = window.jspdf;
     const pdf = new jsPDF();
@@ -43,12 +46,6 @@ document.getElementById('generatePDF').addEventListener('click', async () => {
         }
     }
 
-    // Dibujar la cabecera de la tabla
-    pdf.setFontSize(12);
-    pdf.text('Imagen', margin + 10, startY);
-    pdf.text('Nombre', margin + 60, startY);
-    pdf.text('Precio', margin + 140, startY);
-
     startY += 10;  // Mover la posición hacia abajo para comenzar las filas
 
     // Recorrer los productos y añadirlos uno por uno
@@ -61,20 +58,15 @@ document.getElementById('generatePDF').addEventListener('click', async () => {
         }
 
         // Añadir el nombre y precio del producto
+        const lineHeight = 10; // Altura entre líneas
         pdf.text(historietas[i].Nombre, margin + 60, startY + 20);  // Nombre del producto
-        pdf.text(`$U${historietas[i].Precio}`, margin + 140, startY + 20);  // Precio del producto
+        pdf.text(`$U${historietas[i].Precio}`, margin + 60, startY + 20 + lineHeight);  // Precio debajo
 
         // Verificar si la siguiente fila excede la altura de la página
         startY += rowHeight;
         if (startY + rowHeight > pageHeight && i < historietas.length - 1) { // Solo agregar página si hay más productos
             pdf.addPage();  // Añadir una nueva página si se alcanza el límite y aún hay productos por mostrar
             startY = 20;  // Reiniciar la posición Y en la nueva página
-
-            // Redibujar la cabecera de la tabla en la nueva página
-            pdf.text('Imagen', margin + 10, startY);
-            pdf.text('Nombre', margin + 60, startY);
-            pdf.text('Precio', margin + 140, startY);
-            startY += 10;  // Espacio para las filas
         }
     }
 

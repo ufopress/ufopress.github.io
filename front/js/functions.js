@@ -267,7 +267,6 @@ function obtenerIdCliente() {
             if (data.success) {
                 // Llamar a la función que obtiene el idCarrito con el idCliente
                 obtenerIdCarrito(data.idCliente);
-
             } else {
                 console.error('Error al obtener el ID del cliente:', data.message);
             }

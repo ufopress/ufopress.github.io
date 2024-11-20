@@ -91,6 +91,10 @@
                   data-bs-target="#modalResenas">Gestionar mis reseñas</a></li>
             </ul>
           </li>
+          <li class="nav-item">
+            <a class="nav-link no-link" data-bs-toggle="modal" data-bs-target="#mostrarPromocionadosModal">Productos
+              Mis compras</a>
+          </li>
           <li class="nav-item"></li>
           <a id="generatePDF" class="nav-link active" aria-current="page" href="#">Descargar catálogo</a>
           </li>
@@ -135,9 +139,6 @@
         </div>
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src="./front/img/carrousel1.webp" class="d-block w-100" alt="img" />
-          </div>
-          <div class="carousel-item">
             <img src="./front/img/carrousel2.webp" class="d-block w-100" alt="img" />
           </div>
           <div class="carousel-item">
@@ -633,6 +634,42 @@
     </div>
   </div>
 
+  <!-- Modal para gestionar tickets -->
+  <div class="modal fade" id="modalTickets" tabindex="-1" aria-labelledby="modalTicketsLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalTicketsLabel">Gestionar Tickets</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Lista de tickets existentes -->
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col">Nro Ticket</th>
+                  <th scope="col">Fecha</th>
+                  <th scope="col">Hora</th>
+                  <th scope="col">Total</th>
+                  <th scope="col">Contenido</th>
+                  <th scope="col">Dirección de Envío</th>
+                  <th scope="col">Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="ticketsLista">
+                <!-- Aquí se cargarán dinámicamente los tickets -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Modal para gestionar reseñas -->
   <div class="modal fade" id="modalResenas" tabindex="-1" aria-labelledby="modalResenasLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -713,6 +750,7 @@
   <script src="./front/js/generatePdf.js"></script>
   <script src="./front/js/getResenas.js"></script>
   <script src="./front/js/cart.js"></script>
+  <script src="./front/js/promocionados.js"></script>
   <script src="./front/js/getThreeProducts.js"></script>
   <script src="./front/js/resena.js"></script>
   <script src="./front/js/gestionResenas.js"></script>
@@ -720,7 +758,6 @@
   <script src="./front/js/productDetails.js"></script>
   <script src="./front/js/saveCart.js"></script>
   <script src="./front/js/liResenas.js"></script>
-  <script src="./front/js/promocionados.js"></script>
   <script src="./front/js/confirmarPago.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
