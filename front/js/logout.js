@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Verificar nuevamente el estado del usuario para actualizar la interfaz
                 verificarUsuario(); // Llamada a la función global
                 actualizarContadorCarrito();
+                window.location.href = 'index.html';
             }
         });
     }

@@ -5,7 +5,7 @@ include('conectar.php');
 // Obtener los datos del POST
 $input = json_decode(file_get_contents('php://input'), true);
 $carrito = $input['carrito']; // Carrito con los productos
-$idCarritoCE = $input['idCarrito'];
+$idCarritoCE = isset($input['idCarrito']) ? $input['idCarrito'] : 1;
 $direccionEnvio = $input['direccionEnvio']; // Dirección de envío
 $total = $input['total']; // Total de la compra
 $fecha = date('Y-m-d'); // Fecha actual

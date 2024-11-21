@@ -6,7 +6,13 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!usuario) {
             // Si no hay usuario, previene la acción predeterminada y muestra la alerta
             event.preventDefault(); // Evita cualquier acción de redirección
-            mostrarAlerta('Logueate para poder ingresar aquí', 'error');
+            // Mostrar alerta de éxito antes de redirigir
+            mostrarAlerta('Inicia sesión para acceder a esta funcionalidad', 'error');
+            
+            // Redirigir después de unos segundos
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 2500); // 2500 milisegundos = 2.5 segundos
         }
         // Si hay usuario, no hace nada y permite la acción
     });

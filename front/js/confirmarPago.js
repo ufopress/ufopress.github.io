@@ -108,6 +108,9 @@ document.getElementById('confirmarPago').addEventListener('click', function () {
     var totalCompra = parseFloat(document.getElementById('totalCompra').value);
     var valorFinal = parseFloat(document.getElementById('valorFinal').value);
 
+    email = localStorage.getItem('emailUser');
+    user = localStorage.getItem('nombreUsuario');
+
     fetch('./front/php/ticket.php', {
         method: 'POST',
         headers: {
@@ -144,4 +147,5 @@ document.getElementById('confirmarPago').addEventListener('click', function () {
             console.error('Error al crear el ticket:', error);
             alert('Hubo un error. Intenta nuevamente.');
         });
+
 });
