@@ -8,7 +8,7 @@ $email = $input['email'] ?? '';
 $carrito = $input['carrito'] ?? [];
 
 // Validar si se han recibido el email y el carrito
-if (!$email || empty($carrito)) {
+if (!$email) {
     echo json_encode(['resultado' => false, 'mensaje' => 'Datos incompletos']);
     exit;
 }

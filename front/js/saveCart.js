@@ -34,7 +34,6 @@ function enviarDatosAlPHP() {
     .then(response => response.json()) // Aseguramos que la respuesta sea un JSON
     .then(data => {
         if (data.resultado) {
-            mostrarAlerta('Carrito actualizado con éxito!', 'success');
         } else {
             mostrarAlerta('Error al enviar el carrito: ' + data.mensaje, 'error');
         }        

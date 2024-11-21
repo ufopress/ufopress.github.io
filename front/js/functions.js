@@ -277,42 +277,62 @@ function obtenerIdCliente() {
 }
 
 function obtenerIdCarrito(nombreUser, email) {
-    // Paso 1: Obtener IdCliente
-    fetch('./front/php/obtenerIdCliente.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ nombreUser: nombreUser, email: email }),
-    })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                const idCliente = data.idCliente;
+    nombreUser = localStorage.getItem('nombreUsuario');
+    email = localStorage.getItem('emailUser');
 
-                // Paso 2: Obtener IdCarrito con el IdCliente obtenido
-                fetch('./front/php/obtenerIdCarrito.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ idCliente: idCliente }),
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            // Guardar en localStorage
-                            localStorage.setItem('idCarrito', data.idCarrito);
-                        } else {
-                            console.error('Error al obtener el IdCarrito:', data.message);
-                        }
-                    })
-                    .catch(error => console.error('Error en la consulta del carrito:', error));
-            } else {
-                console.error('Error al obtener el IdCliente:', data.message);
-            }
+    return new Promise((resolve, reject) => {
+        // Paso 1: Obtener IdCliente
+        fetch('./front/php/obtenerIdCliente.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ nombreUser: nombreUser, email: email }),
         })
-        .catch(error => console.error('Error en la consulta del cliente:', error));
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    const idCliente = data.idCliente;
+
+                    // Paso 2: Obtener IdCarrito con el IdCliente obtenido
+                    return fetch('./front/php/obtenerIdCarrito.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ idCliente: idCliente }),
+                    });
+                } else {
+                    reject(new Error('Error al obtener el IdCliente: ' + data.message));
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    localStorage.setItem('idCarrito', data.idCarrito);
+                    resolve(data.idCarrito); // Resolver la promesa con el idCarrito
+                } else {
+                    reject(new Error('Error al obtener el IdCarrito: ' + data.message));
+                }
+            })
+            .catch(error => {
+                console.error('Error en la consulta:', error);
+                reject(error); // Rechazar la promesa en caso de error
+            });
+    });
+}
+
+async function procesarCarrito() {
+    try {
+        // Esperar a obtener el IdCarrito
+        const idCarrito = await obtenerIdCarrito();
+
+        // Realizar las acciones después de obtener el IdCarrito
+        localStorage.removeItem('carrito');
+        vaciarCarrito(idCarrito);
+    } catch (error) {
+        console.error('Error al procesar el carrito:', error);
+    }
 }
 
 // Función para vaciar el carrito usando el idCarrito

@@ -29,7 +29,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     actualizarContadorCarrito();
                     window.location.href = "index.html";
-
                 } else {
                     mostrarAlerta('Credenciales incorrectas: ', 'error');
                 }

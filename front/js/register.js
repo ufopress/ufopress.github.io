@@ -47,7 +47,7 @@ document.getElementById('formRegister').addEventListener('submit', function (eve
                 window.location.href = 'index.html';
             }, 3000); // 3000 milisegundos = 3 segundos
         } else {
-            mostrarAlerta('Error al enviar el carrito: ' + data.mensaje, 'error');
+            mostrarAlerta('Error al registrarse: ' + data.mensaje, 'error');
         }  
     })
     .catch(error => {

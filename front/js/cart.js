@@ -103,11 +103,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Función para vaciar el carrito
     document.getElementById('vaciarCarrito').addEventListener('click', function () {
-        localStorage.removeItem('carrito');
-        obtenerIdCliente();
-        mostrarCarrito();
+        const nombreUser = localStorage.getItem('nombreUsuario');
+        const email = localStorage.getItem('emailUser');
+        obtenerIdCarrito(nombreUser, email);
+        // Llamada a la función
+        procesarCarrito();
+        mostrarAlerta('Carrito vaciado.', 'success');
+        // Opcional: Limpiar el carrito después de la compra
+
         actualizarContadorCarrito();
-        mostrarAlerta('Carrito vaciado.');
+
+        // Redirigir después de unos segundos
+        setTimeout(() => {
+            localStorage.removeItem('idCarrito');
+            window.location.href = 'index.html';
+        }, 3000); // 3000 milisegundos = 3 segundos
     });
 
     // Función para eliminar un producto del carrito

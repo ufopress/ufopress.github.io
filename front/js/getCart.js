@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(response => response.json())
         .then(data => {
             if (data.resultado === false || !data.carrito) {
+                actualizarContadorCarrito();
                 return;
             } else {
                 let carritoArray = [];
